@@ -4,7 +4,7 @@
 #show: show-rules
 
 #set document(
-  title: "Multivariable Calculus",
+  title: "Linear Algebra",
   author: "Saint Even, Slipper King",
 )
 
@@ -12,7 +12,7 @@
   if not _is-html {
     align(center)[
       #v(2cm)
-      #title("Multivariable Calculus")
+      #title("Linear Algebra")
       #text(size: 13pt)[Saint Even, Slipper King]
 
       #text(size: 11pt)[Source: https://github.com/yunfeix2009/multi-var-notes-ocw]
@@ -31,7 +31,7 @@
           OpenCourseWare Notes
         ]
         #html.elem("p", attrs: (class: "paper-misc"))[
-          Typst Source: https://github.com/yunfeix2009/multi-var-notes-ocw
+          Typst Source: https://github.com/yunfeix2009/lin-alg-notes-ocw
         ]
         #html.elem("p", attrs: (class: "pdf-download"))[
           #html.elem("a", attrs: (href: "pdf/notes.pdf", class: "btn-pdf"))[
@@ -39,7 +39,7 @@
           ]
         ]
         #html.elem("div", attrs: (class: "abstract"))[
-          A web rendering of the multivariable calculus notes, adapted from the Typst source with HTML-specific theorem, equation, and navigation handling.
+          A web rendering of the linear algebra notes, adapted from the Typst source with HTML-specific theorem, equation, and navigation handling.
         ]
       ]
     ]
