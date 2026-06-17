@@ -15,14 +15,14 @@
       #title("Linear Algebra")
       #text(size: 13pt)[Saint Even, Slipper King]
 
-      #text(size: 11pt)[Source: https://github.com/yunfeix2009/multi-var-notes-ocw]
+      #text(size: 11pt)[Source: https://github.com/yunfeix2009/lin-alg-notes-ocw]
     ]
     outline()
   } else {
     chapter-section("cover")[
       #html.elem("header", attrs: (class: "paper-header"))[
         #html.elem("h1", attrs: (class: "paper-title"))[
-          Multivariable Calculus
+          Linear Algebra
         ]
         #html.elem("p", attrs: (class: "author"))[
           by #smallcaps[Saint Even, Slipper King]
