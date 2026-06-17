@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home — Notes on Multivariable Calculus</title>
+  <meta name="author" content="Fabien Mathieu">
+  <meta name="pagefind-base" content="/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>
+    (function(){
+      var t=localStorage.getItem("theme")||"auto";
+      if(t==="auto")t=matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";
+      document.documentElement.dataset.theme=t;
+    })();
+  </script>
+  <script>
+    (function(){
+      var activeNavGroups=[];
+      var collapsed={};
+      try{collapsed=JSON.parse(sessionStorage.getItem("global-nav-collapsed")||"{}")||{};}
+      catch(_){}
+      for(var i=0;i<activeNavGroups.length;i++){delete collapsed[activeNavGroups[i]];}
+      var ids=Object.keys(collapsed).filter(function(id){return collapsed[id];});
+      if(!ids.length)return;
+      var s=document.createElement("style");
+      s.id="nav-collapsed-state";
+      s.textContent=ids.map(function(id){return"#"+id+"{display:none;}"}).join("");
+      document.head.appendChild(s);
+    })();
+  </script>
+</head>
+<body>
+  <header class="topbar" data-pagefind-ignore>
+    <div class="topbar-left">
+      <button class="sidebar-toggle-btn" id="sidebar-toggle-left" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h14M3 10h14M3 15h14"/></svg></button>
+      <a href="./" class="topbar-title">Notes on Multivariable Calculus</a>
+    </div>
+    <div class="topbar-right">
+      <button class="search-trigger" aria-label="Search (Ctrl+K)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> <kbd>Ctrl+K</kbd></button>
+      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme"><svg viewBox="0 0 512 512" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg></button>
+      <a href="https://yunfeix2009.github.io/multi-var-notes-ocw/" class="github-link" aria-label="GitHub" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <button class="sidebar-toggle-btn" id="sidebar-toggle-right" aria-label="Table of contents"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h14M3 8h10M3 12h12M3 16h8"/></svg></button>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar-left" data-pagefind-ignore>
+      <nav class="global-nav" aria-label="Global navigation">
+  <ul>
+    <li class="active">
+      <a href="./">Home</a>
+    </li>
+    <li class="nav-parent">
+      <div class="nav-item-row">
+        <a href="preliminaries/">Chapter 1: Preliminaries</a>
+        <button class="nav-collapse-toggle" type="button" aria-expanded="true" aria-label="Collapse subsection" aria-controls="nav-group-preliminaries"></button>
+      </div>
+      <div class="nav-children" id="nav-group-preliminaries">
+        <ul>
+          <li class="nav-sub nav-depth-1">
+            <a href="dot_product/">1.1 Dot Product</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="dot_product_applications/">1.2 Dot Product Applications</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="matrices/">1.3 Matrices</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="cross_product/">1.4 Cross Product</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="parametric/">1.5 Parametric Equations</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-parent">
+      <div class="nav-item-row">
+        <a href="differentiation/">Chapter 2: Differentiation</a>
+        <button class="nav-collapse-toggle" type="button" aria-expanded="true" aria-label="Collapse subsection" aria-controls="nav-group-differentiation"></button>
+      </div>
+      <div class="nav-children" id="nav-group-differentiation">
+        <ul>
+          <li class="nav-sub nav-depth-1">
+            <a href="fundamentals/">2.1 Fundamentals of Partial Derivatives</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="geometric-interpretation/">2.2 Geometric Interpretation</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="extremum/">2.3 Extremum</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="Differential/">2.4 Differentials</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="chain-rule/">2.5 Chain Rule</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="gradient/">2.6 Gradient</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="directional-derivative/">2.7 Directional Derivative</a>
+          </li>
+          <li class="nav-sub nav-depth-1">
+            <a href="lagrange-multipliers/">2.8 Lagrange Multipliers</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <a href="integration/">Chapter 3: Integration</a>
+    </li>
+    <li>
+      <a href="appendix-1/">Chapter A: Appendix</a>
+    </li>
+    <li>
+      <a href="appendix-2/">Chapter B: Surfaces</a>
+    </li>
+  </ul>
+</nav>
+    </aside>
+    <main class="content">
+      
+<header class="paper-header">
+<h1 class="paper-title">Multivariable Calculus</h1>
+<p class="author">by <span style="font-variant-caps: small-caps">Saint Even, Slipper King</span></p>
+<p class="date">OpenCourseWare Notes</p>
+<p class="paper-misc">Typst Source: <a href="https://github.com/yunfeix2009/multi-var-notes-ocw">https://github.com/yunfeix2009/multi-var-notes-ocw</a></p>
+<p class="pdf-download"><a class="btn-pdf" href="../pdf/multi-var-notes.pdf">Download PDF</a></p>
+<div class="abstract">A web rendering of the multivariable calculus notes, adapted from the Typst source with HTML-specific theorem, equation, and navigation handling.</div>
+</header>
+
+      <footer class="page-nav" data-pagefind-ignore>
+        <span></span>
+        <a href="preliminaries/" class="nav-next">Chapter 1: Preliminaries &rarr;</a>
+      </footer>
+    </main>
+    <aside class="sidebar-right" data-pagefind-ignore>
+      
+    </aside>
+  </div>
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-dialog">
+      <div class="search-header">
+        <input type="text" class="search-input" id="search-input"
+               placeholder="Search..." autocomplete="off">
+        <kbd class="search-close">Esc</kbd>
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </div>
+  <script src="assets/modifications.js"></script>
+</body>
+</html>
