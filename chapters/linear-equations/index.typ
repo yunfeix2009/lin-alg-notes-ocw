@@ -7,3 +7,7 @@ One of the problems that motivated linear algebra is finding the solution to a s
 #chapter-section("picture")[
   #include "picture/index.typ"
 ]
+
+#chapter-section("elimination")[
+  #include "elimination/index.typ"
+]

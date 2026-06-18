@@ -3,7 +3,7 @@
  == Row Picture and Column Picture
 
 #example[
-  Solve $ cases(2x - y = 0, -x + 2y  = 3). $
+  Solve the system of linear equations $ cases(2x - y = 0, -x + 2y  = 3). $
 ]
 #solution[
   Assuming basic knowledge on multiplication of matrices, this could be written in the form of $ mat(2,  -1; -1, 2) mat(x; y) = mat(0, 3). $
@@ -23,7 +23,7 @@ Adding one variable to a system of $3$ equations of $3$ variables, the "row pict
 Another contrast between the "row picture" and "column picture" is when defining or computing the product between a vector and a matrix. 
 
 #example[
-  Compute $ mat(2, 5; 1, 3) mat(1; 2). $
+  Compute the product of the following matrix and vector $ mat(2, 5; 1, 3) mat(1; 2). $
 ]
 #solution[
   Usually, this is done through the dot product of every row in the matrix and the vector; however, the "column" way takes each column in the matrix as a vector and the product is the summation of the i-th column and the i-th component of the vector. 
