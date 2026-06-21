@@ -48,7 +48,7 @@ the dot product of the $i$th row of $bold(A)$ with the $j$th column
 of $bold(B)$.
 
 The product $bold(A) bold(B)$ is defined only when the number of columns of
-$bold(A)$ equals the number of rows of $bold(B)$.
+$bold(A)$ equals the number of rows of $bold(B)$. 
 ]
 
 #definition[
