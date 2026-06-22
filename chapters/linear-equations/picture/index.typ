@@ -253,4 +253,6 @@ mat(
   (0, -2, 1),
 ) $
 
-From the two examples, we see that to do column manipulations, such as exchanging two columns, the matrix is on the left, while to do row manipulations, the matrix does on the right. 
+From the two examples, we see that to do column manipulations, such as exchanging two columns, the matrix is on the left, while to do row manipulations, the matrix does on the right. In summary, for matrix product of $vb(A B) = vb(C)$, the rows of $vb(C)$ are combinations of the rows of $vb(B)$ and the columns of $vb(D)$ are combinations of the columns of $vb(A)$. 
+
+Furthermore, by combining these ways of thinking about matrix multiplication, $vb(A B)$ is also the sum of the columns of $vb(A)$ times the rows of $vb(B)$. 
