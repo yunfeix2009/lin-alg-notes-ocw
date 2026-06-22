@@ -41,7 +41,7 @@ Now, we are ready to define cross product.
 #proof[
   This result comes directly from the expansion of both sides. However, an argument based on the geometric meaning in terms of the area of the parallelepiped could also be established.
 ]
-#theorem[Lagrange Identity (two variables)][
+#theorem[Lagrange Identity (three dimensions)][
   $ norm(vb(a) times vb(b))^2 = norm(vb(a))^2 norm(vb(b))^2 - (vb(a) dot vb(b))^2 $
 ]<thm:lagrange-identity>
 #proof[
@@ -51,11 +51,28 @@ Now, we are ready to define cross product.
   $ norm(vb(a) times vb(b))^2 &= norm(abs(vb(a)) norm(vb(b)) sin theta) \ &= (norm(vb(a))^2 norm(vb(b))^2 dot sin^2 theta \ &=  (norm(vb(a))^2 norm(vb(b))^2 dot (1- cos^2 theta)\ &=norm(vb(a))^2 norm(vb(b))^2 - (vb(a) dot vb(b))^2. $
 ]
 #remark[
-  In fact, this theorem is generalizable to finitely many vectors. 
+  In fact, this theorem is generalizable to finitely many vectors. #align(center)[
+  $
+  (
+    sum_(i = 1)^n a_i^2
+  )(
+    sum_(i = 1)^n b_i^2
+  )
+  -
+  (
+    sum_(i = 1)^n a_i b_i
+  )^2
+  =
+  sum_(1 <= i < j <= n)
+  (
+    a_i b_j - a_j b_i
+  )^2
+  $
+]
 ]
 
 
-#example[Pset2 PartII P1][
+#example[(18.02 Pset2 PartII P1][
   Suppose we know that when the three planes $P_1$, $P_2$, and $P_3$ in $RR^3$ intersect in pairs, we get three lines $L_1$, $L_2$, and $L_3$ which are _distinct_ and _parallel_.
 
   a) Sketch a picture of this situation.
@@ -76,15 +93,15 @@ Now, we are ready to define cross product.
 
   b) Now let $P$ be the plane through the origin which contains two non-parallel vectors $u$ and $v$, where $u$ and $v$ do not both lie in the $x$-$y$ plane. Derive a formula, in terms of $u$ and $v$, for a vector $w$ which points in the steepest direction on $P$.
 ]
-#solution[
-  (a) We may draw some insights from previous sections. From @ex:dot-product-angle-2, we have that $cal(P)$ is described by $ mat(a, b, c) dot hat(bold(n)) = 0. $ Also, the desired direction is represented by $nabla F$, where $F(x, y, z) = 0$ describes the surface.
+// #solution[
+//   (a) We may draw some insights from previous sections. From @ex:dot-product-angle-2, we have that $cal(P)$ is described by $ mat(a, b, c) dot hat(bold(n)) = 0. $ Also, the desired direction is represented by $nabla F$, where $F(x, y, z) = 0$ describes the surface.
 
-  However, to fully solve the problem with cross product, we consider the two planes in play: $cal(P)$ and the x-y plane. The desired vector, $vb(v)$ satisfies the constraint of $vb(v) dot hat(vb(n)) = 0$ and optimizes for the greatest value of $vb(v) dot (hat(vb(i)) times hat(vb(j)))$.
+//   However, to fully solve the problem with cross product, we consider the two planes in play: $cal(P)$ and the x-y plane. The desired vector, $vb(v)$ satisfies the constraint of $vb(v) dot hat(vb(n)) = 0$ and optimizes for the greatest value of $vb(v) dot (hat(vb(i)) times hat(vb(j)))$.
 
-  Let the normal vector of the x-y plane be $vb(k)$, then  $vb(v) = (vb(n) times vb(k)) times vb(n)$
+//   Let the normal vector of the x-y plane be $vb(k)$, then  $vb(v) = (vb(n) times vb(k)) times vb(n)$
 
-  (b) Notice that the $hat(vb(n)) tilde vb(u) times vb(v)$, so we can directly apply the result from part (a) that $ vb(v) = ((vb(u) times vb(v)) times vb(k)) times (vb(u) times vb(v)). $
-]
+//   (b) Notice that the $hat(vb(n)) tilde vb(u) times vb(v)$, so we can directly apply the result from part (a) that $ vb(v) = ((vb(u) times vb(v)) times vb(k)) times (vb(u) times vb(v)). $
+// ]
 
 
 #example[

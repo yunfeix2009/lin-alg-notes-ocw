@@ -1,81 +1,93 @@
 #import "/lib.typ": *
 
-== Dot Product
+== Length and Dot Product
 
 #definition[
-For vectors $bold(a) = ( a_1, a_2, dots, a_n )$
-and
-$bold(b) = ( b_1, b_2, dots, b_n )$,
-their *dot product* is defined by
-$bold(a) dot bold(b)
-:= sum_(i=1)^n a_i b_i.$
-_The dot product is a scalar._
+  For vectors $bold(a) = ( a_1, a_2, dots, a_n )$
+  and
+  $bold(b) = ( b_1, b_2, dots, b_n )$,
+  their *dot product* is defined by
+  $bold(a) dot bold(b)
+  := sum_(i=1)^n a_i b_i.$
+  _The dot product is a scalar._
 ]<def:dot-product>
 
 #definition[
-For a fixed vector with components real numbers  $vb(a)=(a_1,dots,a_n)$, its norm is defined as, $norm(bold(a))
-=
-sqrt(sum_(i=1)^n a_i^2)
-$.
+  For a fixed vector with components real numbers  $vb(a)=(a_1,dots,a_n)$, its norm, or length, is defined as, $norm(bold(a))
+  =
+  sqrt(sum_(i=1)^n a_i^2)$.
 ]
 Notice that $vb(a) dot vb(a) = norm(vb(a))^2$
 
-Also, it is easy to verify that this way of measuring distance is symmetric, positive definite, and satisfies the triangle inequality, meaning that this way of measuring distance is a metric on $RR^n$. 
+Also, it is easy to verify that this way of measuring distance is symmetric, positive definite, and satisfies the triangle inequality, meaning that this way of measuring distance is a metric on $RR^n$.
 
 #theorem[
-For two given vectors of the same dimension, $vb(a)=(a_1,dots,a_n)$ and $vb(b)=(b_1,dots,b_n)$, $bold(a) dot bold(b)
-=
-norm(bold(a)) norm(bold(b)) cos theta.
-$
+  The triangle inequality states that $ norm(vb(u) + vb(v)) <= norm(vb(u)) + norm(vb(v)). $
+]
+
+#theorem[
+  The Cauchy Schwarz Inequality states that $ abs(vb(u) dot vb(v)) <= norm(vb(u)) dot norm(vb(v)). $ Equality case is achieved when $vb(u) parallel vb(v)$.
+]
+#proof[
+  This could be shown either by the fact that $abs(cos theta) <= 1$ or with Lagrange Identity (see @thm:lagrange-identity).
+]
+
+#definition[
+  A unit vector $vu(u)$ is a unit vector iff $norm(vu(u)) = 1$, or $vu(u) dot vu(u) = 1$.
+]
+
+Easy to see that the unit vector in the same direction as $vb(v)$ is $vu(u) = vb(v)/norm(v)$.
+
+#theorem[
+  For two given vectors of the same dimension, $vb(a)=(a_1,dots,a_n)$ and $vb(b)=(b_1,dots,b_n)$, $bold(a) dot bold(b)
+  =
+  norm(bold(a)) norm(bold(b)) cos theta.$
 ]<thm:dot-product-geo>
 
 #proof[
-By the Law of Cosines, if $bold(c) = bold(a) - bold(b),$ then
+  By the Law of Cosines, if $bold(c) = bold(a) - bold(b),$ then
 
-$
-norm(bold(c))^2
-=
-norm(bold(a))^2
-+
-norm(bold(b))^2
--
-2 norm(bold(a)) norm(bold(b)) cos theta.
-$
+  $
+    norm(bold(c))^2
+    =
+    norm(bold(a))^2
+    +
+    norm(bold(b))^2
+    -
+    2 norm(bold(a)) norm(bold(b)) cos theta.
+  $
 
-On the other hand,
+  On the other hand,
 
-$
-norm(bold(c))^2
-=
-bold(c) dot bold(c)
-=
-(bold(a) - bold(b)) dot (bold(a) - bold(b))
-$
+  $
+    norm(bold(c))^2
+    =
+    bold(c) dot bold(c)
+    =
+    (bold(a) - bold(b)) dot (bold(a) - bold(b))
+  $
 
-$
-=
-norm(bold(a))^2
-+
-norm(bold(b))^2
--
-2 (bold(a) dot bold(b)).
-$
+  $
+    =
+    norm(bold(a))^2
+    +
+    norm(bold(b))^2
+    -
+    2 (bold(a) dot bold(b)).
+  $
 
-Comparing the two expressions yields
+  Comparing the two expressions yields
 
-$
-bold(a) dot bold(b)
-=
-norm(bold(a)) norm(bold(b)) cos theta. #qedhere
-$
+  $
+    bold(a) dot bold(b)
+    =
+    norm(bold(a)) norm(bold(b)) cos theta. #qedhere
+  $
 ]
 
 #corollary[
-For two given vectors $vb(a)$ and $vb(b)$, $
-bold(a)$ is orthogonal to $
-bold(b)$
-iff $bold(a) dot bold(b) = 0.
-$
+  For two given vectors $vb(a)$ and $vb(b)$, $bold(a)$ is orthogonal to $bold(b)$
+  iff $bold(a) dot bold(b) = 0.$
 ]
 
 #example[
@@ -90,7 +102,103 @@ $
 ]
 
 #solution[
-  (a) We proceed by expanding the left side: $ "LHS" = 1/4 ((vb(u)^2 + 2 vb(u) dot vb(v) + vb(v)^2) - (vb(u)^2 - 2 vb(u) dot vb(v) + vb(v)))^2) = vb(u) dot vb(v).$
+  (a) We proceed by expanding the left side: $"LHS" = 1/4 ((vb(u)^2 + 2 vb(u) dot vb(v) + vb(v)^2) - (vb(u)^2 - 2 vb(u) dot vb(v) + vb(v)))^2) = vb(u) dot vb(v).$
 
   (b) Define $hat(vb(x)) := vb(x)/norm(vb(x))$. The answer is $ (hat(vb(u)) + hat(vb(v)))/norm(hat(vb(u)) + hat(vb(v)))^2 $
+]
+
+#example[
+  (Textbook Section 1.2 p28) Can three vectors in the $x y$-plane have $ cases(vb(u) dot vb(v) <0, vb(u) dot vb(w) <0, vb(v) dot vb(w)<0)? $
+]
+#solution[
+  Yes, for example, when the vectors are the vertices of an equilateral triangle centered at the origin. In fact, this is true whenever the angles between pairwise vectors are all greater than $90^degree$.
+
+  However, we provide a false proof for no such existence. Multiplying the first two inequalities, $ (vb(u) dot vb(v)) dot (vb(u) dot vb(w)) & = vb(u) dot vb(w) dot (vb(v) dot vb(v)) \
+                                          & = vb(u) dot vb(w) dot norm(vb(v))^2 > 0 \
+                                          & ==> vb(u) dot vb(w) > 0, $ contradiction. This proof wrongly assumes that dot product is associative, which fails as _dot product produces a scalar_.
+]
+#remark[
+  This idea is readily generalizable to $RR^n$, shown by the following theorem. 
+]
+#theorem[
+  In $RR^n$, at most $n+1$ vectors can have pairwise negative dot product.
+]
+
+#proof[
+  (generated by LLM's, at the time I was writing this section, I couldn't prove this). 
+  
+  We prove both the upper bound and that it is attainable.
+
+  For the upper bound, suppose $vb(v)_1, dots, vb(v)_m in RR^n$ satisfy
+  $
+    vb(v)_i dot vb(v)_j < 0
+  $
+  whenever $i != j$. We claim that $m <= n + 1$.
+
+  Assume for contradiction that $m >= n + 2$. Then these $m$ vectors, viewed as points in $RR^n$, are affinely dependent. Therefore there exist scalars $a_1, dots, a_m$, not all zero, such that
+  $
+    sum_(i=1)^m a_i vb(v)_i = vb(0)
+    quad "and" quad
+    sum_(i=1)^m a_i = 0.
+  $
+
+  Since the coefficients sum to $0$ and are not all zero, some are positive and some are negative. Let
+  $
+    P = { i : a_i > 0 }
+    quad "and" quad
+    N = { j : a_j < 0 }.
+  $
+  Moving the negative terms to the other side gives
+  $
+    sum_(i in P) a_i vb(v)_i
+    =
+    sum_(j in N) (-a_j) vb(v)_j.
+  $
+  Call this common vector $vb(x)$. Then
+  $
+    vb(x) dot vb(x)
+    =
+    (sum_(i in P) a_i vb(v)_i) dot (sum_(j in N) (-a_j) vb(v)_j)
+    =
+    sum_(i in P) sum_(j in N) a_i (-a_j) (vb(v)_i dot vb(v)_j).
+  $
+
+  For every $i in P$ and $j in N$, we have $a_i > 0$, $-a_j > 0$, and $vb(v)_i dot vb(v)_j < 0$, so every term in the double sum is negative. Hence
+  $
+    vb(x) dot vb(x) < 0,
+  $
+  which is impossible because $vb(x) dot vb(x) = norm(vb(x))^2 >= 0$. This contradiction proves that $m <= n + 1$.
+
+  To see that $n + 1$ is possible, take the vertices of a regular simplex centered at the origin. Concretely, in $RR^(n+1)$ let
+  $
+    vb(u)_i = vb(e)_i - 1/(n + 1) (1, 1, dots, 1),
+    quad i = 1, dots, n + 1.
+  $
+  These vectors lie in the hyperplane
+  $
+    x_1 + dots + x_(n+1) = 0,
+  $
+  which is an $n$-dimensional subspace, so we may regard them as vectors in $RR^n$. For $i != j$,
+  $
+    vb(u)_i dot vb(u)_j = -1/(n + 1) < 0.
+  $
+  Thus $n + 1$ vectors with pairwise negative dot products do exist, and so the maximum possible number is $n + 1$. #qedhere
+]
+
+#example[
+  Pick any three numbers such that $x + y + z = 0$. Find the angle between vectors $vb(v) = (x, y, z)$ and $vb(w) = (z, x, y)$, $theta$.
+]
+#solution[
+  $ (x + y + z)^2 &= x^2 + y^2 + z^2 + 2 (x z + x y + y z) \ &= 1/2 (norm(vb(v))^2 + norm(vb(w))^2) + vb(v) dot vb(w) = 0.  $
+  However, $ cos theta = (vb(v) dot vb(w))/(norm(vb(v)) norm(vb(w))) = -1/2. $
+
+  Thus, $theta = 120^degree$. 
+]
+
+#example[
+  Find four pairwise perpendicular unit vectors with all components equal to $1/2$ or $-1/2$. 
+]
+#solution[
+  From either $RR^3$ includes at most $3$ pairwise perpendicular directions or that the components have absolute value $1/2$, we are searching in $RR^4$. Each vector must be $1/2 (plus.minus 1, plus.minus 1, plus.minus 1, plus.minus 1)$. 
+  Assume $1/2(1, 1, 1, 1)$ is in the solution, then the rest three could be found, resulting in $ cases(1/2(1, 1, 1,1), 1/2(1, -1, 1, -1), 1/2(1, 1, -1, -1), 1/2(1, -1, -1, 1)). $
 ]
