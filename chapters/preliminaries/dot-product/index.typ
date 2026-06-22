@@ -9,17 +9,18 @@ $bold(b) = ( b_1, b_2, dots, b_n )$,
 their *dot product* is defined by
 $bold(a) dot bold(b)
 := sum_(i=1)^n a_i b_i.$
-The dot product is a scalar.
+_The dot product is a scalar._
 ]<def:dot-product>
 
-#theorem[
-For a fixed vector $vb(a)=(a_1,dots,a_n)$, $norm(bold(a))^2
+#definition[
+For a fixed vector with components real numbers  $vb(a)=(a_1,dots,a_n)$, its norm is defined as, $norm(bold(a))
 =
-bold(a) dot bold(a)
-=
-sum_(i=1)^n a_i^2
+sqrt(sum_(i=1)^n a_i^2)
 $.
 ]
+Notice that $vb(a) dot vb(a) = norm(vb(a))^2$
+
+Also, it is easy to verify that this way of measuring distance is symmetric, positive definite, and satisfies the triangle inequality, meaning that this way of measuring distance is a metric on $RR^n$. 
 
 #theorem[
 For two given vectors of the same dimension, $vb(a)=(a_1,dots,a_n)$ and $vb(b)=(b_1,dots,b_n)$, $bold(a) dot bold(b)
@@ -78,7 +79,7 @@ $
 ]
 
 #example[
-  (pset 1 partII p2)   Let $vb(u), vb(v)$ be vectors.
+  (18.03 Pset 1 PartII p2)   Let $vb(u), vb(v)$ be vectors.
 
   (a) Show that
   $
