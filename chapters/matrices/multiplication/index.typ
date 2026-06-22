@@ -1,23 +1,16 @@
-#import "/lib.typ": *
-
-== Matrices
-
-
-There are many motivations for matrices, including transforming coordinate systems and solving systems of linear equations. Here, we look at it through the lens of linear combinations. 
-
+#import "../../../lib.typ":* 
+== Multiplication
 #definition[
   For vectors $vb(u)$, $vb(v)$, $vb(w)$, etc., rewrite its linear combination of $ mat(vb(u), vb(v), vb(w), dots.c) dot mat(a; b; c; dots.v) = a vb(u) + b vb(v) + c vb(w) + dots.c, $ where $ mat(vb(u), vb(v), vb(w), dots.c) $ could be written as $ mat(u_1, v_1, w_1, dots.c; u_2, v_2, w_2, dots.c; dots.v, dots.v, dots.v, dots.down). $
 ]
-In this way, a matrix a row vector of vectors. 
+In this way, a matrix a row vector of vectors.
 
 
-In this definition, $
-  cases(
-    2x_1 + 3x_2 + 3x_3 = u_1,
-    2x_1 + 4x_2 + 5x_3 = u_2,
-    x_1 + x_2 + 2x_3 = u_3,
-  )
-$
+In this definition, $ cases(
+  2x_1 + 3x_2 + 3x_3 = u_1,
+  2x_1 + 4x_2 + 5x_3 = u_2,
+  x_1 + x_2 + 2x_3 = u_3,
+) $
 
 could be written as
 
@@ -143,17 +136,19 @@ Matrix algebra satisfies many properties for a nice algebraic structure.
   There exist an unique identity fixing the height of the matrix being multiplied, with $1$ along the diagonal and $0$ elsewhere.
   Denote it as $bold(X)$, we have $ bold(I X) = bold(X). $
 
-  + Multiplicative Inverse
-    #definition[For a matrix $bold(A)$, matrix $bold(M)$ is its inverse iff $bold(A M) = bold(M A) = bold(I)$, where $bold(I)$ is the identity matrix. ]
-    Observe that a matrix has an inverse only if it is a square matrix, meaning it has the same number of rows and columns. In fact, any square matrix with a non-zero determinant has an inverse.
-    Furthermore, finding the solution to a system of linear equations is equivalent to finding the inverse of a matrix.
-    Consider a system of linear equations regarding $n$ variables. If $bold(A)$ is an n-by-n square matrix representing the coefficients of the variables in each equation, $bold(X)$ a vector representing the solutions, and $bold(B)$ representing the vector of the constants on the right side of the equations, then we have $ bold(A X) = bold(B) ==> bold(A)^(-1) bold(A X) = bold(A)^(-1) bold(B) ==> bold(X) = bold(A)^(-1) bold(B) $
+  Multiplicative Inverse
+  #definition[For a matrix $bold(A)$, matrix $bold(M)$ is its inverse iff $bold(A M) = bold(M A) = bold(I)$, where $bold(I)$ is the identity matrix. ]<def:matrixInverse>
+  Observe that a matrix has an inverse only if it is a square matrix, meaning it has the same number of rows and columns. In fact, any square matrix with a non-zero determinant has an inverse.
+  Furthermore, finding the solution to a system of linear equations is equivalent to finding the inverse of a matrix.
+  Consider a system of linear equations regarding $n$ variables. If $bold(A)$ is an n-by-n square matrix representing the coefficients of the variables in each equation, $bold(X)$ a vector representing the solutions, and $bold(B)$ representing the vector of the constants on the right side of the equations, then we have $ bold(A X) = bold(B) ==> bold(A)^(-1) bold(A X) = bold(A)^(-1) bold(B) ==> bold(X) = bold(A)^(-1) bold(B) $
 
-    Thus, how to find the inverse of a matrix becomes a natural question. Here, I claim, without proof, that if the adjunct matrix of a square matrix $bold(A)$ is obtained by taking the transpose of the co-factor of the minors of $bold(A)$, then $ bold(A)^(-1) = 1/(det bold(A)) op("adj")(bold(A)). $
+  Thus, how to find the inverse of a matrix becomes a natural question. Here, I claim, without proof, that if the adjunct matrix of a square matrix $bold(A)$ is obtained by taking the transpose of the co-factor of the minors of $bold(A)$, then $ bold(A)^(-1) = 1/(det bold(A)) op("adj")(bold(A)). $
 
-    Interestingly, a square matrix's left inverse is also its right inverse, and this is a determining property of square matrices.
+  Interestingly, a square matrix's left inverse is also its right inverse, and this is a determining property of square matrices.
 
-    A matrix $vb(A)$ is not invertible iff there exists a non-zero vector $vb(x)$ that $vb(A x) = 0$.
+  A matrix $vb(A)$ is not invertible iff there exists a non-zero vector $vb(x)$ that $vb(A x) = 0$.
+
+  Moreover, $ (vb(A B))^(-1) = vb(B)^(-1) vb(A)^(-1), $ as $ vb(A B B)^(-1) vb(A)^(-1) = vb(A I A)^(-1) = vb(A A)^(-1) = vb(I). $
 
 #example[
   Consider the matrix
@@ -197,3 +192,4 @@ Matrix algebra satisfies many properties for a nice algebraic structure.
 
   Thus, a system described by $hat(bold(i))$ and $hat(bold(j))$ is mapped to a system of $hat(bold(j))$ and $-hat(bold(j))$. Therefore, $90^degree$ counterclockwise.
 ]
+

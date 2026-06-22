@@ -10,12 +10,22 @@
 #if not _is-html {
   std.pagebreak()
 }
+#chapter-section("matrices")[
+  #include "matrices/index.typ"
+]
+#if not _is-html {
+  std.pagebreak()
+}
+
 #chapter-section("linear-equations")[
   #include "linear-equations/index.typ"
 ]
 
 // appendix
 
+#if not _is-html {
+  std.pagebreak()
+}
 #set heading(numbering: "A.1")
 #counter(heading).update(0)
 #chapter-section("appendix-1")[
