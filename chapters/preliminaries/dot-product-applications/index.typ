@@ -49,7 +49,7 @@
     For a plane defined by $a x + b y + c z = 0$, it's normal vector is $mat(a; b; c)$.
   ]
 
-  This result could be generalized to surfaces beyond planes, See @thm:normal-vector-gradient and @thm:normal-vector-cross.
+  // This result could be generalized to surfaces beyond planes, See @thm:normal-vector-gradient and @thm:normal-vector-cross.
 
   #theorem[
     Three planes intersect at a point iff their normal vectors are coplanar.

@@ -15,4 +15,7 @@ The combination of the two operations form one of the most important operations 
 
 Observe that if $vb(v)$ is non-zero, then $c vb(v)$ forms a line. But not that obviously, the linear combination of two vectors not pointing in the same direction, independent, fill the entire plane. 
 
-
+#definition[
+  Vectors $vb(u)$, $vb(v)$, and $vb(w)$ are independent iff no linear combinations of them, except $0 vb(u) + 0 vb(v) + 0 vb(w)$, results in a zero vector. Otherwise, they are said to be dependent. 
+]
+Geometrically, when adding a vector to a set of independent vectors, then a new dimension is created in the space of all linear combinations, then the new set of vectors are independent, vice versa. 

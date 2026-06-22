@@ -116,143 +116,29 @@ $]
   Similar to the column picture, the row picture for multiplication is when a row matrix is multiplied with a matrix, producing a linear combination of the rows of that matrix.
 ]
 
-$ E_(21)
-= mat(
-  1, 0, 0;
-  -3, 1, 0;
-  0, 0, 1;
-) $
 
-$ R_2 arrow.r R_2 - 3R_1 $
+From the two examples, we see that elementary matrices act differently depending on which side they multiply a matrix. Left multiplication performs row operations, while right multiplication performs column operations. If $E$ is an elementary matrix, then $E A$ applies a row operation to $A$, whereas $A E$ applies a column operation to $A$.
 
-$ A
-= mat(
-  (1, 2, 1),
-  (3, 8, 1),
-  (0, 4, 1),
-) $
+More generally, if
 
-$ E_(21) A
-=
-mat(
-  (1, 0, 0),
-  (-3, 1, 0),
-  (0, 0, 1),
-)
-mat(
-  (1, 2, 1),
-  (3, 8, 1),
-  (0, 4, 1),
-)
-=
-mat(
-  (1, 2, 1),
-  (0, 2, -2),
-  (0, 4, 1),
-) $
+$
+C = A B,
+$
 
-$ E_(32)
-= mat(
-  (1, 0, 0),
-  (0, 1, 0),
-  (0, -2, 1),
-) $
+then each column of $C$ is a linear combination of the columns of $A$, with coefficients taken from the corresponding column of $B$. Likewise, each row of $C$ is a linear combination of the rows of $B$, with coefficients taken from the corresponding row of $A$.
 
-$ R_3 arrow.r R_3 - 2R_2 $
+Matrix multiplication can also be viewed from a third perspective. Writing the columns of $A$ as $a_1, dots.c, a_n$ and the rows of $B$ as $b_1^T, dots.c, b_n^T$, we have
 
-$ E_(32) E_(21) A
-=
-mat(
-  (1, 0, 0),
-  (0, 1, 0),
-  (0, -2, 1),
-)
-mat(
-  (1, 0, 0),
-  (-3, 1, 0),
-  (0, 0, 1),
-)
-A
-=
-mat(
-  (1, 2, 1),
-  (0, 2, -2),
-  (0, 0, 5),
-) = U $
+$
+A B = a_1 b_1^T + a_2 b_2^T + dots + a_n b_n^T.
+$
 
-$ E_(21)^(-1)
-=
-mat(
-  (1, 0, 0),
-  (3, 1, 0),
-  (0, 0, 1),
-) $
+Thus, the product is a sum of outer products of columns of $A$ and rows of $B$.
 
-$ E_(32)^(-1)
-=
-mat(
-  (1, 0, 0),
-  (0, 1, 0),
-  (0, 2, 1),
-) $
+Finally, these viewpoints extend naturally to block matrices. If a matrix is partitioned into blocks of compatible sizes, each block may be treated as a single entry, and the usual rules of matrix multiplication remain valid. This allows complicated matrix products to be analyzed and computed using larger building blocks rather than individual entries.
 
-$ b = vec(2, 12, 2) $
-
-$ c
-=
-mat(
-  (1, 0, 0),
-  (0, 1, 0),
-  (0, -2, 1),
-)
-mat(
-  (1, 0, 0),
-  (-3, 1, 0),
-  (0, 0, 1),
-)
-vec(2, 12, 2)
-=
-vec(2, 6, -10) $
-
-$ U x = c $
-
-$ mat(
-  (1, 2, 1),
-  (0, 2, -2),
-  (0, 0, 5),
-)
-vec(x, y, z)
-=
-vec(2, 6, -10) $
-
-$ 5z = -10 arrow.r z = -2 $
-
-$ 2y - 2(-2) = 6 arrow.r y = 1 $
-
-$ x + 2(1) + (-2) = 2 arrow.r x = 2 $
-
-$ vec(x, y, z) = vec(2, 1, -2) $
-
-$ E_(21)
-=
-I - 3e_(21)
-=
-mat(
-  (1, 0, 0),
-  (-3, 1, 0),
-  (0, 0, 1),
-) $
-
-$ E_(32)
-=
-I - 2e_(32)
-=
-mat(
-  (1, 0, 0),
-  (0, 1, 0),
-  (0, -2, 1),
-) $
-
-From the two examples, we see that to do column manipulations, such as exchanging two columns, the matrix is on the left, while to do row manipulations, the matrix does on the right. In summary, for matrix product of $vb(A B) = vb(C)$, the rows of $vb(C)$ are combinations of the rows of $vb(B)$ and the columns of $vb(D)$ are combinations of the columns of $vb(A)$. 
-
-Furthermore, by combining these ways of thinking about matrix multiplication, $vb(A B)$ is also the sum of the columns of $vb(A)$ times the rows of $vb(B)$. 
+In summary, elimination takes the following steps
++  Elimination goes from $vb(A)$ to a triangular $vb(U)$ by a sequence of matrix steps $E_(i j)$.
++ The inverse matrices $E_(i j)^(-1)$ in reverse order bring $vb(U)$ back to the original $vb(A)$.
++ In matrix language that reverse order is $A = L U =$ (lower triangle) (upper triangle).
++ Elimination succeeds if $vb(A)$ is invertible. (It may need row exchanges.).

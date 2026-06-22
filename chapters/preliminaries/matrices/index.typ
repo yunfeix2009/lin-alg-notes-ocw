@@ -2,16 +2,24 @@
 
 == Matrices
 
-One of the motivations to have matrices is when transforming coordinate systems.
-$
+
+There are many motivations for matrices, including transforming coordinate systems and solving systems of linear equations. Here, we look at it through the lens of linear combinations. 
+
+#definition[
+  For vectors $vb(u)$, $vb(v)$, $vb(w)$, etc., rewrite its linear combination of $ mat(vb(u), vb(v), vb(w), dots.c) dot mat(a; b; c; dots.v) = a vb(u) + b vb(v) + c vb(w) + dots.c, $ where $ mat(vb(u), vb(v), vb(w), dots.c) $ could be written as $ mat(u_1, v_1, w_1, dots.c; u_2, v_2, w_2, dots.c; dots.v, dots.v, dots.v, dots.down). $
+]
+In this way, a matrix a row vector of vectors. 
+
+
+In this definition, $
   cases(
-    u_1 = 2x_1 + 3x_2 + 3x_3,
-    u_2 = 2x_1 + 4x_2 + 5x_3,
-    u_3 = x_1 + x_2 + 2x_3,
+    2x_1 + 3x_2 + 3x_3 = u_1,
+    2x_1 + 4x_2 + 5x_3 = u_2,
+    x_1 + x_2 + 2x_3 = u_3,
   )
 $
 
-which can be written as
+could be written as
 
 $
   mat(
