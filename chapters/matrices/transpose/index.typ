@@ -32,3 +32,5 @@ We have the following properties of symmetric matrices.
   $ (vb(A) vb(A)^top)^top = vb(A) vb(A)^top. $
 + In elimination, $vb(A) = vb(L) vb(U)$, introduce the diagonal matrix $vb(D)$ such that $vb(L)$ and $vb(U)$ both have all $1$'s on their diagonals, $vb(A) = vb(L D U) = vb(L D L)^top$. 
   In this way, storage and amount of computation for solving a symmetric linear system are both cut in half. 
+
+
