@@ -14,3 +14,6 @@ The jump from vectors to vector spaces and subspaces is similar to the jump from
 #chapter-section("null-space")[
   #include "null-space/index.typ"
 ]
+#chapter-section("independence")[
+  #include "independence/index.typ"
+]

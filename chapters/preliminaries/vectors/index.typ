@@ -17,5 +17,5 @@ Observe that if $vb(v)$ is non-zero, then $c vb(v)$ forms a line. But not that o
 
 #definition[
   Vectors $vb(u)$, $vb(v)$, and $vb(w)$ are independent iff no linear combinations of them, except $0 vb(u) + 0 vb(v) + 0 vb(w)$, results in a zero vector. Otherwise, they are said to be dependent. 
-]
+]<def:independence>
 Geometrically, when adding a vector to a set of independent vectors, then a new dimension is created in the space of all linear combinations, then the new set of vectors are independent, vice versa. 

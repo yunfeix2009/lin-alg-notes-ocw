@@ -24,3 +24,6 @@
 
   $ vb(A) (vb(v) + vb(w)) &= vb(A) vb(v) + vb(A) vb(w) = 0. #qedhere $
 ]
+
+Looked through the lens of linear systems, when there are more equations than there are variable, it is not generally true that for any $vb(b)$, there are unique solutions. Thus, the null space describes the valid solutions. 
+
