@@ -20,6 +20,14 @@
 #chapter-section("linear-equations")[
   #include "linear-equations/index.typ"
 ]
+#if not _is-html {
+  std.pagebreak()
+}
+
+#chapter-section("vector-space")[
+  #include "vector-space/index.typ"
+]
+
 
 // appendix
 
