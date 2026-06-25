@@ -54,16 +54,9 @@ $
 
 Aside from the definition, there are several other helpful ways to interpret matrix multiplication. 
 
-
+First, the "row picture" and "column picture", consider the case where a matrix is multiplied with a vector. 
  === Row Picture 
  
- When visualizing linear systems, there are often two main ways, corresponding to two ways of interpreting the product between a matrix and a vector. 
-
-#example[
-  Solve the system of linear equations $ cases(2x - y = 0, -x + 2y  = 3) thin. $
-]
-#solution[
-  This equation could be written in the form of $ mat(2,  -1; -1, 2) mat(x; y) = mat(0; 3). $
   Let $ vb(A) = mat(2,  -1; -1, 2),quad vb(x) =  mat(x; y),quad vb(b) = mat(0; 3), $ then $ vb(A x = b).$
   This represents two lines on $RR^2$ intersecting at a point, termed by Prof. Strang the "row picture," where each row of $vb(A)$ combines $vb(x)$, and setting that combination to an element of $vb(b)$ gives an equation, in this case, one that describes a line in $RR^2$. 
 
@@ -72,7 +65,6 @@ Aside from the definition, there are several other helpful ways to interpret mat
 Just like "counting twice" (counting the same thing in two different ways) in combinatorics, looking the other way, as the "column picture" produces a different kind of insights. By treating multiplying a vector on the right as a combination of the column vectors of the matrix, the same linear system could also be expressed as $ x mat(2; -1) + y mat(-1; 2) = mat(0; 3). $ This equation offers a completely different geometric interpretation: given two vectors, $mat(2; -1)$ and $mat(-1; 2)$, for what values of $x$ and $y$ would their linear combination be $mat(0; 3)$.  
 
   With this "column picture," it's natural to ask, given $vb(A)$ what combinations, or $vb(b)$ could be achieved, by varying $vb(x)$. In fact, for reasons that as we shall see later in vector spaces, any combination could be achieved. In other words, the linear combination of $mat(2; -1)$ and $mat(-1; 2)$ fill the entire plane. 
-]
 #remark[
   Notice that the abstraction from the linear system to matrices to a seemingly unnecessary step explicitly representing matrices with letters demonstrates the role that abstraction plays as a useful technique in math. Just like the use of $nabla$ and representing curl and divergence in terms of which, these key symbols serve as a holder when connecting distinct concepts, one of the main themes of math. 
 ]
@@ -142,6 +134,7 @@ Matrix algebra satisfies many properties that makes it a nice algebraic structur
 
   Moreover, $ (vb(A B))^(-1) = vb(B)^(-1) vb(A)^(-1), $ as $ vb(A B B)^(-1) vb(A)^(-1) = vb(A I A)^(-1) = vb(A A)^(-1) = vb(I). $
 
+Since a matrix multiplying a vector is like the matrix acting on the vector, matrices may also be interpreted as (linear) transformations of vectors, or set of vectors. 
 #example[
   Consider the matrix
 
@@ -184,4 +177,3 @@ Matrix algebra satisfies many properties that makes it a nice algebraic structur
 
   Thus, a system described by $hat(bold(i))$ and $hat(bold(j))$ is mapped to a system of $hat(bold(j))$ and $-hat(bold(j))$. Therefore, $90^degree$ counterclockwise.
 ]
-

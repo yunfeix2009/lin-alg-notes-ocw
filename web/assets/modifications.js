@@ -1,75 +1,11 @@
 (function () {
   "use strict";
 
-  var currentScript = document.currentScript;
-  var navScriptUrl = currentScript && currentScript.src
-    ? new URL(currentScript.src, window.location.href)
-    : new URL(window.location.href);
-  var typstColorizeCounter = 0;
-
-  function colorizeTypstSvgFrames() {
-    document.querySelectorAll("svg.typst-frame").forEach(function (svg) {
-      if (svg.dataset.typstColorized === "true") {
-        return;
-      }
-
-      svg.dataset.typstColorized = "true";
-
-      var ns = "http://www.w3.org/2000/svg";
-      var defs = svg.querySelector("defs");
-      if (!defs) {
-        defs = document.createElementNS(ns, "defs");
-        svg.insertBefore(defs, svg.firstChild);
-      }
-
-      var filterId = "typst-colorize-" + (++typstColorizeCounter);
-      var filter = document.createElementNS(ns, "filter");
-      filter.setAttribute("id", filterId);
-      filter.setAttribute("color-interpolation-filters", "sRGB");
-
-      var flood = document.createElementNS(ns, "feFlood");
-      flood.setAttribute("flood-color", "var(--typst-svg-color, transparent)");
-      flood.setAttribute("flood-opacity", "1");
-      flood.setAttribute("result", "typstColor");
-
-      var composite = document.createElementNS(ns, "feComposite");
-      composite.setAttribute("in", "typstColor");
-      composite.setAttribute("in2", "SourceAlpha");
-      composite.setAttribute("operator", "in");
-      composite.setAttribute("result", "colorLayer");
-
-      var merge = document.createElementNS(ns, "feMerge");
-      var mn1 = document.createElementNS(ns, "feMergeNode");
-      mn1.setAttribute("in", "SourceGraphic");
-      var mn2 = document.createElementNS(ns, "feMergeNode");
-      mn2.setAttribute("in", "colorLayer");
-      merge.appendChild(mn1);
-      merge.appendChild(mn2);
-
-      filter.appendChild(flood);
-      filter.appendChild(composite);
-      filter.appendChild(merge);
-      defs.appendChild(filter);
-
-      svg.style.setProperty("--_typst-filter", "url(#" + filterId + ")");
-      svg.classList.add("typst-colorized");
-    });
-  }
-
   var THEMES = ["light", "dark", "auto"];
-  var THEME_ICON_LIGHT = '<svg viewBox="0 0 512 512" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"></path></svg>';
-  var THEME_ICON_DARK = '<svg viewBox="0 0 384 512" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path></svg>';
-  var THEME_ICON_AUTO = '<svg viewBox="0 0 512 512" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"></path></svg>';
-  var THEME_ICONS = {
-    light: THEME_ICON_LIGHT,
-    dark: THEME_ICON_DARK,
-    auto: THEME_ICON_AUTO,
-  };
+  var themeButton = document.querySelector(".theme-toggle");
+  var storedTheme = localStorage.getItem("theme") || "auto";
 
-  var themeBtn = document.querySelector(".theme-toggle");
-  var storedMode = localStorage.getItem("theme") || "auto";
-
-  function resolveTheme(mode) {
+  function resolvedTheme(mode) {
     if (mode === "auto") {
       return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
@@ -77,469 +13,558 @@
   }
 
   function applyTheme(mode) {
-    storedMode = mode;
+    storedTheme = mode;
     localStorage.setItem("theme", mode);
-    document.documentElement.dataset.theme = resolveTheme(mode);
-    if (themeBtn) {
-      themeBtn.innerHTML = THEME_ICONS[mode] || THEME_ICONS.auto;
-      themeBtn.title =
-        mode === "light" ? "Theme: Light" :
-          mode === "dark" ? "Theme: Dark" :
-            "Theme: Auto";
-      themeBtn.setAttribute("aria-label", themeBtn.title);
+    document.documentElement.dataset.theme = resolvedTheme(mode);
+    if (themeButton) {
+      themeButton.title = "Theme: " + mode.charAt(0).toUpperCase() + mode.slice(1);
+      themeButton.setAttribute("aria-label", themeButton.title);
     }
   }
 
-  if (themeBtn) {
-    themeBtn.addEventListener("click", function () {
-      var idx = (THEMES.indexOf(storedMode) + 1) % THEMES.length;
-      applyTheme(THEMES[idx]);
+  if (themeButton) {
+    themeButton.addEventListener("click", function () {
+      var next = THEMES[(THEMES.indexOf(storedTheme) + 1) % THEMES.length];
+      applyTheme(next);
     });
   }
 
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
-    if (storedMode === "auto") {
-      document.documentElement.dataset.theme = resolveTheme("auto");
+    if (storedTheme === "auto") {
+      document.documentElement.dataset.theme = resolvedTheme("auto");
     }
   });
 
-  applyTheme(storedMode);
-  colorizeTypstSvgFrames();
+  applyTheme(storedTheme);
 
-  var sidebarLeft = document.querySelector(".sidebar-left");
-  var sidebarRight = document.querySelector(".sidebar-right");
+  var left = document.querySelector(".sidebar-left");
+  var right = document.querySelector(".sidebar-right");
   var backdrop = document.getElementById("sidebar-backdrop");
-  var toggleLeft = document.getElementById("sidebar-toggle-left");
-  var toggleRight = document.getElementById("sidebar-toggle-right");
+  var leftToggle = document.getElementById("sidebar-toggle-left");
+  var rightToggle = document.getElementById("sidebar-toggle-right");
 
   function closeSidebars() {
-    if (sidebarLeft) sidebarLeft.classList.remove("open");
-    if (sidebarRight) sidebarRight.classList.remove("open");
+    if (left) left.classList.remove("open");
+    if (right) right.classList.remove("open");
     if (backdrop) backdrop.classList.remove("visible");
   }
 
-  if (toggleLeft && sidebarLeft) {
-    toggleLeft.addEventListener("click", function () {
-      var opening = !sidebarLeft.classList.contains("open");
-      closeSidebars();
-      if (opening) {
-        sidebarLeft.classList.add("open");
-        backdrop.classList.add("visible");
-      }
-    });
-  }
-
-  if (toggleRight && sidebarRight) {
-    toggleRight.addEventListener("click", function () {
-      var opening = !sidebarRight.classList.contains("open");
-      closeSidebars();
-      if (opening) {
-        sidebarRight.classList.add("open");
-        backdrop.classList.add("visible");
-      }
-    });
-  }
-
-  if (backdrop) {
-    backdrop.addEventListener("click", closeSidebars);
-  }
-
-  window.addEventListener("resize", function () {
-    if (window.innerWidth > 960 && sidebarLeft && sidebarLeft.classList.contains("open")) {
-      closeSidebars();
+  function toggleSidebar(sidebar) {
+    var shouldOpen = sidebar && !sidebar.classList.contains("open");
+    closeSidebars();
+    if (shouldOpen) {
+      sidebar.classList.add("open");
+      if (backdrop) backdrop.classList.add("visible");
     }
-    if (window.innerWidth > 1200 && sidebarRight && sidebarRight.classList.contains("open")) {
-      closeSidebars();
-    }
+  }
+
+  if (leftToggle && left) leftToggle.addEventListener("click", function () { toggleSidebar(left); });
+  if (rightToggle && right) rightToggle.addEventListener("click", function () { toggleSidebar(right); });
+  if (backdrop) backdrop.addEventListener("click", closeSidebars);
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeSidebars();
   });
 
-  var navCollapseButtons = document.querySelectorAll(".nav-collapse-toggle");
-  var navStateStorageKey = "global-nav-collapsed";
+  function fillTheoremLeaders() {
+    var ruler = document.createElement("span");
+    ruler.style.cssText = "position:absolute;visibility:hidden;font-family:var(--sans);white-space:nowrap;";
+    ruler.textContent = "..........";
+    document.body.appendChild(ruler);
+    var dotWidth = Math.max(1, ruler.getBoundingClientRect().width / 10);
+    ruler.remove();
 
-  function readNavCollapseState() {
-    try {
-      return JSON.parse(sessionStorage.getItem(navStateStorageKey) || "{}");
-    } catch (_err) {
-      return {};
-    }
-  }
+    document.querySelectorAll(".theorem-list-entry").forEach(function (entry) {
+      var dots = entry.querySelector(".theorem-list-dots");
+      var marker = entry.querySelector(".theorem-list-end");
+      var page = entry.querySelector(".theorem-list-page");
+      if (!dots || !marker || !page) return;
 
-  function writeNavCollapseState(state) {
-    try {
-      sessionStorage.setItem(navStateStorageKey, JSON.stringify(state));
-    } catch (_err) {
-    }
-  }
-
-  var navCollapseState = readNavCollapseState();
-
-  function getNavCollapsedStyleTag() {
-    var styleTag = document.getElementById("nav-collapsed-state");
-    if (!styleTag) {
-      styleTag = document.createElement("style");
-      styleTag.id = "nav-collapsed-state";
-      document.head.appendChild(styleTag);
-    }
-    return styleTag;
-  }
-
-  function syncNavCollapsedStyle() {
-    var styleTag = getNavCollapsedStyleTag();
-    var ids = Object.keys(navCollapseState).filter(function (id) {
-      return navCollapseState[id];
+      dots.textContent = "";
+      var entryRect = entry.getBoundingClientRect();
+      var markerRect = marker.getBoundingClientRect();
+      var pageWidth = page.getBoundingClientRect().width;
+      var remaining = entryRect.right - markerRect.right - pageWidth;
+      var count = Math.floor(Math.max(0, remaining) / dotWidth);
+      dots.textContent = count >= 2 ? ".".repeat(count) : "";
     });
-    styleTag.textContent = ids.map(function (id) {
-      return "#" + id + "{display:none;}";
-    }).join("");
   }
 
-  function isActiveBranch(listItem) {
-    return !!(listItem && (listItem.classList.contains("active") || listItem.querySelector("li.active")));
-  }
-
-  function shouldCollapseNavGroup(button) {
-    var listItem = button.closest("li");
-    if (!listItem) return false;
-
-    var containerId = button.getAttribute("aria-controls");
-    if (!containerId) return false;
-
-    if (isActiveBranch(listItem)) {
-      return false;
-    }
-
-    if (Object.prototype.hasOwnProperty.call(navCollapseState, containerId)) {
-      return !!navCollapseState[containerId];
-    }
-
-    var nestedGroup = !!listItem.parentElement.closest(".nav-children");
-    return nestedGroup;
-  }
-
-  function setNavCollapsed(button, collapsed) {
-    var containerId = button.getAttribute("aria-controls");
-    if (!containerId) return;
-
-    var container = document.getElementById(containerId);
-    if (!container) return;
-
-    button.setAttribute("aria-expanded", collapsed ? "false" : "true");
-    button.setAttribute("aria-label", collapsed ? "Expand subsection" : "Collapse subsection");
-    container.hidden = collapsed;
-
-    var listItem = button.closest("li");
-    if (listItem) {
-      listItem.classList.toggle("collapsed", collapsed);
-    }
-
-    navCollapseState[containerId] = collapsed;
-    syncNavCollapsedStyle();
-    writeNavCollapseState(navCollapseState);
-  }
-
-  navCollapseButtons.forEach(function (button) {
-    setNavCollapsed(button, shouldCollapseNavGroup(button));
-    button.addEventListener("click", function () {
-      var expanded = button.getAttribute("aria-expanded") !== "false";
-      setNavCollapsed(button, expanded);
-    });
-  });
-
-  var searchOverlay = document.getElementById("search-overlay");
-  var searchInput = document.getElementById("search-input");
-  var searchResults = document.getElementById("search-results");
-  var searchTrigger = document.querySelector(".search-trigger");
-  var pagefind = null;
-  var searchTimeout = null;
-
-  function openSearch() {
-    if (!searchOverlay) return;
-    searchOverlay.classList.add("visible");
-    if (searchInput) {
-      searchInput.value = "";
-      searchInput.focus();
-    }
-    if (searchResults) searchResults.innerHTML = "";
-    loadPagefind();
-  }
-
-  function closeSearch() {
-    if (searchOverlay) searchOverlay.classList.remove("visible");
-  }
-
-  async function loadPagefind() {
-    if (pagefind) return;
-    try {
-      pagefind = await import(new URL("./pagefind/pagefind.js", navScriptUrl).href);
-      var baseMeta = document.querySelector('meta[name="pagefind-base"]');
-      var baseUrl = baseMeta ? baseMeta.getAttribute("content") : "/";
-      await pagefind.options({ baseUrl: baseUrl });
-      await pagefind.init();
-    } catch (e) {
-      console.warn("Pagefind not available:", e);
-    }
-  }
-
-  function performSearch(query) {
-    if (!searchResults) return;
-    if (!query || query.length < 2) {
-      searchResults.innerHTML = "";
-      return;
-    }
-    if (!pagefind) {
-      searchResults.innerHTML = '<div class="search-no-results">Search index not available.</div>';
-      return;
-    }
-
-    pagefind.search(query).then(function (results) {
-      if (!results || !results.results || results.results.length === 0) {
-        searchResults.innerHTML = '<div class="search-no-results">No results found.</div>';
-        return;
+  function flattenDisplayMathWrappers() {
+    document.querySelectorAll(".display-math > .display-math").forEach(function (inner) {
+      var outer = inner.parentNode;
+      if (!outer || !outer.classList.contains("display-math")) return;
+      while (inner.firstChild) {
+        outer.insertBefore(inner.firstChild, inner);
       }
-      var items = results.results.slice(0, 8);
-      Promise.all(items.map(function (r) { return r.data(); })).then(function (dataList) {
-        var html = "";
-        var count = 0;
-        for (var i = 0; i < dataList.length && count < 12; i++) {
-          var data = dataList[i];
-          var pageTitle = (data.meta && data.meta.title) || "Untitled";
-          var subs = data.sub_results;
-          if (subs && subs.length > 0) {
-            for (var j = 0; j < subs.length && count < 12; j++) {
-              var sub = subs[j];
-              var url = sub.url || data.url || "#";
-              var title = sub.title || pageTitle;
-              var excerpt = sub.excerpt || "";
-              var breadcrumb = (title !== pageTitle)
-                ? '<div class="search-result-page">' + escapeHtml(pageTitle) + '</div>'
-                : '';
-              html += '<a class="search-result" href="' + url + '">'
-                + breadcrumb
-                + '<div class="search-result-title">' + escapeHtml(title) + '</div>'
-                + '<div class="search-result-excerpt">' + excerpt + '</div>'
-                + '</a>';
-              count++;
-            }
-          } else {
-            var url = data.url || "#";
-            var excerpt = data.excerpt || "";
-            html += '<a class="search-result" href="' + url + '">'
-              + '<div class="search-result-title">' + escapeHtml(pageTitle) + '</div>'
-              + '<div class="search-result-excerpt">' + excerpt + '</div>'
-              + '</a>';
-            count++;
-          }
+      inner.remove();
+    });
+  }
+
+  function normalizeDisplayMath() {
+    flattenDisplayMathWrappers();
+    document.querySelectorAll('math[display="block"]').forEach(function (math) {
+      var wrapper = math.closest(".display-math");
+      if (!wrapper && math.parentNode) {
+        wrapper = document.createElement("div");
+        wrapper.className = "display-math";
+        math.parentNode.insertBefore(wrapper, math);
+        wrapper.appendChild(math);
+      }
+
+      if (!wrapper) return;
+
+      var scroll = math.closest(".equation-scroll");
+      if (!scroll || !wrapper.contains(scroll)) {
+        scroll = document.createElement("div");
+        scroll.className = "equation-scroll";
+        math.parentNode.insertBefore(scroll, math);
+        scroll.appendChild(math);
+      }
+
+      setupDisplayMathTags(wrapper, math);
+    });
+  }
+
+  function tagGroupTop(items) {
+    return items.reduce(function (sum, item) {
+      return sum + item.top;
+    }, 0) / items.length;
+  }
+
+  function setMathSpaceWidth(space, width) {
+    var value = Math.max(0, Math.ceil(width + 8)) + "px";
+    space.setAttribute("width", value);
+    space.style.width = value;
+  }
+
+  function placeEquationTagGroups(wrapper) {
+    var layer = wrapper.querySelector(":scope > .equation-tag-layer");
+    if (!layer) return;
+
+    var wrapperRect = wrapper.getBoundingClientRect();
+    layer.querySelectorAll(".equation-tag-group").forEach(function (group) {
+      var anchors = Array.from(group.querySelectorAll(".equation-tag")).map(function (tag) {
+        return tag._equationTagAnchor;
+      }).filter(Boolean);
+      if (anchors.length === 0) return;
+
+      var top = anchors.reduce(function (sum, anchor) {
+        var rect = anchor.getBoundingClientRect();
+        return sum + rect.top + rect.height / 2 - wrapperRect.top;
+      }, 0) / anchors.length;
+
+      group.style.top = top + "px";
+      var width = group.getBoundingClientRect().width;
+      anchors.forEach(function (anchor) {
+        if (anchor.tagName && anchor.tagName.toLowerCase() === "mspace") {
+          setMathSpaceWidth(anchor, width);
         }
-        searchResults.innerHTML = html;
       });
-    }).catch(function () {
-      searchResults.innerHTML = '<div class="search-no-results">Search error.</div>';
     });
   }
 
-  function escapeHtml(s) {
-    var div = document.createElement("div");
-    div.textContent = s;
-    return div.innerHTML;
-  }
+  function setupDisplayMathTags(wrapper, math) {
+    if (wrapper.dataset.equationTagsReady === "true") {
+      placeEquationTagGroups(wrapper);
+      return;
+    }
 
-  if (searchTrigger) {
-    searchTrigger.addEventListener("click", openSearch);
-  }
-
-  if (searchInput) {
-    searchInput.addEventListener("input", function () {
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(function () {
-        performSearch(searchInput.value.trim());
-      }, 200);
+    var tags = Array.from(wrapper.querySelectorAll(".eq-tag, .equation-tag")).filter(function (tag) {
+      return !tag.closest(".equation-tag-layer");
     });
-  }
+    if (tags.length === 0) return;
 
-  if (searchOverlay) {
-    searchOverlay.addEventListener("click", function (e) {
-      if (e.target === searchOverlay) closeSearch();
-    });
-  }
+    var mathmlNs = "http://www.w3.org/1998/Math/MathML";
+    var wrapperRect = wrapper.getBoundingClientRect();
+    var items = tags.map(function (tag) {
+      var tagRect = tag.getBoundingClientRect();
+      var isInsideMath = math.contains(tag);
+      var anchor = tag;
 
-  document.addEventListener("keydown", function (e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === "k") {
-      e.preventDefault();
-      if (searchOverlay && searchOverlay.classList.contains("visible")) {
-        closeSearch();
+      tag.classList.add("equation-tag");
+
+      if (isInsideMath) {
+        anchor = document.createElementNS(mathmlNs, "mspace");
+        anchor.setAttribute("class", "equation-tag-space");
+        anchor.setAttribute("width", "0px");
+        tag.parentNode.insertBefore(anchor, tag);
       } else {
-        openSearch();
+        anchor = document.createElement("span");
+        anchor.className = "equation-tag-anchor";
+        var parent = tag.parentNode;
+        var holder = parent && parent !== wrapper && parent.children.length === 1 ? parent : tag;
+        holder.parentNode.insertBefore(anchor, holder);
+        if (holder !== tag) {
+          holder.classList.add("equation-tag-holder");
+        }
       }
-    }
-    if (e.key === "Escape") {
-      if (searchOverlay && searchOverlay.classList.contains("visible")) {
-        closeSearch();
+
+      tag._equationTagAnchor = anchor;
+      return {
+        tag: tag,
+        anchor: anchor,
+        top: tagRect.top - wrapperRect.top + wrapper.scrollTop
+      };
+    }).sort(function (a, b) {
+      return a.top - b.top;
+    });
+
+    var groups = [];
+    var lineThreshold = 12;
+    items.forEach(function (item) {
+      var last = groups[groups.length - 1];
+      if (last && Math.abs(item.top - tagGroupTop(last)) <= lineThreshold) {
+        last.push(item);
       } else {
-        closeSidebars();
-      }
-    }
-  });
-
-  var tocLinks = document.querySelectorAll(".local-toc a");
-  if (tocLinks.length > 0) {
-    var topbar = document.querySelector(".topbar");
-    function getOffset() {
-      var rootStyles = window.getComputedStyle(document.documentElement);
-      var scrollPaddingTop = parseFloat(rootStyles.scrollPaddingTop || "0");
-      if (!Number.isNaN(scrollPaddingTop) && scrollPaddingTop > 0) {
-        return scrollPaddingTop;
-      }
-      return (topbar ? topbar.offsetHeight : 56) + 16;
-    }
-
-    var hashActivationSlack = 48;
-    var pendingTargetId = null;
-    var pendingTargetUntil = 0;
-    var headingEls = [];
-    var headingMap = {};
-
-    tocLinks.forEach(function (link) {
-      var id = link.getAttribute("href");
-      if (id && id.startsWith("#")) {
-        var el = document.getElementById(id.slice(1));
-        if (el) {
-          headingEls.push(el);
-          headingMap[el.id] = link;
-        }
+        groups.push([item]);
       }
     });
 
-    var ticking = false;
-    function updateSpy() {
-      ticking = false;
-      var current = null;
-      var offset = getOffset();
-      var now = (window.performance && typeof window.performance.now === "function")
-        ? window.performance.now()
-        : Date.now();
+    var layer = document.createElement("div");
+    layer.className = "equation-tag-layer";
+    wrapper.appendChild(layer);
 
-      if (pendingTargetId && now <= pendingTargetUntil) {
-        var pendingTarget = document.getElementById(pendingTargetId);
-        if (pendingTarget && headingMap[pendingTarget.id]) {
-          var pendingRect = pendingTarget.getBoundingClientRect();
-          if (pendingRect.bottom > 0 && pendingRect.top < window.innerHeight) {
-            current = pendingTarget;
-            if (Math.abs(pendingRect.top - offset) <= hashActivationSlack + 8) {
-              pendingTargetId = null;
-              pendingTargetUntil = 0;
-            }
-          }
-        }
-      } else if (pendingTargetId) {
-        pendingTargetId = null;
-        pendingTargetUntil = 0;
-      }
+    groups.forEach(function (groupItems) {
+      var group = document.createElement("div");
+      group.className = "equation-tag-group";
+      groupItems.forEach(function (item) {
+        group.appendChild(externalEquationTag(item.tag, item.anchor));
+      });
+      layer.appendChild(group);
+    });
 
-      var hash = window.location.hash;
-      if (!current && hash && hash.length > 1) {
-        var hashTarget = document.getElementById(hash.slice(1));
-        if (hashTarget && headingMap[hashTarget.id]) {
-          var targetRect = hashTarget.getBoundingClientRect();
-          if (targetRect.top <= offset + hashActivationSlack && targetRect.bottom > 0) {
-            current = hashTarget;
-          }
-        }
-      }
+    wrapper.dataset.equationTagsReady = "true";
+    placeEquationTagGroups(wrapper);
+  }
 
-      if (!current) {
-        var best = null;
-        var bestScore = Infinity;
-        for (var i = 0; i < headingEls.length; i++) {
-          var rect = headingEls[i].getBoundingClientRect();
-          if (rect.bottom <= 0) {
-            continue;
-          }
-
-          var score = Math.abs(rect.top - offset);
-
-          if (rect.top < offset) {
-            score += 12;
-          }
-
-          if (score < bestScore) {
-            best = headingEls[i];
-            bestScore = score;
-          }
-        }
-        current = best;
-      }
-      tocLinks.forEach(function (l) { l.classList.remove("active"); });
-      if (current && headingMap[current.id]) {
-        headingMap[current.id].classList.add("active");
-      }
+  function externalEquationTag(tag, anchor) {
+    if (tag.tagName && tag.tagName.toLowerCase() !== "a") {
+      tag._equationTagAnchor = anchor;
+      return tag;
     }
 
-    window.addEventListener("scroll", function () {
-      if (!ticking) {
-        requestAnimationFrame(updateSpy);
-        ticking = true;
+    var replacement = document.createElement("div");
+    Array.from(tag.attributes).forEach(function (attr) {
+      if (attr.name !== "href") {
+        replacement.setAttribute(attr.name, attr.value);
       }
     });
+    replacement.classList.add("equation-tag");
+    replacement.innerHTML = tag.innerHTML;
+    replacement._equationTagAnchor = anchor;
+    tag.remove();
+    return replacement;
+  }
 
-    window.addEventListener("hashchange", function () {
-      var hash = window.location.hash;
-      pendingTargetId = hash && hash.length > 1 ? hash.slice(1) : null;
-      pendingTargetUntil = pendingTargetId ? (
-        ((window.performance && typeof window.performance.now === "function")
-          ? window.performance.now()
-          : Date.now()) + 1200
-      ) : 0;
-      requestAnimationFrame(updateSpy);
+  function safeReadJson(key, fallback) {
+    try {
+      return JSON.parse(localStorage.getItem(key) || "null") || fallback;
+    } catch (_error) {
+      return fallback;
+    }
+  }
+
+  function safeWriteJson(key, value) {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (_error) {
+    }
+  }
+
+  function navItemDepth(item) {
+    var value = item.style.getPropertyValue("--depth") || "0";
+    var depth = Number(value.trim());
+    return Number.isFinite(depth) ? depth : 0;
+  }
+
+  function navStorageKeyForLink(link) {
+    var href = link.getAttribute("href") || "";
+    try {
+      var url = new URL(href, window.location.href);
+      return url.pathname.replace(/\/index\.html$/, "/");
+    } catch (_error) {
+      return href || link.textContent.trim();
+    }
+  }
+
+  function setupGlobalNavCollapse() {
+    var nav = document.querySelector(".global-nav");
+    if (!nav) return;
+
+    var items = Array.from(nav.querySelectorAll(".nav-item"));
+    if (items.length === 0) return;
+
+    var storageKey = "globalNavCollapsed";
+    var collapsed = new Set(safeReadJson(storageKey, []));
+    var parentItems = [];
+
+    items.forEach(function (item, index) {
+      var next = items[index + 1];
+      var depth = navItemDepth(item);
+      if (!next || navItemDepth(next) <= depth) return;
+
+      var link = item.querySelector("a[href]");
+      if (!link) return;
+
+      var key = navStorageKeyForLink(link);
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "nav-collapse-toggle";
+      button.setAttribute("aria-label", "Toggle " + link.textContent.trim());
+      button.dataset.navKey = key;
+      item.classList.add("has-children");
+      item.appendChild(button);
+      parentItems.push(item);
+
+      button.addEventListener("click", function () {
+        if (collapsed.has(key)) {
+          collapsed.delete(key);
+        } else {
+          collapsed.add(key);
+        }
+        safeWriteJson(storageKey, Array.from(collapsed));
+        applyGlobalNavCollapse();
+      });
     });
 
-    tocLinks.forEach(function (link) {
-      link.addEventListener("click", function () {
-        var href = link.getAttribute("href");
-        pendingTargetId = href && href.startsWith("#") ? href.slice(1) : null;
-        pendingTargetUntil = pendingTargetId ? (
-          ((window.performance && typeof window.performance.now === "function")
-            ? window.performance.now()
-            : Date.now()) + 1200
-        ) : 0;
-        requestAnimationFrame(function () {
-          requestAnimationFrame(updateSpy);
+    function applyGlobalNavCollapse() {
+      var collapsedDepths = [];
+      items.forEach(function (item) {
+        var depth = navItemDepth(item);
+        collapsedDepths = collapsedDepths.filter(function (parentDepth) {
+          return parentDepth < depth;
         });
-      });
-    });
 
-    updateSpy();
+        item.hidden = collapsedDepths.length > 0;
+
+        var button = item.querySelector(":scope > .nav-collapse-toggle");
+        if (button) {
+          var key = button.dataset.navKey;
+          var isCollapsed = collapsed.has(key);
+          item.classList.toggle("is-collapsed", isCollapsed);
+          button.setAttribute("aria-expanded", String(!isCollapsed));
+          if (isCollapsed) {
+            collapsedDepths.push(depth);
+          }
+        }
+      });
+    }
+
+    if (parentItems.length > 0) {
+      applyGlobalNavCollapse();
+    }
   }
 
-  document.querySelectorAll('.thm-proof, .thm-solution').forEach(block => {
-    const qedPara = block.querySelector('p.qed');
-    if (!qedPara) return;
+  function upgradeMathLinks() {
+    var mathmlNs = "http://www.w3.org/1998/Math/MathML";
 
-    const prev = qedPara.previousElementSibling;
-    if (!prev || !(prev.tagName === 'P' || prev.tagName === 'SVG')) return;
-    const target = prev;
+    document.querySelectorAll("math a[href]").forEach(function (anchor) {
+      var mtext = document.createElementNS(mathmlNs, "mtext");
+      mtext.setAttribute("class", "math-link");
+      mtext.setAttribute("role", "link");
+      mtext.setAttribute("tabindex", "0");
+      mtext.setAttribute("data-href", anchor.getAttribute("href") || "");
+      if (anchor.hasAttribute("title")) {
+        mtext.setAttribute("title", anchor.getAttribute("title"));
+      }
+      if (anchor.hasAttribute("aria-label")) {
+        mtext.setAttribute("aria-label", anchor.getAttribute("aria-label"));
+      }
+      mtext.textContent = anchor.textContent;
+      anchor.replaceWith(mtext);
+    });
+  }
 
-    const qedContent = qedPara.querySelector('span, svg');
-    if (qedContent) {
-      const wrapper = document.createElement('span');
-      wrapper.style.cssText = 'float:right; margin-left:0.5em; line-height:1;';
-      wrapper.appendChild(qedContent.cloneNode(true));
-      target.appendChild(wrapper);
+  function moveFootnotesAbovePageNav() {
+    var endnotes = document.querySelector('section[role="doc-endnotes"]');
+    var main = document.querySelector(".content");
+    if (!endnotes || !main) return;
+
+    var pageNav = main.querySelector(".page-nav");
+    if (pageNav) {
+      main.insertBefore(endnotes, pageNav);
+    } else {
+      main.appendChild(endnotes);
     }
-    qedPara.remove();
-  });
+  }
 
-  document.querySelectorAll('ul.itemize-ul-list').forEach(ul => {
-    const temp = document.createElement('span');
-    temp.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;';
-    document.body.appendChild(temp);
+  function setupLocalTocRowNavigation() {
+    document.querySelectorAll(".local-toc li").forEach(function (item) {
+      var primary = item.querySelector("a[href]");
+      if (!primary) return;
 
-    let maxWidth = 0;
-    ul.querySelectorAll('.data-marker-item').forEach(li => {
-      temp.textContent = li.dataset.marker ?? '';
-      maxWidth = Math.max(maxWidth, temp.offsetWidth);
+      item.addEventListener("click", function (event) {
+        if (event.defaultPrevented || event.target.closest("a[href]")) return;
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        window.location.href = primary.href;
+      });
+    });
+  }
+
+  function whenDomReady(callback) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", callback, { once: true });
+    } else {
+      callback();
+    }
+  }
+
+  function setupReferenceTooltips() {
+    var tooltip = document.createElement("div");
+    tooltip.className = "ref-tooltip";
+    tooltip.setAttribute("role", "tooltip");
+    tooltip.hidden = true;
+    document.body.appendChild(tooltip);
+
+    var activeTrigger = null;
+    var hideTimer = null;
+
+    function clearHideTimer() {
+      if (hideTimer) {
+        clearTimeout(hideTimer);
+        hideTimer = null;
+      }
+    }
+
+    function scheduleHide() {
+      clearHideTimer();
+      hideTimer = setTimeout(function () {
+        tooltip.hidden = true;
+        activeTrigger = null;
+      }, 300);
+    }
+
+    function linkLabel(link, index, links) {
+      var href = link.getAttribute("href") || link.getAttribute("data-href") || "";
+      if (links.length === 1) return "Open";
+      if (index === 0 || /\.pdf(?:#|$)/i.test(href)) return "PDF";
+      if (index === links.length - 1) return "HTML";
+      return "Link " + (index + 1);
+    }
+
+    function placeTooltip(trigger) {
+      var rect = trigger.getBoundingClientRect();
+      var tipRect = tooltip.getBoundingClientRect();
+      var gap = 8;
+      var left = rect.left + rect.width / 2 - tipRect.width / 2;
+      left = Math.max(8, Math.min(left, window.innerWidth - tipRect.width - 8));
+      tooltip.style.left = left + "px";
+      tooltip.style.top = Math.min(rect.bottom + gap, window.innerHeight - tipRect.height - 8) + "px";
+    }
+
+    function showTooltip(trigger, linksData) {
+      clearHideTimer();
+      activeTrigger = trigger;
+      tooltip.textContent = "";
+
+      linksData.forEach(function (data) {
+        var item = document.createElement("a");
+        item.href = data.href;
+        item.textContent = data.label;
+        tooltip.appendChild(item);
+      });
+
+      tooltip.hidden = linksData.length === 0;
+      if (!tooltip.hidden) {
+        placeTooltip(trigger);
+      }
+    }
+
+    document.querySelectorAll(".typst-multi-label-list").forEach(function (source) {
+      var trigger = source.previousElementSibling;
+      while (trigger && !(trigger.matches("a[href]") || trigger.matches(".math-link"))) {
+        trigger = trigger.previousElementSibling;
+      }
+      if (!trigger) return;
+
+      var links = Array.from(source.querySelectorAll("a[href], .math-link"));
+      var linksData = links.map(function (link, index) {
+        return {
+          href: link.getAttribute("href") || link.getAttribute("data-href"),
+          label: linkLabel(link, index, links)
+        };
+      });
+
+      source.remove();
+      trigger.classList.add("ref-with-tooltip");
+
+      trigger.addEventListener("mouseenter", function () {
+        showTooltip(trigger, linksData);
+      });
+      trigger.addEventListener("mouseleave", scheduleHide);
+      trigger.addEventListener("focus", function () {
+        showTooltip(trigger, linksData);
+      });
+      trigger.addEventListener("blur", scheduleHide);
     });
 
-    document.body.removeChild(temp);
-    ul.style.setProperty('--marker-slot', `${maxWidth + 20}px`);
+    tooltip.addEventListener("mouseenter", clearHideTimer);
+    tooltip.addEventListener("mouseleave", scheduleHide);
+    tooltip.addEventListener("focusin", clearHideTimer);
+    tooltip.addEventListener("focusout", scheduleHide);
+    addEventListener("scroll", function () {
+      if (!tooltip.hidden && activeTrigger) {
+        placeTooltip(activeTrigger);
+      }
+    }, { passive: true });
+    addEventListener("resize", function () {
+      if (!tooltip.hidden && activeTrigger) {
+        placeTooltip(activeTrigger);
+      }
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        tooltip.hidden = true;
+        activeTrigger = null;
+      }
+    });
+  }
+
+  function setupMathLinkNavigation() {
+    function openMathLink(link, event) {
+      var href = link.getAttribute("data-href");
+      if (!href) return;
+      if (event.type === "click") {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        window.location.href = href;
+      } else if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        window.location.href = href;
+      }
+    }
+
+    document.addEventListener("click", function (event) {
+      var link = event.target.closest && event.target.closest(".math-link");
+      if (link) {
+        openMathLink(link, event);
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      var link = event.target.closest && event.target.closest(".math-link");
+      if (link) {
+        openMathLink(link, event);
+      }
+    });
+  }
+
+  normalizeDisplayMath();
+  setupGlobalNavCollapse();
+  setupLocalTocRowNavigation();
+  whenDomReady(moveFootnotesAbovePageNav);
+  upgradeMathLinks();
+  setupReferenceTooltips();
+  setupMathLinkNavigation();
+  fillTheoremLeaders();
+  addEventListener("resize", function () {
+    fillTheoremLeaders();
+    document.querySelectorAll(".display-math").forEach(placeEquationTagGroups);
+  });
+  addEventListener("load", function () {
+    fillTheoremLeaders();
+    document.querySelectorAll(".display-math").forEach(placeEquationTagGroups);
   });
 })();

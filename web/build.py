@@ -4,7 +4,7 @@ from __future__ import annotations
 # dependencies = ["beautifulsoup4", "pagefind[extended]"]
 # ///
 """
-Build script for the HTML version of these complex analysis notes.
+Build script for the HTML version of these linear algebra notes.
 
 Usage:
     uv run web/build.py
@@ -155,6 +155,17 @@ def asset_href(current_file: str, asset_path: str) -> str:
     """Build a relative URL from a generated page to a shared asset."""
     current_dir = PurePosixPath(current_file).parent.as_posix()
     return posixpath.relpath(asset_path, current_dir if current_dir != "." else ".")
+
+
+def versioned_asset_href(current_file: str, asset_name: str) -> str:
+    """Build a cache-busted asset URL for copied web assets."""
+    rel = asset_href(current_file, f"assets/{asset_name}")
+    src = ASSETS_SRC / asset_name
+    try:
+        version = str(src.stat().st_mtime_ns)
+    except FileNotFoundError:
+        version = "0"
+    return f"{rel}?v={version}"
 
 
 # ---------------------------------------------------------------------------
@@ -353,10 +364,7 @@ def build_global_nav(
     nav_depths: dict[str, int],
     current_file: str,
 ) -> tuple[str, list[str]]:
-    """Build the global navigation sidebar HTML.
-
-    Returns (html_string, list_of_active_group_ids).
-    """
+    """Build the global navigation sidebar HTML."""
     chapter_map = {sid: (href, title, nav_html) for sid, href, title, nav_html in nav_items}
 
     def build_nav_tree(section_ids: list[str]) -> list[dict]:
@@ -371,11 +379,9 @@ def build_global_nav(
             stack.append((depth, node))
         return roots
 
-    def render_nodes(nodes: list[dict], level: int = 0) -> tuple[list[str], bool, list[str]]:
+    def render_nodes(nodes: list[dict], level: int = 0) -> list[str]:
         indent = "  " * level
         lines = [f"{indent}<ul>"]
-        contains_active = False
-        active_group_ids: list[str] = []
 
         for node in nodes:
             sid = node["sid"]
@@ -383,59 +389,29 @@ def build_global_nav(
             depth = node["depth"]
             node_is_active = sid == current_id
 
-            classes = []
+            classes = ["nav-item"]
             if node_is_active:
                 classes.append("active")
-            if depth > 0:
-                classes.append("nav-sub")
-                classes.append(f"nav-depth-{depth}")
-            if node["children"]:
-                classes.append("nav-parent")
-
-            cls = f' class="{" ".join(classes)}"' if classes else ""
+            cls = " ".join(classes)
             href = relative_href(current_file, target_file)
-            lines.append(f"{indent}  <li{cls}>")
-
+            lines.append(
+                f'{indent}  <li class="{cls}" style="--depth: {depth}">'
+            )
+            lines.append(f'{indent}    <a href="{href}">{nav_title_html}</a>')
             if node["children"]:
-                controls_id = f"nav-group-{sid}"
-                child_lines, child_active, child_group_ids = render_nodes(
-                    node["children"], level + 3
-                )
-                node_contains_active = node_is_active or child_active
-                lines += [
-                    f'{indent}    <div class="nav-item-row">',
-                    f'{indent}      <a href="{href}">{nav_title_html}</a>',
-                    f'{indent}      <button class="nav-collapse-toggle" type="button"'
-                    f' aria-expanded="true" aria-label="Collapse subsection"'
-                    f' aria-controls="{controls_id}"></button>',
-                    f"{indent}    </div>",
-                    f'{indent}    <div class="nav-children" id="{controls_id}">',
-                    *child_lines,
-                    f"{indent}    </div>",
-                ]
-                if node_contains_active:
-                    active_group_ids.append(controls_id)
-                active_group_ids.extend(child_group_ids)
-                contains_active = contains_active or node_contains_active
-            else:
-                lines.append(f'{indent}    <a href="{href}">{nav_title_html}</a>')
-                contains_active = contains_active or node_is_active
-
+                lines.extend(render_nodes(node["children"], level + 2))
             lines.append(f"{indent}  </li>")
 
         lines.append(f"{indent}</ul>")
-        return lines, contains_active, active_group_ids
+        return lines
 
     lines = ['<nav class="global-nav" aria-label="Global navigation">']
-    active_nav_groups: list[str] = []
     for part_title, section_ids in parts:
         if part_title:
             lines.append(f'  <div class="nav-part">{part_title}</div>')
-        part_lines, _active, part_groups = render_nodes(build_nav_tree(section_ids), 1)
-        lines.extend(part_lines)
-        active_nav_groups.extend(part_groups)
+        lines.extend(render_nodes(build_nav_tree(section_ids), 1))
     lines.append("</nav>")
-    return "\n".join(lines), active_nav_groups
+    return "\n".join(lines), []
 
 
 def build_local_toc(toc: list[dict]) -> str:
@@ -455,25 +431,20 @@ def build_local_toc(toc: list[dict]) -> str:
     title = "On this page"
     lines = [
         f'<nav class="local-toc" aria-label="{title}">',
-        f"  <h3>{title}</h3>",
+        f"  <h2>{title}</h2>",
         "  <ul>",
     ]
 
     for item in toc:
-        level = item["level"]
-        # Clamp to the range the CSS handles (toc-l2 … toc-l6).
-        css_level = max(TOC_MIN_LEVEL, min(level, 6))
-
-        classes = [f"toc-l{css_level}"]
-        if item["kind"] == "heading":
-            classes.append("toc-page")
-        elif item["kind"] == "theorem":
+        depth = max(0, item["level"] - 2)
+        classes: list[str] = []
+        if item["kind"] == "theorem":
             classes.append("toc-theorem")
-
-        cls = f' class="{" ".join(classes)}"'
+        cls = f' class="{" ".join(classes)}"' if classes else ""
         label_html = item.get("html") or item["text"]
-        indent = "    " if css_level == TOC_MIN_LEVEL else "      "
-        lines.append(f'{indent}<li{cls}><a href="#{item["id"]}">{label_html}</a></li>')
+        lines.append(
+            f'    <li{cls} style="--toc-depth: {depth}"><a href="#{item["id"]}">{label_html}</a></li>'
+        )
 
     lines += ["  </ul>", "</nav>"]
     return "\n".join(lines)
@@ -496,22 +467,30 @@ def build_page(
 ) -> str:
     """Assemble a complete HTML page."""
     prev_btn = (
-        f'<a href="{relative_href(current_file, prev_link[0])}" class="nav-prev">'
-        f"&larr; {prev_link[1]}</a>"
+        f'<a href="{relative_href(current_file, prev_link[0])}" class="page-nav-card nav-prev">'
+        f'<span class="page-nav-arrow">&larr;</span>'
+        f'<span class="page-nav-kicker">Previous</span>'
+        f'<span class="page-nav-title">{prev_link[1]}</span>'
+        f"</a>"
         if prev_link else "<span></span>"
     )
     next_btn = (
-        f'<a href="{relative_href(current_file, next_link[0])}" class="nav-next">'
-        f"{next_link[1]} &rarr;</a>"
+        f'<a href="{relative_href(current_file, next_link[0])}" class="page-nav-card nav-next">'
+        f'<span class="page-nav-kicker">Next</span>'
+        f'<span class="page-nav-title">{next_link[1]}</span>'
+        f'<span class="page-nav-arrow">&rarr;</span>'
+        f"</a>"
         if next_link else "<span></span>"
     )
 
-    search_label = "Search"
     home_href = relative_href(current_file, "index.html")
-    favicon_href = asset_href(current_file, "assets/favicon.svg")
-    stylesheet_href = asset_href(current_file, "assets/style.css")
-    script_href = asset_href(current_file, "assets/modifications.js")
-    active_nav_groups_json = json.dumps(active_nav_groups)
+    stylesheet_href = versioned_asset_href(current_file, "style.css")
+    script_href = versioned_asset_href(current_file, "modifications.js")
+    page_title = (
+        f'<h1 class="page-title">{title}</h1>'
+        if current_file != "index.html"
+        else ""
+    )
 
     return f"""\
 <!DOCTYPE html>
@@ -520,9 +499,8 @@ def build_page(
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} — {thesis_title}</title>
-  <meta name="author" content="Fabien Mathieu">
+  <meta name="author" content="Saint Even, Slipper King">
   <meta name="pagefind-base" content="{BASE_URL}">
-  <link rel="icon" href="{favicon_href}" type="image/svg+xml">
   <link rel="stylesheet" href="{stylesheet_href}">
   <script>
     (function(){{
@@ -531,33 +509,17 @@ def build_page(
       document.documentElement.dataset.theme=t;
     }})();
   </script>
-  <script>
-    (function(){{
-      var activeNavGroups={active_nav_groups_json};
-      var collapsed={{}};
-      try{{collapsed=JSON.parse(sessionStorage.getItem("global-nav-collapsed")||"{{}}")||{{}};}}
-      catch(_){{}}
-      for(var i=0;i<activeNavGroups.length;i++){{delete collapsed[activeNavGroups[i]];}}
-      var ids=Object.keys(collapsed).filter(function(id){{return collapsed[id];}});
-      if(!ids.length)return;
-      var s=document.createElement("style");
-      s.id="nav-collapsed-state";
-      s.textContent=ids.map(function(id){{return"#"+id+"{{display:none;}}"}}).join("");
-      document.head.appendChild(s);
-    }})();
-  </script>
 </head>
 <body>
   <header class="topbar" data-pagefind-ignore>
     <div class="topbar-left">
-      <button class="sidebar-toggle-btn" id="sidebar-toggle-left" aria-label="Menu">{ICON_HAMBURGER}</button>
+      <button class="icon-button sidebar-toggle-btn" id="sidebar-toggle-left" aria-label="Menu">{ICON_HAMBURGER}</button>
       <a href="{home_href}" class="topbar-title">{thesis_title}</a>
     </div>
     <div class="topbar-right">
-      <button class="search-trigger" aria-label="{search_label} (Ctrl+K)">{ICON_SEARCH} <kbd>Ctrl+K</kbd></button>
-      <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">{ICON_THEME_LIGHT}</button>
-      <a href="{GITHUB_URL}" class="github-link" aria-label="GitHub" target="_blank" rel="noopener">{ICON_GITHUB}</a>
-      <button class="sidebar-toggle-btn" id="sidebar-toggle-right" aria-label="Table of contents">{ICON_TOC}</button>
+      <button class="icon-button theme-toggle" aria-label="Toggle theme" title="Toggle theme">{ICON_THEME_LIGHT}</button>
+      <a href="{GITHUB_URL}" class="icon-button github-link" aria-label="GitHub" target="_blank" rel="noopener">{ICON_GITHUB}</a>
+      <button class="icon-button sidebar-toggle-btn" id="sidebar-toggle-right" aria-label="Table of contents">{ICON_TOC}</button>
     </div>
   </header>
   <div class="layout">
@@ -565,6 +527,7 @@ def build_page(
       {global_nav}
     </aside>
     <main class="content">
+      {page_title}
       {section_html}
       <footer class="page-nav" data-pagefind-ignore>
         {prev_btn}
@@ -576,16 +539,6 @@ def build_page(
     </aside>
   </div>
   <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
-  <div class="search-overlay" id="search-overlay">
-    <div class="search-dialog">
-      <div class="search-header">
-        <input type="text" class="search-input" id="search-input"
-               placeholder="{search_label}..." autocomplete="off">
-        <kbd class="search-close">Esc</kbd>
-      </div>
-      <div class="search-results" id="search-results"></div>
-    </div>
-  </div>
   <script src="{script_href}"></script>
 </body>
 </html>"""
@@ -785,7 +738,7 @@ def main() -> None:
     global BASE_URL
     BASE_URL = args.base_url
 
-    print("=== Building HTML complex analysis notes ===\n")
+    print("=== Building HTML linear algebra notes ===\n")
 
     if DIST_DIR.exists():
         for child in DIST_DIR.iterdir():

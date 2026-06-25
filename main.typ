@@ -4,7 +4,7 @@
 #show: show-rules
 
 #set document(
-  title: "Linear Algebra",
+  title: "Notes on Linear Algebra",
   author: "Saint Even, Slipper King",
 )
 
@@ -12,7 +12,7 @@
   if not _is-html {
     align(center)[
       #v(2cm)
-      #title("Linear Algebra")
+      #title("Notes on Linear Algebra")
       #text(size: 13pt)[Saint Even, Slipper King]
 
       #text(size: 11pt)[Source: https://github.com/yunfeix2009/lin-alg-notes-ocw]
@@ -20,26 +20,29 @@
     outline()
   } else {
     chapter-section("cover")[
-      #html.elem("header", attrs: (class: "paper-header"))[
-        #html.elem("h1", attrs: (class: "paper-title"))[
-          Linear Algebra
+      #html.elem("section", attrs: (class: "cover"))[
+        #html.elem("p", attrs: (class: "course"))[
+          MIT OpenCourseWare 18.06
         ]
-        #html.elem("p", attrs: (class: "author"))[
-          by #smallcaps[Saint Even, Slipper King]
+        #html.elem("h1")[
+          Notes on Linear Algebra
+        ]
+        #html.elem("p", attrs: (class: "authors"))[
+          by #smallcaps[Saint Even] and #smallcaps[Slipper King]
         ]
         #html.elem("p", attrs: (class: "date"))[
-          OpenCourseWare Notes
+          Spring 2005 Notes
         ]
-        #html.elem("p", attrs: (class: "paper-misc"))[
-          Typst Source: https://github.com/yunfeix2009/lin-alg-notes-ocw
+        #html.elem("div", attrs: (class: "abstract"))[
+          Notes on linear algebra based on Gilbert Strang's MIT OpenCourseWare lectures, with emphasis on linear equations, vector spaces, matrices, determinants, and applications.
         ]
-        #html.elem("p", attrs: (class: "pdf-download"))[
-          #html.elem("a", attrs: (href: "pdf/notes.pdf", class: "btn-pdf"))[
+        #html.elem("p", attrs: (class: "download"))[
+          #html.elem("a", attrs: (href: "pdf/notes.pdf", class: "button"))[
             Download PDF
           ]
         ]
-        #html.elem("div", attrs: (class: "abstract"))[
-          A web rendering of the linear algebra notes, adapted from the Typst source with HTML-specific theorem, equation, and navigation handling.
+        #html.elem("p", attrs: (class: "paper-misc"))[
+          Source: https://github.com/yunfeix2009/lin-alg-notes-ocw
         ]
       ]
     ]
@@ -47,4 +50,3 @@
 }
 
 #include "/chapters/index.typ"
-
