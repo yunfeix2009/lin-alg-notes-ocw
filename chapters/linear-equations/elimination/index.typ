@@ -218,3 +218,100 @@ so that
 $
 E A = U.
 $
+
+
+
+#pagebreak()
+#example[
+
+
+
+Let
+
+$
+A = mat(
+  1, 2, 3;
+  4, 5, 6;
+  7, 8, 9
+)
+$
+
+and let
+
+$
+r = mat(1, 2, 7).
+$
+
+Then
+
+$
+r A
+=
+mat(1, 2, 7)
+mat(
+  1, 2, 3;
+  4, 5, 6;
+  7, 8, 9
+).
+$]
+#solution[
+According to the row-combination rule,
+
+$
+ r A
+=
+1 dot
+mat(1, 2, 3)
++
+2 dot
+mat(4, 5, 6)
++
+7 dot
+mat(7, 8, 9).
+$
+
+Computing the linear combination,
+
+$
+r A
+=
+mat(
+  1 + 8 + 49,
+  2 + 10 + 56,
+  3 + 12 + 63
+)
+=
+mat(
+  58, 68, 78
+).
+$
+
+Direct multiplication gives the same result:
+
+$
+mat(1, 2, 7)
+mat(
+  1, 2, 3;
+  4, 5, 6;
+  7, 8, 9
+)
+=
+mat(
+  58, 68, 78
+).
+$]
+
+#remark[
+  Similar to the column picture, the row picture for multiplication is when a row matrix is multiplied with a matrix, producing a linear combination of the rows of that matrix.
+]
+
+
+From the two examples, we see that elementary matrices act differently depending on which side they multiply a matrix. Left multiplication performs row operations, while right multiplication performs column operations. If $E$ is an elementary matrix, then $E A$ applies a row operation to $A$, whereas $A E$ applies a column operation to $A$.
+
+
+
+In summary, elimination takes the following steps
++  Elimination goes from $vb(A)$ to a triangular $vb(U)$ by a sequence of matrix steps $E_(i j)$.
++ The inverse matrices $E_(i j)^(-1)$ in reverse order bring $vb(U)$ back to the original $vb(A)$.
++ In matrix language that reverse order is $A = L U =$ (lower triangle) (upper triangle).
++ Elimination succeeds if $vb(A)$ is invertible. (It may need row exchanges.).
