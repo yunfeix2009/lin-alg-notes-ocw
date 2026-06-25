@@ -55,7 +55,7 @@ $
 Aside from the definition, there are several other helpful ways to interpret matrix multiplication. 
 
 
- == Row Picture and Column Picture
+ === Row Picture 
  
  When visualizing linear systems, there are often two main ways, corresponding to two ways of interpreting the product between a matrix and a vector. 
 
@@ -67,7 +67,9 @@ Aside from the definition, there are several other helpful ways to interpret mat
   Let $ vb(A) = mat(2,  -1; -1, 2),quad vb(x) =  mat(x; y),quad vb(b) = mat(0; 3), $ then $ vb(A x = b).$
   This represents two lines on $RR^2$ intersecting at a point, termed by Prof. Strang the "row picture," where each row of $vb(A)$ combines $vb(x)$, and setting that combination to an element of $vb(b)$ gives an equation, in this case, one that describes a line in $RR^2$. 
 
-  However, just like "counting twice" (counting the same thing in two different ways) in combinatorics, looking the other way, as the "column picture" produces a different kind of insights. By treating multiplying a vector on the right as a combination of the column vectors of the matrix, the same linear system could also be expressed as $ x mat(2; -1) + y mat(-1; 2) = mat(0; 3). $ This equation offers a completely different geometric interpretation: given two vectors, $mat(2; -1)$ and $mat(-1; 2)$, for what values of $x$ and $y$ would their linear combination be $mat(0; 3)$.  
+=== Column Picture
+
+Just like "counting twice" (counting the same thing in two different ways) in combinatorics, looking the other way, as the "column picture" produces a different kind of insights. By treating multiplying a vector on the right as a combination of the column vectors of the matrix, the same linear system could also be expressed as $ x mat(2; -1) + y mat(-1; 2) = mat(0; 3). $ This equation offers a completely different geometric interpretation: given two vectors, $mat(2; -1)$ and $mat(-1; 2)$, for what values of $x$ and $y$ would their linear combination be $mat(0; 3)$.  
 
   With this "column picture," it's natural to ask, given $vb(A)$ what combinations, or $vb(b)$ could be achieved, by varying $vb(x)$. In fact, for reasons that as we shall see later in vector spaces, any combination could be achieved. In other words, the linear combination of $mat(2; -1)$ and $mat(-1; 2)$ fill the entire plane. 
 ]
@@ -100,20 +102,21 @@ $
 
 then each column of $vb(C)$ is a linear combination of the columns of $vb(A)$, with coefficients taken from the corresponding column of $vb(B)$. Likewise, each row of $vb(C)$ is a linear combination of the rows of $vb(B)$, with coefficients taken from the corresponding row of $vb(A)$.
 
-=== out product
+=== Sum of Outer Products
 
-Matrix multiplication can also be viewed from a third perspective. Writing the columns of $A$ as $a_1, dots.c, a_n$ and the rows of $B$ as $b_1^T, dots.c, b_n^T$, we have
+Matrix multiplication can also be viewed from a third perspective. Writing the columns of $vb(A)$ as $vb(a)_1, dots.c, vb(a)_n$ and the rows of $B$ as $vb(b)_1^top, dots.c, vb(b)_n^top$, we have
 
 $
-A B = a_1 b_1^T + a_2 b_2^T + dots + a_n b_n^T.
+vb(A B) = vb(a)_1 vb(b)_1^top + vb(a)_2 vb(b)_2^top + dots.c + vb(a)_n vb(b)_n^top.
 $
 
-Thus, the product is a sum of outer products of columns of $A$ and rows of $B$.
+Thus, the product is a sum of outer products of columns of $vb(A)$ and rows of $vb(B)$. (See @def:vectorProduct for the definition of outer product).
 
-=== block
+=== Block
 
 Finally, these viewpoints extend naturally to block matrices. If a matrix is partitioned into blocks of compatible sizes, each block may be treated as a single entry, and the usual rules of matrix multiplication remain valid. This allows complicated matrix products to be analyzed and computed using larger building blocks rather than individual entries.
 
+=== Properties
 
 Matrix algebra satisfies many properties that makes it a nice algebraic structure.
 + Associative
