@@ -19,6 +19,12 @@ Then, we have the following rules for transpose
   $ vb(A) vb(A)^(-1) = vb(I) &==> (vb(A) vb(A)^(-1))^top = vb(I)^top= vb(I) 
   \ &==> (vb(A)^(-1))^top vb(A)^top = vb(I). $
 
+Since vectors could be viewed as special cases of matrices, transpose is also a pertinent operation regarding vectors. 
+
+#definition[
+  Fix vectors $vb(x)$ and $vb(y)$, with dimensions $m$ and $n$, respectively. In the case where $m= n$, define the inner product between $vb(x)$ and $vb(y)$ to be $ chevron(vb(x) \, vb(y))  = vb(x)^top vb(y). $
+  By transposing $vb(y)$ instead, define 
+]
 
 Interestingly, we have $ (vb(A x))^top vb(y) = vb(x)^top vb(A)^top vb(y) = vb(x)^top (vb(A)^top vb(y)). $ 
 #definition[

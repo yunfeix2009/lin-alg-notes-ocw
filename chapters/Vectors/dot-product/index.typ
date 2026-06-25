@@ -6,7 +6,7 @@
   For vectors $bold(a) = ( a_1, a_2, dots, a_n )$
   and
   $bold(b) = ( b_1, b_2, dots, b_n )$,
-  their *dot product* is defined by
+  their *dot product* (sometimes referred to as the inner product) is defined by
   $bold(a) dot bold(b)
   := sum_(i=1)^n a_i b_i.$
   _The dot product is a scalar._
