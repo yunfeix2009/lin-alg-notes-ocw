@@ -3,8 +3,8 @@
 #chapter-section("preface")[
   #include "preface/index.typ"
 ]
-#chapter-section("preliminaries")[
-  #include "preliminaries/index.typ"
+#chapter-section("vectors")[
+  #include "vectors/index.typ"
 ]
 
 #if not _is-html {
@@ -26,6 +26,16 @@
 
 #chapter-section("vector-space")[
   #include "vector-space/index.typ"
+]
+
+
+// appendix
+
+#if not _is-html {
+  std.pagebreak()
+}
+#chapter-section("applications")[
+  #include "applications/index.typ"
 ]
 
 

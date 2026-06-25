@@ -108,7 +108,7 @@ Easy to see that the unit vector in the same direction as $vb(v)$ is $vu(u) = vb
 ]
 
 #example[
-  (Textbook Section 1.2 p28) Can three vectors in the $x y$-plane have $ cases(vb(u) dot vb(v) <0, vb(u) dot vb(w) <0, vb(v) dot vb(w)<0)? $
+  (Textbook Section 1.2 p28) Can three vectors in the $x y$-plane have $ cases(vb(u) dot vb(v) <0, vb(u) dot vb(w) <0, vb(v) dot vb(w)<0) quad? $
 ]
 #solution[
   Yes, for example, when the vectors are the vertices of an equilateral triangle centered at the origin. In fact, this is true whenever the angles between pairwise vectors are all greater than $90^degree$.

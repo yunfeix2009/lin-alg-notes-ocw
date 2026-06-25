@@ -1,5 +1,5 @@
 #import "../../../lib.typ":*
-== Vectors 
+== Linear Combinations 
 
 Vectors are arguably the basic elements of study in linear algebra, rather than individual numbers, along with the space they form, known as the vector space. Therefore, beginning with an official introduction on vectors seems like a logical decision. 
 

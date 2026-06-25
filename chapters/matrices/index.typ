@@ -18,3 +18,11 @@ There are many motivations for matrices, including transforming coordinate syste
 #chapter-section("permutation")[
   #include "permutation/index.typ"
 ]
+
+#chapter-section("calculus")[
+  #include "calculus/index.typ"
+]
+
+#chapter-section("graphs")[
+  #include "graphs/index.typ"
+]

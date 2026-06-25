@@ -1,12 +1,13 @@
 #import "/lib.typ": chapter-section
 
-= Preliminaries
-By way of introducing the subject, we first introduce several pertinent operations that will recur throughout the subject. Accordingly, we first redefine the many concepts in a higher Euclidean space, such as
+= Vectors
+
+Since the essence of linear algebra studies the operation linear transformation and the spaces they form, we first introduce the vectors, which linear combination is exerted upon. Then, we introduce to other useful operations on vectors. 
 
 
 
-#chapter-section("vectors")[
-  #include "vectors/index.typ"
+#chapter-section("combination")[
+  #include "combination/index.typ"
 ]
 
 #chapter-section("dot_product")[
