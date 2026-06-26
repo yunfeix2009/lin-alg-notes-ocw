@@ -3,7 +3,7 @@
 
 #definition[
   A matrix $vb(P)$ is a permutation matrix iff there is exactly one $1$ in each of its column and row, and $0$ elsewhere. 
-]
+]<def:permutation>
 
 Following are some observations of permutation matrices
 

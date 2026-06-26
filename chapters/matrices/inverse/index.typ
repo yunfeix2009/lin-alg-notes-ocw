@@ -1,5 +1,6 @@
 #import "../../../lib.typ":*
-== Inverses of Matrices
+== Inverses of Matrices 
+#definition[define inverse matrix]<def:inverse>
 In fact, any square matrix with a non-zero determinant has an inverse.
   Furthermore, finding the solution to a system of linear equations is equivalent to finding the inverse of a matrix.
   Consider a system of linear equations regarding $n$ variables. If $bold(A)$ is an n-by-n square matrix representing the coefficients of the variables in each equation, $bold(X)$ a vector representing the solutions, and $bold(B)$ representing the vector of the constants on the right side of the equations, then we have $ bold(A X) = bold(B) ==> bold(A)^(-1) bold(A X) = bold(A)^(-1) bold(B) ==> bold(X) = bold(A)^(-1) bold(B) $

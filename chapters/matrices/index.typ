@@ -22,3 +22,11 @@ There are many motivations for matrices, including transforming coordinate syste
 #chapter-section("calculus")[
   #include "calculus/index.typ"
 ]
+
+#chapter-section("inverse")[
+  #include "inverse/index.typ"
+]
+
+// #chapter-section("calculus")[
+//   #include "calculus/index.typ"
+// ]

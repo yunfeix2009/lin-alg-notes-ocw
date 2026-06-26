@@ -60,6 +60,95 @@ First, the "row picture" and "column picture", consider the case where a matrix 
   Let $ vb(A) = mat(2,  -1; -1, 2),quad vb(x) =  mat(x; y),quad vb(b) = mat(0; 3), $ then $ vb(A x = b).$
   This represents two lines on $RR^2$ intersecting at a point, termed by Prof. Strang the "row picture," where each row of $vb(A)$ combines $vb(x)$, and setting that combination to an element of $vb(b)$ gives an equation, in this case, one that describes a line in $RR^2$. 
 
+
+#example[
+
+
+
+Let
+
+$
+A = mat(
+  1, 2, 3;
+  4, 5, 6;
+  7, 8, 9
+)
+$
+
+and let
+
+$
+r = mat(1, 2, 7).
+$
+
+Then
+
+$
+r A
+=
+mat(1, 2, 7)
+mat(
+  1, 2, 3;
+  4, 5, 6;
+  7, 8, 9
+).
+$]
+#solution[
+According to the row-combination rule,
+
+$
+ r A
+=
+1 dot
+mat(1, 2, 3)
++
+2 dot
+mat(4, 5, 6)
++
+7 dot
+mat(7, 8, 9).
+$
+
+Computing the linear combination,
+
+$
+r A
+=
+mat(
+  1 + 8 + 49,
+  2 + 10 + 56,
+  3 + 12 + 63
+)
+=
+mat(
+  58, 68, 78
+).
+$
+
+Direct multiplication gives the same result:
+
+$
+mat(1, 2, 7)
+mat(
+  1, 2, 3;
+  4, 5, 6;
+  7, 8, 9
+)
+=
+mat(
+  58, 68, 78
+).
+$]
+
+#remark[
+  Similar to the column picture, the row picture for multiplication is when a row matrix is multiplied with a matrix, producing a linear combination of the rows of that matrix.
+]
+
+
+From the two examples, we see that elementary matrices act differently depending on which side they multiply a matrix. Left multiplication performs row operations, while right multiplication performs column operations. If $E$ is an elementary matrix, then $E A$ applies a row operation to $A$, whereas $A E$ applies a column operation to $A$.
+
+
+
 === Column Picture
 
 Just like "counting twice" (counting the same thing in two different ways) in combinatorics, looking the other way, as the "column picture" produces a different kind of insights. By treating multiplying a vector on the right as a combination of the column vectors of the matrix, the same linear system could also be expressed as $ x mat(2; -1) + y mat(-1; 2) = mat(0; 3). $ This equation offers a completely different geometric interpretation: given two vectors, $mat(2; -1)$ and $mat(-1; 2)$, for what values of $x$ and $y$ would their linear combination be $mat(0; 3)$.  
