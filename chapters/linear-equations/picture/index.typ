@@ -21,36 +21,3 @@
 ]
 
 Adding one variable to a system of $3$ equations of $3$ variables, the "row picture" becomes relatively less easy to visualize and represent. With more variables and equations, this trend continues, visualization already becomes difficult. However, with the equally important, but often missed "column picture," things are not much harder. 
-
-Another contrast between the "row picture" and "column picture" is when defining or computing the product between a vector and a matrix. 
-
-#example[
-  Compute the product of the following matrix and vector $ mat(2, 5; 1, 3) mat(1; 2). $
-]
-#solution[
-  Usually, this is done through the dot product of every row in the matrix and the vector; however, the "column" way takes each column in the matrix as a vector and the product is the summation of the i-th column and the i-th component of the vector. 
-  $ mat(2, 5; 1, 3) mat(1; 2) = 1 mat(2; 1) + 2 mat(5; 3) = mat(12; 7). $
-]
-#remark[
-  Thus, the product of a matrix and a vector, $vb(A x)$ is a linear combination of the columns of $vb(A)$. 
-]
-
-
-
-More generally, fix matrices $vb(A), vb(B), "and" vb(C)$,
-
-$
-vb(C = A B),
-$
-
-then each column of $vb(C)$ is a linear combination of the columns of $vb(A)$, with coefficients taken from the corresponding column of $vb(B)$. Likewise, each row of $vb(C)$ is a linear combination of the rows of $vb(B)$, with coefficients taken from the corresponding row of $vb(A)$.
-
-Matrix multiplication can also be viewed from a third perspective. Writing the columns of $A$ as $a_1, dots.c, a_n$ and the rows of $B$ as $b_1^T, dots.c, b_n^T$, we have
-
-$
-A B = a_1 b_1^T + a_2 b_2^T + dots + a_n b_n^T.
-$
-
-Thus, the product is a sum of outer products of columns of $A$ and rows of $B$.
-
-Finally, these viewpoints extend naturally to block matrices. If a matrix is partitioned into blocks of compatible sizes, each block may be treated as a single entry, and the usual rules of matrix multiplication remain valid. This allows complicated matrix products to be analyzed and computed using larger building blocks rather than individual entries.

@@ -1,9 +1,10 @@
 #import "../../../lib.typ":* 
 == Multiplication
+Multiplication is arguably the most important and consequential operation on matrices, and stand as the backbone of many aspects of linear algebra. In this section, the definition along with a few useful visualizations in terms of vectors will be presented. 
 #definition[
   For vectors $vb(u)$, $vb(v)$, $vb(w)$, etc., rewrite its linear combination of $ mat(vb(u), vb(v), vb(w), dots.c) dot mat(a; b; c; dots.v) = a vb(u) + b vb(v) + c vb(w) + dots.c, $ where $ mat(vb(u), vb(v), vb(w), dots.c) $ could be written as $ mat(u_1, v_1, w_1, dots.c; u_2, v_2, w_2, dots.c; dots.v, dots.v, dots.v, dots.down). $
 ]
-In this way, a matrix a row vector of vectors.
+In this way, a matrix a row vector of (column) vectors.
 
 
 In this definition, $ cases(
@@ -33,6 +34,7 @@ $
   )
 $
 
+Now, the formal, entry based definition could be established, although this definition is relatively less intuitive to several later interpretations of this same operation. 
 #definition[
   Let $bold(A) = (a_(i j))$ be an $m times n$ matrix and
   $bold(B) = (b_(i j))$ be an $n times p$ matrix.
@@ -57,10 +59,7 @@ Aside from the definition, there are several other helpful ways to interpret mat
 First, the "row picture" and "column picture", consider the case where a matrix is multiplied with a vector. 
  === Row Picture 
  
-  Let $ vb(A) = mat(2,  -1; -1, 2),quad vb(x) =  mat(x; y),quad vb(b) = mat(0; 3), $ then $ vb(A x = b).$
-  This represents two lines on $RR^2$ intersecting at a point, termed by Prof. Strang the "row picture," where each row of $vb(A)$ combines $vb(x)$, and setting that combination to an element of $vb(b)$ gives an equation, in this case, one that describes a line in $RR^2$. 
-
-
+Consider the special case where the left matrix is a row vector, due to dimensions, the product would also be a row vector, that could be seen as a combination of the right matrix by the left row vector. When the left matrix is not a row vector, the product is the stack of the individual products. 
 #example[
 
 
@@ -68,7 +67,7 @@ First, the "row picture" and "column picture", consider the case where a matrix 
 Let
 
 $
-A = mat(
+vb(A) = mat(
   1, 2, 3;
   4, 5, 6;
   7, 8, 9
@@ -78,13 +77,13 @@ $
 and let
 
 $
-r = mat(1, 2, 7).
+vb(r) = mat(1, 2, 7).
 $
 
 Then
 
 $
-r A
+vb(r A)
 =
 mat(1, 2, 7)
 mat(
@@ -97,7 +96,7 @@ $]
 According to the row-combination rule,
 
 $
- r A
+vb( r A)
 =
 1 dot
 mat(1, 2, 3)
@@ -112,7 +111,7 @@ $
 Computing the linear combination,
 
 $
-r A
+vb(r A)
 =
 mat(
   1 + 8 + 49,
@@ -125,7 +124,7 @@ mat(
 ).
 $
 
-Direct multiplication gives the same result:
+One may verify that direct multiplication with the entry-based definition gives the same result:
 
 $
 mat(1, 2, 7)
@@ -141,26 +140,13 @@ mat(
 $]
 
 #remark[
-  Similar to the column picture, the row picture for multiplication is when a row matrix is multiplied with a matrix, producing a linear combination of the rows of that matrix.
+The row vector, in the "row picture" is seen as acting on the matrix. 
 ]
-
-
-From the two examples, we see that elementary matrices act differently depending on which side they multiply a matrix. Left multiplication performs row operations, while right multiplication performs column operations. If $E$ is an elementary matrix, then $E A$ applies a row operation to $A$, whereas $A E$ applies a column operation to $A$.
-
 
 
 === Column Picture
 
-Just like "counting twice" (counting the same thing in two different ways) in combinatorics, looking the other way, as the "column picture" produces a different kind of insights. By treating multiplying a vector on the right as a combination of the column vectors of the matrix, the same linear system could also be expressed as $ x mat(2; -1) + y mat(-1; 2) = mat(0; 3). $ This equation offers a completely different geometric interpretation: given two vectors, $mat(2; -1)$ and $mat(-1; 2)$, for what values of $x$ and $y$ would their linear combination be $mat(0; 3)$.  
-
-  With this "column picture," it's natural to ask, given $vb(A)$ what combinations, or $vb(b)$ could be achieved, by varying $vb(x)$. In fact, for reasons that as we shall see later in vector spaces, any combination could be achieved. In other words, the linear combination of $mat(2; -1)$ and $mat(-1; 2)$ fill the entire plane. 
-#remark[
-  Notice that the abstraction from the linear system to matrices to a seemingly unnecessary step explicitly representing matrices with letters demonstrates the role that abstraction plays as a useful technique in math. Just like the use of $nabla$ and representing curl and divergence in terms of which, these key symbols serve as a holder when connecting distinct concepts, one of the main themes of math. 
-]
-
-Adding one variable to a system of $3$ equations of $3$ variables, the "row picture" becomes relatively less easy to visualize and represent. With more variables and equations, this trend continues, visualization already becomes difficult. However, with the equally important, but often missed "column picture," things are not much harder. 
-
-Another contrast between the "row picture" and "column picture" is when defining or computing the product between a vector and a matrix. 
+When a matrix is multiplied with a column vector on the right, the product becomes a combination of the matrix's columns, by the column vector. 
 
 #example[
   Compute the product of the following matrix and vector $ mat(2, 5; 1, 3) mat(1; 2). $
@@ -199,7 +185,7 @@ Finally, these viewpoints extend naturally to block matrices. If a matrix is par
 
 === Properties
 
-Matrix algebra satisfies many properties that makes it a nice algebraic structure.
+Matrix algebra satisfies many properties (for details, see @def:goodAddMulti) that makes it a nice algebraic structure.
 + Associative
   #theorem[
     In other words, if $bold(X)$ is a vector and $bold(A)$ and $bold(B)$ are matrices, $ (bold(A B)) bold(X) = bold(A) (bold(B X)). $
@@ -213,15 +199,6 @@ Matrix algebra satisfies many properties that makes it a nice algebraic structur
 + Multiplicative Identity\
   There exist an unique identity fixing the height of the matrix being multiplied, with $1$ along the diagonal and $0$ elsewhere.
   Denote it as $bold(X)$, we have $ bold(I X) = bold(X). $
-
-  Multiplicative Inverse
-  #definition[For a matrix $bold(A)$, matrix $bold(M)$ is its inverse iff $bold(A M) = bold(M A) = bold(I)$, where $bold(I)$ is the identity matrix. ]<def:matrixInverse>
-  Observe that a matrix has an inverse only if it is a square matrix, meaning it has the same number of rows and columns. 
-  In fact, a square matrix's left inverse is also its right inverse, and this is a determining property of square matrices.
-
-  If a matrix is invertible when it has an inverse, then a matrix $vb(A)$ is not invertible iff there exists a non-zero vector $vb(x)$ that $vb(A x) = 0$.
-
-  Moreover, $ (vb(A B))^(-1) = vb(B)^(-1) vb(A)^(-1), $ as $ vb(A B B)^(-1) vb(A)^(-1) = vb(A I A)^(-1) = vb(A A)^(-1) = vb(I). $
 
 Since a matrix multiplying a vector is like the matrix acting on the vector, matrices may also be interpreted as (linear) transformations of vectors, or set of vectors. 
 #example[

@@ -175,7 +175,7 @@ $
   fails. When we reach a pivot that is $0$, we may proceed only if there is a
   lower row with a non-zero entry in that column, in which case we exchange the
   two rows. If there is no such row, the method fails, and the matrix is
-  non-invertible, as defined in @def:inverse.
+  non-invertible, as defined in @def:matrixInverse.
 
   Furthermore, later in determinants, the product of the pivots is the determinant of this matrix, in this example, it is $1 dot 2 dot 5 = 10$. #text(red)[add reference to determinant section]
 ]
