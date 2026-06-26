@@ -9,3 +9,6 @@ Linear algebra, though sometimes viewed as primarily a tool for solving linear e
 #chapter-section("graphs")[
   #include "graphs/index.typ"
 ]
+
+#chapter-section("calculus")[
+  #include "calculus/index.typ"]
