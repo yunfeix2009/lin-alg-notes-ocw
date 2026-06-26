@@ -5,9 +5,10 @@
   Observe that a rectangular matrix may have a left or right inverse, but due to dimensions, they will never be equal. It could be shown that, a matrix has an inverse only if it is a square matrix, meaning it has the same number of rows and columns. 
   In fact, a square matrix's left inverse is also its right inverse, and this is a determining property of square matrices. Still, it should be noted that a square matrix is not guaranteed to have an inverse, the criterion will be shown later in the linear equations section and the determinant section. 
 
-  Call a matrix _invertible_ when it has an inverse, then a matrix $vb(A)$ is not invertible iff there exists a non-zero vector $vb(x)$ that $vb(A x) = 0$.
+  Call a matrix _invertible_ when it has an inverse and _singular_ otherwise, then a matrix $vb(A)$ is singular iff there exists a non-zero vector $vb(x)$ that $vb(A x) = 0$.
 
   Moreover, $ (vb(A B))^(-1) = vb(B)^(-1) vb(A)^(-1), $ as $ vb(A B B)^(-1) vb(A)^(-1) = vb(A I A)^(-1) = vb(A A)^(-1) = vb(I). $
+
 
 
   Furthermore, finding the solution to a system of linear equations is equivalent to finding the inverse of a matrix.

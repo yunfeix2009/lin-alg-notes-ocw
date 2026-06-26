@@ -236,3 +236,7 @@ In summary, elimination takes the following steps
 + The inverse matrices $vb(E)_(i j)^(-1)$ in reverse order bring $vb(U)$ back to the original $vb(A)$.
 + In matrix language that reverse order is $vb(A = L U) =$ (lower triangle) (upper triangle).
 + Elimination succeeds if $vb(A)$ is invertible. (It may need row exchanges.).
+
+Elimination, besides from solving equations, could also be used in finding inverses of matrices, with the Gauss-Jordan process. To find the inverse of the square matrix $vb(A)$, let $vb(I)$ be the identity matrix with the same dimensions as $vb(A)$, perform the elimination steps on the augmented matrix $mat(vb(A), vb(I))$. Rather than stopping when an upper triangular matrix, keep using elimination steps upwards, which is back substitution in disguise, until the matrix takes in the form of $mat(vb(I), vb(B))$. Then, it could be shown that $vb(B) = vb(A)^(-1)$. Of course, this method fails when $vb(A)$ is singular, and succeeds whenever $vb(A)$ is invertible. 
+#proof[
+To show $vb(B) = vb(A)^(-1)$, let $vb(E)$ be the product of all the elimination steps. Then, we have $ vb(E) mat(vb(A), vb(I)) = mat(vb(I), vb(B)). $ Since matrix product works in blocks, $ cases(vb(E A = I), vb(E I = B)). $ Then, $ vb(E) = vb(I A)^(-1) = vb(A)^(-1). $ But, $ vb(B) = vb(E I) = vb(E). $ So, $ vb(B) = vb(A)^(-1). #qedhere$]
