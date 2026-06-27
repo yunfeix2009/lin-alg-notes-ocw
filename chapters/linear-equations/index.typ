@@ -16,3 +16,8 @@ To this end, if $vb(x)$ could be uniquely determined for all $vb(b)$, term $vb(A
 #chapter-section("elimination")[
   #include "elimination/index.typ"
 ]
+
+
+#chapter-section("lu-decomposition")[
+  #include "lu-decomposition/index.typ"
+]
