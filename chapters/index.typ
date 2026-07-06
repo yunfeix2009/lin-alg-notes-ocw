@@ -28,6 +28,14 @@
   #include "vector-space/index.typ"
 ]
 
+#if not _is-html {
+  std.pagebreak()
+}
+
+#chapter-section("orthogonality")[
+  #include "orthogonality/index.typ"
+]
+
 
 // appendix
 
