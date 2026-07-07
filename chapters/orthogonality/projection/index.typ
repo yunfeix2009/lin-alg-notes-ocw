@@ -33,4 +33,6 @@ Similar to the one-dimensional case, the new projection matrix $vb(P)$ also sati
   Although using the formula for projection matrix, @eq:projectionMatrix drives to the answer, notice the following. Let $vb(n)$ be the normal vector to the plane, which is $mat(1; 1; -1)$, vector $ vb(b) = vb(P) vb(b) + vb(P)_vb(n) vb(b). $ Since this equation holds for all $vb(b) in RR^3$, remarkably, $ vb(I) = vb(P + P)_vb(n) ==>  vb(P) = vb(I - P)_vb(n). $ In this way, one only needs to find $vb(P)_vb(n)$, which is easier as it only requires projecting a vector onto a vector. By the formula that does that, @eq:projectionVector, $ vb(p)_(vb(n)) = (vb(n) vb(n)^top)/(vb(n)^top vb(n)) = 1/3 mat(1, 1, -1; 1, 1, -1; -1, -1, 1). $ Thus, $ vb(P) = vb(I) - vb(P)_vb(n) = 1/3 mat(-2, -1, 1; -1, -2, 1; 1, 1, -2). #qedhere $
 ]
 
+The solution here implies that when two subspaces are orthogonal compliments of each other, their projection matrices sum to $vb(I)$. Practically, this situation rises rather common as $ (N(vb(A)))^perp = C(vb(A)^top), quad (N(vb(A)^top))^perp = C(vb(A)). $
+
 One application of projecting a vector onto a subspace is when "solving" $vb(A x = b)$ when $vb(b) in.not C(vb(A))$, by solving instead $vb(A x = p)$, where $vb(p)$ is the projection of $vb(b)$ onto $C(vb(A))$. This method is known as "least squares" and will be further discussed in the next section.  
