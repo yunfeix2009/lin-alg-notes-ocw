@@ -47,4 +47,6 @@ Now, with projection onto subspaces, we have the following solution.
 ]
 #remark[
   When assumed the key equation $ vb(A)^top vb(A) hat(vb(x)) = vb(A)^top vb(b), $ is solvable. This assumption is grounded upon the  @thm:keyeqnsolvability, knowing the columns of $vb(a)$ are independent. 
+
+  However, in the case where the columns of $vb(A)$ are not independent, apparently it has to do with something about Moore–Penrose pseudoinverse which is allegedly in single value decomposition that I have not yet learned by the time I'm writing this section. 
 ]

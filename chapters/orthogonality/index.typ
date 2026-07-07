@@ -12,3 +12,7 @@ Here, we examine how the geometric concept of _perpendicularity_, governed by th
 #chapter-section("least-square-approximations")[
   #include "least-square-approximations/index.typ"
 ]
+
+#chapter-section("orthogonal-matrix-basis")[
+  #include "orthogonal-matrix-basis/index.typ"
+]

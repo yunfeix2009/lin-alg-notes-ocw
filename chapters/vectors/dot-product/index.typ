@@ -197,8 +197,8 @@ Easy to see that the unit vector in the same direction as $vb(v)$ is $vu(u) = vb
 
 #example[
   Find four pairwise perpendicular unit vectors with all components equal to $1/2$ or $-1/2$. 
-]
+]<emp:adhemar>
 #solution[
   From either $RR^3$ includes at most $3$ pairwise perpendicular directions or that the components have absolute value $1/2$, we are searching in $RR^4$. Each vector must be $1/2 (plus.minus 1, plus.minus 1, plus.minus 1, plus.minus 1)$. 
   Assume $1/2(1, 1, 1, 1)$ is in the solution, then the rest three could be found, resulting in $ cases(1/2(1, 1, 1,1), 1/2(1, -1, 1, -1), 1/2(1, 1, -1, -1), 1/2(1, -1, -1, 1)). $
-]
+]<sol:adhemermatrix>
