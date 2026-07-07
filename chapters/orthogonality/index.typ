@@ -6,6 +6,9 @@ Here, we examine how the geometric concept of _perpendicularity_, governed by th
 #chapter-section("orthogonal-vectors")[
   #include "orthogonal-vectors/index.typ"
 ]
+#chapter-section("projection")[
+  #include "projection/index.typ"
+]
 #chapter-section("least-square-approximations")[
   #include "least-square-approximations/index.typ"
 ]

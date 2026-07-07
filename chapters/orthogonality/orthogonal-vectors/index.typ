@@ -15,7 +15,7 @@ Since any non-zero vector is not orthogonal to itself, and that a subspace must 
 
 #theorem[
   Regarding a matrix $vb(A)$, its row space is _orthogonal_ to its null space, $N(vb(A))$. 
-]
+]<thm:subspaceOrtho>
 #proof[
   Every vector in $N(vb(A))$ is orthogonal to every single row of $vb(A)$ as, by definition, $vb(A) vb(x) = 0$ so $vb(A)_i vb(x) = 0$. Moreover, any vector in the row space is a combination of rows of $vb(A)$, let one of such be $c_1 vb(A)_1 + c_2 vb(A)_2 + dots.c$ and $vb(v) in N(vb(A))$, then $ (c_1 vb(A)_1 + c_2 vb(A)_2 + dots.c) vb(v) = c_1 (vb(A)_1 vb(v)) + c_2 (vb(A)_2 vb(v)) + dots.c = 0. #qedhere $
 ]
