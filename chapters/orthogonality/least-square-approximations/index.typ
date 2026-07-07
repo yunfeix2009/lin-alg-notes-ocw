@@ -7,7 +7,7 @@ This is a practical problems as when obtaining a value experimentally, measureme
 
 We aim to fine the "best" solution, that will be well-defined later in this subsection. But first, it is not optimal to arbitrarily select a few equations until the number of equations is reduced to the number of variables. Still in the case of experimental science, we take more measurements often to increase the reliability of the estimated result. In this context, throwing away measurements does not maximize the amount of information extracted from the measurements about the desired quantity. 
 
-Here, I claim the "best solution," $ hat(vb(x))$ satisfies $vb(A)^top vb(A) hat(vb(x)) = vb(A)^top vb(b), $ assuming that $vb(A)^top vb(A)$, which is not only square and symmetric, but is also invertible.
+Let the error to be $norm(vb(b - p))$, where $vb(b)$ being the observational results and $vb(p)$ being the solvable vector, ie. in $C(vb(A))$. In the last section, it is proven that such $vb(p)$ is the projection of $vb(b)$ onto $C(vb(A))$. So, to minimize the error term that sums the squares of each individual data points' differences, the "best solution," $ hat(vb(x))$ satisfies $vb(A)^top vb(A) hat(vb(x)) = vb(A)^top vb(b), $ assuming that $vb(A)^top vb(A)$, which is not only square and symmetric, but is also invertible.
 
 #theorem[
   $vb(A)^top vb(A)$ is invertible iff columns of $vb(A)$ are independent. 
