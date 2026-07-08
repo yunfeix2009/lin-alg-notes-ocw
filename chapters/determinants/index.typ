@@ -12,3 +12,11 @@ It is also noteworthy that later sections do not concern as much regarding recta
 #chapter-section("determinant-formula")[
   #include "determinant-formula/index.typ"
 ]
+
+#chapter-section("determinant-applications")[
+  #include "determinant-applications/index.typ"
+]
+
+#chapter-section("cross_product")[
+  #include "cross-product/index.typ"
+]

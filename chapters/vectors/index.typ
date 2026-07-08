@@ -20,10 +20,6 @@ Since the essence of linear algebra studies the operation linear transformation 
 // #chapter-section("matrices")[
 //   #include "matrices/index.typ"
 // ]
-#chapter-section("cross_product")[
-  #include "cross-product/index.typ"
-]
-
 // #chapter-section("parametric")[
 //   #include "parametrics/index.typ"
 // ]
