@@ -13,7 +13,7 @@
     align(center)[
       #v(2cm)
       #title("Notes on Linear Algebra")
-      #text(size: 13pt)[Saint Even, Slipper King]
+      #text(size: 13pt)[Saint Even, Slipper King, Icy Cheees]
 
       #text(size: 11pt)[Source: https://github.com/yunfeix2009/lin-alg-notes-ocw]
     ]
