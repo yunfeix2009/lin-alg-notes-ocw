@@ -33,6 +33,7 @@ DIST_DIR = WEB_DIR / "dist"
 ASSETS_SRC = WEB_DIR / "assets"
 
 THESIS_TITLE = "Notes on Linear Algebra"
+AUTHOR_META = "Saint Even, Slipper King, Icy Cheees"
 GITHUB_URL = "https://github.com/yunfeix2009/lin-alg-notes-ocw/"
 BASE_URL = "/"  # overridden by --base-url CLI arg
 HEADING_TAGS = {"h2", "h3", "h4", "h5", "h6"}
@@ -461,6 +462,7 @@ def build_page(
     local_toc: str,
     title: str,
     thesis_title: str,
+    author_meta: str,
     prev_link: tuple[str, str] | None,
     next_link: tuple[str, str] | None,
     current_file: str,
@@ -499,7 +501,7 @@ def build_page(
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} — {thesis_title}</title>
-  <meta name="author" content="Saint Even, Slipper King, Icy Cheees">
+  <meta name="author" content="{author_meta}">
   <meta name="pagefind-base" content="{BASE_URL}">
   <link rel="stylesheet" href="{stylesheet_href}">
   <script>
@@ -556,6 +558,10 @@ def split_and_generate(full_html: Path) -> None:
     print("  Parsing HTML...")
     soup = BeautifulSoup(full_html.read_text(encoding="utf-8"), "html.parser")
     pages, nav_items, nav_depths, parts = discover_structure(soup)
+    author_meta = AUTHOR_META
+    author_tag = soup.find("meta", attrs={"name": "author"})
+    if author_tag is not None:
+        author_meta = author_tag.get("content", "") or AUTHOR_META
 
     chapter_map = {sid: (fname, title) for sid, fname, title in pages}
 
@@ -669,6 +675,7 @@ def split_and_generate(full_html: Path) -> None:
             local_toc=local_toc_html,
             title=title,
             thesis_title=THESIS_TITLE,
+            author_meta=author_meta,
             prev_link=prev_link,
             next_link=next_link,
             current_file=fname,

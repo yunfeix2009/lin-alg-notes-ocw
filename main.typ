@@ -3,9 +3,11 @@
 
 #show: show-rules
 
+#let note-author-line = "Saint Even, Slipper King, Icy Cheees"
+
 #set document(
   title: "Notes on Linear Algebra",
-  author: "Saint Even, Slipper King",
+  author: note-author-line,
 )
 
 #{
@@ -13,7 +15,7 @@
     align(center)[
       #v(2cm)
       #title("Notes on Linear Algebra")
-      #text(size: 13pt)[Saint Even, Slipper King, Icy Cheees]
+      #text(size: 13pt)[#note-author-line]
 
       #text(size: 11pt)[Source: https://github.com/yunfeix2009/lin-alg-notes-ocw]
     ]
@@ -28,7 +30,7 @@
           Notes on Linear Algebra
         ]
         #html.elem("p", attrs: (class: "authors"))[
-          by #smallcaps[Saint Even] and #smallcaps[Slipper King]
+          by #smallcaps[Saint Even], #smallcaps[Slipper King], and #smallcaps[Icy Cheees]
         ]
         #html.elem("p", attrs: (class: "date"))[
           Spring 2005 Notes
