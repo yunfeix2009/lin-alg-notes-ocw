@@ -7,3 +7,8 @@ It is also noteworthy that later sections do not concern as much regarding recta
 #chapter-section("properties")[
   #include "properties/index.typ"
 ]
+
+
+#chapter-section("determinant-formula")[
+  #include "determinant-formula/index.typ"
+]
