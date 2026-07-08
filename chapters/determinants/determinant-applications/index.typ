@@ -136,4 +136,4 @@ $
 This is precisely the Shoelace Formula.
 ]
 
-The following section presents cross product, defined with determinants, that could also be used in finding volumes of parallelepipeds. 
+The following subsection presents cross product, from _Notes on Multivariable Calculus_, Section 1.4, defined with determinants, that could also be used in finding volumes of parallelepipeds. 
