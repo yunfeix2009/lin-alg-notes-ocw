@@ -37,6 +37,15 @@
 ]
 
 
+#if not _is-html {
+  std.pagebreak()
+}
+
+#chapter-section("determinants")[
+  #include "determinants/index.typ"
+]
+
+
 // appendix
 
 #if not _is-html {
