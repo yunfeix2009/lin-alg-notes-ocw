@@ -499,7 +499,7 @@ def build_page(
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title} — {thesis_title}</title>
-  <meta name="author" content="Saint Even, Slipper King">
+  <meta name="author" content="Saint Even, Slipper King, Icy Cheees">
   <meta name="pagefind-base" content="{BASE_URL}">
   <link rel="stylesheet" href="{stylesheet_href}">
   <script>
