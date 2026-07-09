@@ -31,6 +31,12 @@ Hence, by the formula for the determinant, this equation results in an $n$-th po
 ]
 The $n$-th degree polynomial $ p(lambda) = det(vb(A) - lambda vb(I)) $ is termed as the _characteristic polynomial_ of the matrix $vb(A)$. By Vieta's Theorem, $ trace vb(A) = sum_"eigenvalues" lambda; det vb(A) = product_"eigenvalues" lambda. $
 
+One more realization from the characteristic equation $ det (vb(A) - lambda vb(I)) = 0 $ is that $vb(A)$ and $vb(A)^top$ have the same eigenvalues and eigenvectors. Since $ (vb(A) - lambda vb(I))^top = (vb(A) - lambda vb(I)), $ $ det(vb(A) - lambda vb(I))^top = det(vb(A) - lambda vb(I)). $ So, $vb(A)$ and $vb(A)^top $ have the same characteristic equation. 
+
+#theorem[
+  The eigenvalues and eigenvectors of $vb(A)$ and $vb(A)^top$ are the same. 
+]<thm:eigentop>
+
 #example[
   Find the eigenvectors and eigenvalues of $ vb(A) = mat(3, 1; 1, 3). $
 ]

@@ -1,0 +1,23 @@
+#import "../../../lib.typ":*
+== Fourier Series 
+
+This section applies methods of projection of linear algebra. 
+
+Given a set of orthonormal vectors ${vb(q)_i}$, Notice that any vector in the space has a unique decomposition as a linear combination of the basis vectors. Recall that the coefficient of $vb(q)_i$ is $vb(v)^top vb(q)_i$. 
+
+#definition[
+  A fourier series of a function $f(x)$ is $ f(x) = a_0 + a_1 cos x + b_1 sin x + a_2 cos (2x) + b_2 sin(2x) + dots.c. $
+]
+
+To find the coefficients of each term of the series, we use projection. First, interpret the space of functions that could be written in this form in terms of vector spaces. Notice that it is infinite dimensional, with basis being $1$, $sin x$, $cos x$, $sin (2x)$, $cos(2x) dots$ I claim that this basis is orthogonal (though could be easily normalized to be orthonormal). 
+
+For two functions as basis vectors to be orthogonal, we define their inner product that extends dot product and show they are pairwise $0$. 
+
+#definition[
+  The _inner project_ $braket(f, g)$ over interval $[a, b]$ is defined as $ braket(f, g) = integral_a^b f(x) g(x) dif x. $
+]
+This definition makes sense as the dot project sums the product of each individual components. Here, to the continuous case, the summation is generalized. 
+
+It is verifiable that all the basis vectors (function) are orthogonal, over interval $[0, 2pi]$, as $f(x) = f(x+2pi)$. 
+
+To find $a_1$, for example, from projections in vector spaces, $ f^top cos x = braket(f, cos ) = integral_0^(2pi) f(x) cos x dif x. $ However, $ f^top cos  = (a_1 cos)^top cos = a_1 integral_0^(2pi) cos^2 x dif x = a_1 pi, $ due to orthogonal basis. Thus, $ a_1 = 1/pi integral_0^(2pi) f(x) cos x dif x. $
