@@ -45,6 +45,15 @@
   #include "determinants/index.typ"
 ]
 
+#if not _is-html {
+  std.pagebreak()
+}
+
+#chapter-section("eigen")[
+  #include "eigen/index.typ"
+]
+
+
 
 // appendix
 
