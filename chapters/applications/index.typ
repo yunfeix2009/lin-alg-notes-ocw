@@ -12,3 +12,5 @@ Linear algebra, though sometimes viewed as primarily a tool for solving linear e
 
 #chapter-section("calculus")[
   #include "calculus/index.typ"]
+#chapter-section("differential-eq")[
+  #include "differential-eq/index.typ"]
