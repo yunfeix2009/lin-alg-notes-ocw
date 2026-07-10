@@ -1,5 +1,5 @@
 #import "../../../lib.typ":*
-== Least Squares Approximations
+== Least Squares Approximations <sec:lsa>
 
 In this section, we try to "solve" $vb(A x) = vb(b)$ when there is no solution. In other words, $vb(b) in.not C(vb(A))$, as $rank vb(A) > $ number of variables. 
 

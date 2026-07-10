@@ -90,6 +90,21 @@ Here, $vb(x^top A x)$ is a pure quadratic of $n$ variables. Hence, $vb(x^top A x
   Relatively, the method of determinants is the most convenient method for this problem. However, when determining whether a matrix is positive definite, an open eye shall be kept for all methods.
 ]
 
+Due to the eigenvalues of $vb(A)^(-1)$ to be the reciprocal of that of $vb(A)$, $vb(A)$ being positive definite is equivalent to $vb(A)^(-1)$ being positive definite. Similarly, powers of $vb(A)$ are positive definite if $vb(A)$ is positive definite. Also, $vb(A)$ and $vb(A)^top$ have the same determinant and so do their sub-matrices (square matrices containing its $vb(A)_11$ element), so $vb(A)^top$ is positive definite if $vb(A)$ is positive definite. Due to @thm:pdm, $vb(A)$ and $vb(B)$ positive definite implies that $vb(A + B)$ is positive definite.
+
+However, the positive definiteness of the product of two matrices is more intricate. 
+
+In @sec:lsa, the method of least squares, we discussed the matrix $vb(A^top A)$, for example, @thm:keyeqnsolvability that states $N(vb(A)) = N(vb(A^top A))$ that gives the solvability of the projection equation. 
+#theorem[
+  Fix matrix $vb(A) in RR^(m times n)$, $vb(A^top A)$ is positive semi-definite. 
+]
+#proof[
+  $ vb(x^top A^top A x) = vb((A x)^top (A x)) = norm(vb(A x))^2>=0. #qedhere $
+]
+#corollary[
+  $rank vb(A) = n $ ensures $N(vb(A)) = emptyset$, meaning $vb(A)$ is positive definite. 
+]
+
 Note: for applications of positive definite matrices, see @sec:extremum and @sec:qs.
 
 === Complex Vectors and Matrices
@@ -97,3 +112,85 @@ Note: for applications of positive definite matrices, see @sec:extremum and @sec
 Since this section already discussed Hermitian matrix and the conjugate transpose operation $*$, topics related to complex vectors and matrices are here as well.
 
 First, to find the norm of a complex vector, $vb(v)^top vb(v)$ does not suffice as it may sometimes be negative, which is not even a valid metric. Thus, for a complex vector $vb(v)$, $ norm(vb(v))^2 = vb(v^* v). $ Similar to how $vb(x^top y)$ is dot product for real vectors, $vb(x^*y)$ is termed as the _complex inner product_.
+
+=== Similar Matrices 
+#definition[
+  Square matrices $vb(A)$ and $vb(B)$ are similar iff $ exists vb(M): vb(B) = vb(M)^(-1) vb(A M). $
+]
+Firstly, similarity is well-defined as $ vb(B) = vb(M)^(-1) vb(A M) ==> vb(A) = vb(M)^(-1) vb(B M). $
+
+Also, in particular, $vb(A) = vb(S) vb(Lambda) vb(S)^(-1)$, so a matrix and its eigenvalue matrix are similar. 
+#theorem[
+  Matrix similarity is transitive. 
+]
+#proof[
+  Assume $ cases( vb(A) = vb(P)^(-1) vb(B P), vb(B) = vb(Q)^(-1) vb(C Q)). $ Then, $ vb(a) = vb(P)^(-1) vb(Q)^(-1) C vb(P Q = (vb(P Q))^(-1) vb(C (P Q))). $
+]
+#corollary[
+  Similar matrices have the same eigenvalues as a matrix is similar to its eigenvalue matrix. 
+]
+Thus, every set of eigenvalues corresponds to a family of similar matrices. 
+
+However, sometimes the eigenvalues repeat. Then, we may further conclude that matrices in the same family have the same number of eigenvectors. 
+#example[
+  Find the families with $lambda_1 = lambda_2 = 4$. 
+]
+#solution[
+  First, $ vb(T):= mat(4, 0; 0, 4)$ is a family of its own as it satisfies the condition and, if $vb(A)$ is similar to it, then $ vb(A) = vb(M)^(-1) vb(T) vb(M) = 4 vb(M)^(-1) vb(I M) = 4 vb(I) = vb(T). $
+
+  However, there are still matrices with both of its eigenvalues $4$ but not similar to $vb(T)$.  Those are the ones with only one eigenvector. Hence, they are not diagonalizable to the form which makes them similar to $vb(T)$.  In fact, if $vb(A)_1 = mat(a; b), quad b!=0$, then $ vb(A) = mat(a, 16/b; b, 8-a ) $ is in the family as $trace vb(A) = 8$ and $det vb(A) = 16$. Thus, there are two families that could be represented by $ mat(4, 0; 0, 4) "and" mat(4, 1; 0, 4).#qedhere $
+]<sol:jordan>
+
+#theorem[
+  $vb(A B)$ have the positive eigenvalues if $vb(A)$ and $vb(B)$ uh idk #text(red)[ahhhh]
+]
+
+
+=== Jordan Forms
+Jordan forms completes the theory on categorizing matrices based on their families by drawing the lines between matrices with duplicating eigenvalues. 
+
+#definition[
+  A Jordan block is a square matrix with diagonal elements to be equal to a fixed value (its eigenvalue) and the entry above the diagonal element $1$ with the exception of the first column. In particular, a unit matrix, one that contains only one entry, is also taken as a Jordan form. 
+  $ J = mat(
+  lambda, 1, 0, dots.h, 0;
+  0, lambda, 1, dots.h, 0;
+  dots.v, dots.down, dots.down, dots.down, dots.v;
+  0, dots.h, 0, lambda, 1;
+  0, dots.h, dots.h, 0, lambda
+) $
+]
+Thus, the representative matrix of a family in @sol:jordan, $ mat(4, 1; 0, 4) $ family is a Jordan block.  
+#theorem[
+  A Jordan block has exactly one eigenvector. 
+]
+#proof[
+  
+]
+#definition[
+  The direct sum operation, $xor$ of two matrices $vb(A)$ and $vb(B)$ is $ mat(vb(A), 0; 0, vb(B))$, where the $0$'s represent the zero matrix of appropriate size. 
+]
+#definition[
+  A Jordan form is the direct sum of Jordan blocks. 
+]
+
+#theorem[
+  Jordan's Theorem states that any matrix is similar to a Jordan form $vb(J)$ (that is obtained by taking the direct sum of Jordan blocks of each of its eigenvalue with size $dim (vb(A) - lambda vb(I))$). 
+]
+In the case that the matrix's eigenvalues are all distinct, $vb(J = Lambda) $. However, in the case that there are repeating eigenvalues, Jordan's theorem gives a method of uniquely determining its family. 
+
+Also notice that no two Jordan blocks are similar and that Jordan forms are unique up to the order of direct sum of its constituent Jordan blocks. 
+
+#example[
+  The following two Jordan forms, both has dimension $4$, only eigenvalue being $0$, two eigenvectors (as their null spaces have the same dimension due to same rank), are not similar. 
+  $ vb(J)_1 = mat(
+  0, 1, 0, 0;
+  0, 0, 1, 0;
+  0, 0, 0, 0;
+  0, 0, 0, 0
+) "and" vb(J)_2 = mat(
+  0, 1, 0, 0;
+  0, 0, 0, 0;
+  0, 0, 0, 1;
+  0, 0, 0, 0
+). $
+]
