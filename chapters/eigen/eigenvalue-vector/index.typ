@@ -2,7 +2,7 @@
 == Fundamentals of Eigenvalues and Eigenvectors 
 
 #definition[
-  Vector $vb(x)$ is an _eigenvector_ wrt a square matrix $vb(A)$ iff $ vb(A x) = lambda vb(x), $ where $lambda$ is a constant that's termed _eigenvalue_. 
+  Non-zero vector $vb(x)$ is an _eigenvector_ wrt a square matrix $vb(A)$ iff $ vb(A x) = lambda vb(x), $ where $lambda$ is a constant that's termed _eigenvalue_. 
 ]
 
 Notice that if $vb(A)$ is singular, then by definition, $0$ is an eigenvalue. Hence, all vectors in $N(vb(A))$ are eigenvectors with eigenvalue $0$. 
@@ -31,7 +31,7 @@ Hence, by the formula for the determinant, this equation results in an $n$-th po
 ]
 The $n$-th degree polynomial $ p(lambda) = det(vb(A) - lambda vb(I)) $ is termed as the _characteristic polynomial_ of the matrix $vb(A)$. By Vieta's Theorem, $ trace vb(A) = sum_"eigenvalues" lambda; det vb(A) = product_"eigenvalues" lambda. $
 
-One more realization from the characteristic equation $ det (vb(A) - lambda vb(I)) = 0 $ is that $vb(A)$ and $vb(A)^top$ have the same eigenvalues and eigenvectors. Since $ (vb(A) - lambda vb(I))^top = (vb(A) - lambda vb(I)), $ $ det(vb(A) - lambda vb(I))^top = det(vb(A) - lambda vb(I)). $ So, $vb(A)$ and $vb(A)^top $ have the same characteristic equation. 
+One more realization from the characteristic equation $ det (vb(A) - lambda vb(I)) = 0 $ is that $vb(A)$ and $vb(A)^top$ have the same eigenvalues and eigenvectors. Since $ (vb(A) - lambda vb(I))^top = (vb(A)^top - lambda vb(I)), $ $ det(vb(A) - lambda vb(I))^top = det(vb(A)^top - lambda vb(I)). $ So, $vb(A)$ and $vb(A)^top $ have the same characteristic equation. 
 
 #theorem[
   The eigenvalues and eigenvectors of $vb(A)$ and $vb(A)^top$ are the same. 
@@ -53,7 +53,7 @@ One more realization from the characteristic equation $ det (vb(A) - lambda vb(I
   Notice the matrix from this example problem is $3vb(I) + vb(A)$ from @emp:eigen. The eigenvalues are $3$ more while the eigenvectors did not change. 
 ]
 
-Notice that no rotation matrix would have a real eigenvalue, by their nature. Thus, they are a significant source of matrices with all eigenvalues complex. Also note that symmetric matrices have real eigenvalues while anti-symmetric matrices ($vb(A)^top = - vb(A)$) have imaginary eigenvalues. 
+Notice that no rotation matrix would have a real eigenvalue, by their nature. Thus, they are a significant source of matrices with all eigenvalues complex.
 
 The eigenvalues of a triangular matrix are just its diagonal elements. 
 

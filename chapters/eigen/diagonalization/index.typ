@@ -11,7 +11,7 @@ We start from the eigenvector matrix $vb(S)$ whose each column is an eigenvector
   Fix square matrix $vb(A)$ with invertible eigenvalue matrix $vb(S)$, then $ vb(S)^(-1) vb(A S) = vb(Lambda); vb(A) = vb(S Lambda S)^(-1). $ 
 ]
 #proof[
-  Notice that $ vb(A S) &= vb(A) mat(vb(x)_1, vb(x)_2, dots, vb(x)_n) \ &= mat(lambda_1 vb(x)_1, lambda_2, vb(x)_2, dots, lambda_n vb(x)_n) \ &= vb(S Lambda) \ ==> vb(S)^(-1) vb(A S) = vb(Lambda); vb(A) = vb(S Lambda S)^(-1). #qedhere $
+  Notice that $ vb(A S) &= vb(A) mat(vb(x)_1, vb(x)_2, dots, vb(x)_n) \ &= mat(lambda_1 vb(x)_1, lambda_2, vb(x)_2, dots, lambda_n vb(x)_n) \ &= vb(S Lambda) \ &==> vb(S)^(-1) vb(A S) = vb(Lambda); vb(A) = vb(S Lambda S)^(-1). #qedhere $
 ]
 Thus, after $vb(L U)$ from elimination and $vb(Q R)$ from Gram-Schmidt, we have a new decomposition that is known as diagonalization. 
 

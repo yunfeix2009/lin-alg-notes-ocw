@@ -21,3 +21,16 @@ This definition makes sense as the dot project sums the product of each individu
 It is verifiable that all the basis vectors (function) are orthogonal, over interval $[0, 2pi]$, as $f(x) = f(x+2pi)$. 
 
 To find $a_1$, for example, from projections in vector spaces, $ f^top cos x = braket(f, cos ) = integral_0^(2pi) f(x) cos x dif x. $ However, $ f^top cos  = (a_1 cos)^top cos = a_1 integral_0^(2pi) cos^2 x dif x = a_1 pi, $ due to orthogonal basis. Thus, $ a_1 = 1/pi integral_0^(2pi) f(x) cos x dif x. $
+
+=== Fast Fourier Transform 
+#definition[
+  The Fourier matrix $vb(F)_n$ is $n times n$ such that $ (vb(F)_n)_(i j) = omega^(i j), quad 0<=i, j<= n-1, quad omega = op("cis") (2pi/n). $
+]
+Firstly, $vb(F)_n$ is symmetric though not Hermitian. However, it is orthogonal, and since the magnitude of each of its column vectors are $sqrt(n)$, $1/sqrt(n) vb(F)_n$ is orthonormal. 
+
+#theorem[
+  A Fourier matrix $vb(F)_n$ is orthogonal. 
+]
+#proof[
+  Take $vb(v)  := (vb(F)_n)_i$ and $ vb(u) := (vb(F)_n)_i$. $ vb(v)^* vb(u) &= omega^(j-1) sum_(i=0)^(n-1) omega^i  = omega^(j-1) (1-omega^n)/(1-omega) = 0. #qedhere $
+]
