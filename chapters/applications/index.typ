@@ -12,9 +12,13 @@ Linear algebra, though sometimes viewed as primarily a tool for solving linear e
 
 #chapter-section("calculus")[
   #include "calculus/index.typ"]
+#chapter-section("extremum")[
+  #include "extremum/index.typ"]
 #chapter-section("differential-eq")[
   #include "differential-eq/index.typ"]
 #chapter-section("markov")[
   #include "markov/index.typ"]
 #chapter-section("fourier")[
   #include "fourier/index.typ"]
+#chapter-section("quadratic-surf")[
+  #include "quadratic-surf/index.typ"]

@@ -36,9 +36,9 @@ Furthermore, knowing that the eigenvectors of a Hermitian matrix are real, we'd 
 This theorem may also be applied with $vb(A) - c vb(I)$ to determine the number of eigenvalues above a certain number $c$. 
 
 
-=== Positive Definite Matrices 
+=== Positive Definite Matrices <sec:pdm>
 #definition[
-  A symmetric matrix is _positive definite_ iff all of its eigenvalues are positive. 
+  A symmetric matrix is _positive definite_ iff all of its eigenvalues are positive. More generally, a symmetric matrix is _positive semidefinite_ iff all of its eigenvalues are non-negative. 
 ]
 From @thm:eigenpivot, we see that this definition is equivalent to a "symmetric matrix with all of its pivots positive."
 
@@ -54,7 +54,7 @@ Thus, since the determinant is the product of the pivots (eigenvalues), the dete
 Now we have coupled pivots, eigenvalues, and determinants all positive to be all equivalent to the matrix being positive definite. In fact, they are connected with one more condition. 
 #theorem[
   A symmetric matrix is positive definite iff $ vb(x)^top vb(A x) > 0 $ for all $vb(x) in RR^n without (0, 0, dots, 0)^top$. 
-]
+]<thm:pdm>
 #proof[
   Since $vb(A)$ is symmetric, assume its eigenvector matrix $vb(S)$ is invertible, then $vb(A)$ could be diagonalized as $ vb(A) = vb(S Lambda S)^(-1) = vb(S Lambda S)^top. $ So, $ vb(x^top A x) = vb(x^top S Lambda S)^top vb(x). $ Let $vb(y) = vb(S^top x)$, then $ vb(x^top A x) = vb(y^top Lambda y) = sum_(lambda_i "is eigenvalue") lambda_i vb(y)_i^2 >=0. $
   Notice equality is achieved when $vb(y) = 0$. Also, $vb(S)^top$ is invertible as $vb(S)$ is invertible, $vb(x) = 0 <==> vb(y) = 0$. So, all $lambda_i>0$ is equivalent to $vb(x^top A x)>0$ for all $vb(x)$. 
@@ -62,7 +62,6 @@ Now we have coupled pivots, eigenvalues, and determinants all positive to be all
 
 Here, $vb(x^top A x)$ is a pure quadratic of $n$ variables. Hence, $vb(x^top A x)>0$ for all $vb(x)$ is equivalent to $vb(x) = 0$ being the minima of the function. In fact, $vb(x^top A x)$ represents all pure quadratics of $n$ variables, as the coefficient of each term that is not a variable squared may be split in half to ensure $vb(A)$ is symmetric. 
 
-To determine the form of a quadratic surface in two dimensions when there is a critical point, transform the origin such that the function becomes a quadratic form. Construct $vb(A)$ such that it is symmetric. Then, $vb(A)$ having $2$ positive eigenvalues (positive definite) is equivalent to the function to be an upward parabloid ; $vb(A)$ having $1$ positive and $1$ negative eigenvalue is equivalent to the function being a saddle; $vb(A)$ having two negative eigenvalues implies the function is a downward parabloid. 
 
 #example[
   Find the value of $c$ that makes the $ vb(A) = mat(2, -1, -1; -1, 2, -1; -1, -1; 2+c) $ 
@@ -72,6 +71,8 @@ To determine the form of a quadratic surface in two dimensions when there is a c
 #solution[
   Directly solving the characteristic equation is unnecessary. Hence, we present three tests involving quantities that connect with eigenvalues, namely determinants, pivots, and quadratic. #text(red)[do this!]
 ]
+
+Note: for applications of positive definite matrices, see @sec:extremum and @sec:qs
 
 === Complex Vectors and Matrices 
 
