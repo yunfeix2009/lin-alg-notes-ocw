@@ -64,7 +64,14 @@ Here, $vb(x^top A x)$ is a pure quadratic of $n$ variables. Hence, $vb(x^top A x
 
 To determine the form of a quadratic surface in two dimensions when there is a critical point, transform the origin such that the function becomes a quadratic form. Construct $vb(A)$ such that it is symmetric. Then, $vb(A)$ having $2$ positive eigenvalues (positive definite) is equivalent to the function to be an upward parabloid ; $vb(A)$ having $1$ positive and $1$ negative eigenvalue is equivalent to the function being a saddle; $vb(A)$ having two negative eigenvalues implies the function is a downward parabloid. 
 
-
+#example[
+  Find the value of $c$ that makes the $ vb(A) = mat(2, -1, -1; -1, 2, -1; -1, -1; 2+c) $ 
+  + positive definite. 
+  + positive semi-definite.
+]
+#solution[
+  Directly solving the characteristic equation is unnecessary. Hence, we present three tests involving quantities that connect with eigenvalues, namely determinants, pivots, and quadratic. #text(red)[do this!]
+]
 
 === Complex Vectors and Matrices 
 
