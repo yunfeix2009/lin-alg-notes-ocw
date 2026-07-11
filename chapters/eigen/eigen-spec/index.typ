@@ -160,10 +160,6 @@ However, sometimes the eigenvalues repeat. Then, we may further conclude that ma
   However, there are still matrices with both of its eigenvalues $4$ but not similar to $vb(T)$.  Those are the ones with only one eigenvector. Hence, they are not diagonalizable to the form which makes them similar to $vb(T)$.  In fact, if $vb(A)_1 = mat(a; b), quad b!=0$, then $ vb(A) = mat(a, 16/b; b, 8-a ) $ is in the family as $trace vb(A) = 8$ and $det vb(A) = 16$. Thus, there are two families that could be represented by $ mat(4, 0; 0, 4) "and" mat(4, 1; 0, 4).#qedhere $
 ]<sol:jordan>
 
-#theorem[
-  $vb(A B)$ have the positive eigenvalues if $vb(A)$ and $vb(B)$ uh idk #text(red)[ahhhh]
-]
-
 
 === Jordan Forms
 Jordan forms completes the theory on categorizing matrices based on their families by drawing the lines between matrices with duplicating eigenvalues. 
