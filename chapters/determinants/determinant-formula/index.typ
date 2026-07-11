@@ -95,22 +95,22 @@ a_11 det mat(
 $
 This formula could be readily generalized to $n times n$. 
 #definition[
-  *Minor.* Let $A in RR^(n times n)$. The *minor* $M_(i j)$ of the entry $a_(i j)$ is the determinant of the $(n - 1) times (n - 1)$ matrix obtained by deleting the $i$-th row and the $j$-th column of $A$.
+  *Minor.* Let $A in RR^(n times n)$. The _minor_ $M_(i j)$ of the entry $a_(i j)$ is the determinant of the $(n - 1) times (n - 1)$ matrix obtained by deleting the $i$-th row and the $j$-th column of $A$.
 ]
 
 #definition[
-  *Cofactor.* The *cofactor* corresponding to the entry $a_(i j)$ is
+  *Cofactor.* The _cofactor_ corresponding to the entry $a_(i j)$ is
 
-  $C_(i j) = (-1)^(i + j) M_(i j),$
+  $ C_(i j) = (-1)^(i + j) M_(i j), $
 
   where $M_(i j)$ is the minor of $a_(i j)$. Equivalently,
 
-  $C_(i j) = (-1)^(i + j) det(A_(i j)),$
+  $ C_(i j) = (-1)^(i + j) det(A_(i j)), $
 
   where $A_(i j)$ denotes the matrix obtained from $A$ by deleting its $i$-th row and $j$-th column.
 ]
 
-Then, the cofactor expansion (Laplace expansion) of the "big formula" of the determinant is $ det(vb(A)) = sum_(i=1)^n a_(i j) C_(i j). $
+Then, the cofactor expansion (Laplace expansion) of the "big formula" of the determinant is $ det(vb(A)) = sum_(i=1)^n a_(i j) C_(i j). $<eqn:cofactorexpansion>
 
 #example[
   // #set math.mat(delim: "[")

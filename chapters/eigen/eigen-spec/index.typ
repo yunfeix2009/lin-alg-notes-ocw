@@ -2,22 +2,22 @@
 == Eigenvalues and Eigenvectors of Special Matrices
 
 
-=== Symmetric Matrices
+=== Symmetric Matrices<sec:sym>
 #theorem[
   The eigenvalues of a symmetric matrix are real.
-]
+]<thm:eigensym>
 #proof[
 
   #lemma[
-    For complex matrices $vb(A)$ and $vb(B)$, $ overline(vb(A B)) = vb(overline(A) overline(B)). $
+    For complex matrices $vb(A)$ and $vb(B)$, $ overline(vb(A B)) = vb(overline(A) thin overline(B)). $
   ]
   #proof[
     Entrywise, each element of $overline(vb(A B))$ is obtained through sum and multiplication, which are both decomposible with complex conjugate operation.
   ]
   We prove the general case of a Hermitian matrix, as symmetric matrices are Hermitian, where $vb(A) = vb(A)^*$, where $*$ operation is conjugate transpose.
 
-  By definition, $ vb(A x) = lambda vb(x)&==> vb(x)^* vb(A) = overline(lambda) vb(x)^* vb(x) ==> overline(lambda) vb(x^* x) = vb(x)^* vb(A x). $ However, $ vb(x^* A x) = lambda vb(x^* x). $ Thus, $ lambda = overline(lambda). #qedhere $
-]
+  By definition, $ vb(A x) = lambda vb(x)&==> vb(x)^* vb(A ) = overline(lambda) vb(x)^*  ==> overline(lambda) vb(x^* x) = vb(x)^* vb(A x). $ However, $ vb(x^* A x) = lambda vb(x^* x). $ Thus, $ lambda = overline(lambda). #qedhere $
+]<prf:eigensym>
 anti-symmetric matrices ($vb(A)^top = - vb(A)$) have imaginary eigenvalues.
 
 #theorem[

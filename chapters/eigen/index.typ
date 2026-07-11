@@ -15,6 +15,10 @@ Here, we explore eigenvalues and eigenvectors, alnog with their applications.
   #include "eigen-spec/index.typ"
 ]
 
+
+#chapter-section("misc-problems")[
+  #include "misc-problems/index.typ"
+]
 #chapter-section("svd")[
   #include "svd/index.typ"
 ]
