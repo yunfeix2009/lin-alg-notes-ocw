@@ -54,6 +54,16 @@
 ]
 
 
+#if not _is-html {
+  std.pagebreak()
+}
+
+#chapter-section("linear-trans")[
+  #include "linear-trans/index.typ"
+]
+
+
+
 
 // appendix
 

@@ -14,3 +14,7 @@ Here, we explore eigenvalues and eigenvectors, alnog with their applications.
 #chapter-section("eigen-special")[
   #include "eigen-spec/index.typ"
 ]
+
+#chapter-section("svd")[
+  #include "svd/index.typ"
+]
