@@ -37,6 +37,8 @@ With the above properties, it is possible to practically compute determinants of
 
   In the case that $vb(A)$ is not singular, it could be decomposed into the $vb(L U)$ form with elimination, with all diagonal elements of $vb(L)$ $0$. Thus, $ det vb(A)^top = det (vb(U)^top vb(L)^top), $ which is the product of diagonal elements of $vb(U)$. The right side becomes $ det vb(A) = det vb(L U) = det vb(U) = det vb(A)^top. $
 
+  Moreover, this property may also be shown, assuming the big formula from the next section using permutations by using the fact that a permutation's inverse have the same parity as itself and treating the coordinate of each element in one term of the determinant formula as permutating $(1, 2, dots, n)$. 
+
 #example[
   Find the determinant of $ mat(101, 201, 301; 102, 202, 302; 301, 302, 303). $
 ]

@@ -29,7 +29,7 @@ Hence, by the formula for the determinant, this equation results in an $n$-th po
 #theorem[
   A square matrix $vb(A) in RR^(n times n)$ has $n$ complex eigenvalues. 
 ]
-The $n$-th degree polynomial $ p(lambda) = det(vb(A) - lambda vb(I)) $ is termed as the _characteristic polynomial_ of the matrix $vb(A)$. By Vieta's Theorem, $ trace vb(A) = sum_"eigenvalues" lambda; det vb(A) = product_"eigenvalues" lambda. $
+The $n$-th degree polynomial $ p(lambda) = det(vb(A) - lambda vb(I)) $ is termed as the _characteristic polynomial_ of the matrix $vb(A)$. By Vieta's Theorem, $ trace vb(A) = sum_"eigenvalues" lambda;quad det vb(A) = product_"eigenvalues" lambda. $
 
 One more realization from the characteristic equation $ det (vb(A) - lambda vb(I)) = 0 $ is that $vb(A)$ and $vb(A)^top$ have the same eigenvalues and eigenvectors. Since $ (vb(A) - lambda vb(I))^top = (vb(A)^top - lambda vb(I)), $ $ det(vb(A) - lambda vb(I))^top = det(vb(A)^top - lambda vb(I)). $ So, $vb(A)$ and $vb(A)^top $ have the same characteristic equation. 
 

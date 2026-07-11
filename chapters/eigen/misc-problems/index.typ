@@ -96,6 +96,9 @@ In this section, we prove a few results regarding eigenvalues and eigenvectors. 
 #problem[
   What can be said about the eigenvalues of a skew-Hermitian matrix?
 ]
+#solution[
+  Given $ vb(A + A)^* = 0 $
+]
 
 #problem[
   Let $A$ be the $n times n$ real symmetric, tridiagonal matrix with $0$
@@ -130,6 +133,11 @@ In this section, we prove a few results regarding eigenvalues and eigenvectors. 
   Let the characteristic polynomial for $vb(A) in RR^(n times n)$ be $p_n (lambda)$. With the cofactor expansion again, $ p_n = -lambda p_(n-1) - p_(n-2), quad p_1 = -lambda, quad p_2 = lambda^2 - 1. $ To solve this recursion the linear algebra way, let $ vb(u)_n:= mat(p_(n+1); p_(n)). $ The recursion becomes $ vb(u)_n = mat(-lambda, -1; 1, 0) vb(u)_(n-1). $ The eigenvalues of $mat(-lambda, -1; 1, 0)$ are $ mu_1 := (-lambda + sqrt(lambda^2 - 4))/2, quad mu_2:= (-lambda -sqrt(lambda^2 - 4))/2, $ corresponding to eigenvectors $ vb(v)_mu = mat(mu; 1). $ The initial condition gives $ vb(u)_1 = mat(lambda^2 - 1;-lambda) = c_1 mat(mu_1, 1) + c_2 mat(mu_2, 1). $ Solving gives $ (c_1, c_2) = (mu_1^2/(mu_1 - mu_2), - mu_2^2/(mu_1 - mu_2)). $ Thus, $ vb(u)_n = c_1 mu_1^(n-1) mat(mu_1; 1) + c_2 mu_2^(n-1) mat(mu_2; 1). $ Giving the Binet style $ p_n = (mu_1^(n+1) - mu_2^(n+1))/(mu_1 - mu_2). $
 ]
 
+We also present a solution from Bing, 7/11/26. 
+#solution[
+  
+]
+
 #problem[
   Let $B$ be the $n times n$ real skew-symmetric, tridiagonal matrix with
   $0$ on the main diagonal and $1$ on the superdiagonal (and hence, by
@@ -146,4 +154,7 @@ In this section, we prove a few results regarding eigenvalues and eigenvectors. 
   $
 
   Find the eigenvalues and eigenvectors of $B$.
+]
+#solution[
+  Similar to the last problem, we first analyze the determinants. Notice that by the permutation way of computing the determinant, $ det D $
 ]
