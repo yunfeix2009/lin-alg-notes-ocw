@@ -93,6 +93,25 @@ Here, $vb(x^top A x)$ is a pure quadratic of $n$ variables. Hence, $vb(x^top A x
 Due to the eigenvalues of $vb(A)^(-1)$ to be the reciprocal of that of $vb(A)$, $vb(A)$ being positive definite is equivalent to $vb(A)^(-1)$ being positive definite. Similarly, powers of $vb(A)$ are positive definite if $vb(A)$ is positive definite. Also, $vb(A)$ and $vb(A)^top$ have the same determinant and so do their sub-matrices (square matrices containing its $vb(A)_11$ element), so $vb(A)^top$ is positive definite if $vb(A)$ is positive definite. Due to @thm:pdm, $vb(A)$ and $vb(B)$ positive definite implies that $vb(A + B)$ is positive definite.
 
 However, the positive definiteness of the product of two matrices is more intricate. 
+#theorem[
+  Given positive definite matrices $vb(A)$ and $vb(B)$, $vb(A B)$ is positive definite iff $vb(A)$ and $vb(B)$ commute, meaning $vb(A B = B A)$. 
+]
+#proof[
+  Since $vb(A)$ is symmetric, diagonalize $vb(A)$ as $vb(A):= vb(Q) diag(lambda_i) vb(Q)^top.$
+  Let the square root of $vb(A)$ be its principal square root, $   vb(A)^(1/2):= vb(Q) diag(sqrt(lambda_i)) vb(Q^top). $
+  Hence, $(vb(A)^(1/2))^2 = vb(A)$ and $vb(A)^(1/2)$ is also positive definite, so symmetric and invertible (none of the eigenvalues are $0$, so determinant is non-zero). 
+
+  Notice $ vb(A B) = vb(A)^(1/2) (vb(A)^(1/2) vb(B) vb(A)^(1/2)) vb(A)^(-1/2). $ So, $vb(A B)$ is similar to $vb(A)^(1/2) vb(B) vb(A)^(1/2)$. 
+
+  $ vb(x^top A)^(1/2) vb(B) vb(A)^(1/2) vb(x) &= (vb(x^top) (vb(A)^(1/2))^top) vb(B) (vb(A)^(1/2) vb(x)) \ &= (vb(A)^(1/2) vb(x))^top vb(B (vb(A)^(1/2) vb(x))). $ Since $vb(A)$ is invertible, $ vb(A)^(1/2) vb(x) = 0 <==> vb(x) = 0 $. Also, $vb(B)$ is positive definite, so $ (vb( A)^(1/2) vb(x))^top vb(B (vb(A)^(1/2) vb(x)))>0. $ Applying @thm:pdm again shows that $vb(A)^(1/2) vb(B) vb(A)^(1/2)$ is positive definite, meaning all eigenvalues of $vb(A B)$ are positive. 
+
+  Also, $  "vb(A B) is symmetric"
+    &<==> (vb(A B))^top = vb(A B) \
+    &<==> vb(B)^top vb(A)^top = vb(A B) \
+    &<==> vb(B A) = vb(A B).  $
+  
+  Since  all of $vb(A B)$'s  eigenvalues are positive, and it is symmetric iff $vb(A)$ and $vb(B)$ commute, $vb(A B)$ is positive definite iff $vb(A)$ and $vb(B)$ commute. #qedhere
+]
 
 In @sec:lsa, the method of least squares, we discussed the matrix $vb(A^top A)$, for example, @thm:keyeqnsolvability that states $N(vb(A)) = N(vb(A^top A))$ that gives the solvability of the projection equation. 
 #theorem[
