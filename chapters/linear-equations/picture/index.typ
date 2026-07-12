@@ -24,8 +24,14 @@ To summarize the row picture and the column picture, let's look at a three by th
 
 $mat(a,b,c;d,e,f;g,h,i)mat(x;y;z)=mat(a x + b y + c z ; d x + e y + f z ; g x + h y + i z)$
 
-The column picture considers the right hand side $b$ as $x mat(a;d;g)+y mat(b;e;h)+z mat(c;f;i)$, and we need to find the proper $x,y,z$ or linear combinantion. 
+The column picture considers the right hand side $b$ as: 
 
-The row picure considers $x,y,z$ as the intersection of the three lines: $\ a x+b y+c z=dots \ d x + e y + f z=dots \ g x + h y + i z=dots$
+$x mat(a;d;g)+y mat(b;e;h)+z mat(c;f;i)$, 
+
+and we need to find the proper $x,y,z$ or linear combinantion. 
+
+The row picure considers $x,y,z$ as the intersection of the three lines: 
+
+$ a x+b y+c z=dots \ d x + e y + f z=dots \ g x + h y + i z=dots$
 
 Adding one variable to a system of $3$ equations of $3$ variables, the "row picture" becomes relatively less easy to visualize and represent. With more variables and equations, this trend continues, visualization already becomes difficult. However, with the equally important, but often missed "column picture," things are not much harder. 
