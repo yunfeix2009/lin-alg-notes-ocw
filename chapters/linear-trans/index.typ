@@ -1,6 +1,6 @@
 #import "../../lib.typ":*
 = Linear Transformations
 
-// #chapter-section("eigenvalue-vector")[
-//   #include "eigenvalue-vector/index.typ"
-// ]
+#chapter-section("definition")[
+  #include "definition/index.typ"
+]
