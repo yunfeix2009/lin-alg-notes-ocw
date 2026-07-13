@@ -7,6 +7,12 @@ In fact, a square matrix's left inverse is also its right inverse, and this is a
 
 Call a matrix _invertible_ when it has an inverse and _singular_ otherwise, then a matrix $vb(A)$ is singular iff there exists a non-zero vector $vb(x)$ that $vb(A x) = 0$.
 
+  We can look at this with matrix multiplication, too. Assume the result of $bold(A) bold(M)$ is $bold(U)$, then the columns of $bold(U)$ must be linear combinations of the columns of $bold(A)$. In this case, we want $bold(U)$ to be the identity matrix $bold(I)$, which means that the columns of $bold(A)$ must be able to produce:
+  
+   $mat(1;0;0;dots.v;0;0),mat(0;1;0;dots.v;0;0),dots,mat(0;0;0;dots.v;0;1)$
+
+  Denote the size of $bold(A)$ as $N times N$. Producing these vectors includes all the fundamental vectors to span the whole $RR^N$, which means the column vectors of $A$ span the entire space. There are only a total of $N$ columns in $A$, so there shouldn't be any redundant column vectors. All column vectors are linearly independent, which is the same as "there is no vector $vb(x)$ that satisfy $vb(A x) = 0$". 
+
 Moreover, $ (vb(A B))^(-1) = vb(B)^(-1) vb(A)^(-1), $ as $ vb(A B B)^(-1) vb(A)^(-1) = vb(A I A)^(-1) = vb(A A)^(-1) = vb(I). $
 
 
