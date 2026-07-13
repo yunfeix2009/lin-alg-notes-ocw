@@ -9,13 +9,23 @@ Call a matrix _invertible_ when it has an inverse and _singular_ otherwise, then
 
   We can look at this with matrix multiplication, too. Assume the result of $bold(A) bold(M)$ is $bold(U)$, then the columns of $bold(U)$ must be linear combinations of the columns of $bold(A)$. In this case, we want $bold(U)$ to be the identity matrix $bold(I)$, which means that the columns of $bold(A)$ must be able to produce:
   
-   $mat(1;0;0;dots.v;0;0),mat(0;1;0;dots.v;0;0),dots,mat(0;0;0;dots.v;0;1)$
+   $ mat(1;0;0;dots.v;0;0),mat(0;1;0;dots.v;0;0),dots,mat(0;0;0;dots.v;0;1) $
 
   Denote the size of $bold(A)$ as $N times N$. Producing these vectors includes all the fundamental vectors to span the whole $RR^N$, which means the column vectors of $A$ span the entire space. There are only a total of $N$ columns in $A$, so there shouldn't be any redundant column vectors. All column vectors are linearly independent, which is the same as "there is no vector $vb(x)$ that satisfy $vb(A x) = 0$". 
 
+There is a special case that will always be invertible, that is the diagonally dominant matrix, meaning all the diagonal terms are larger than the total sum of the elements in its row:
+
+$ abs(a_(i i))>sum_(i != j) abs(a_(i j)) $
+
+#proof[
+  If the matrix is not invertible, there will be an $vb(x)$ satisfying $vb(A x)=vb(0)$, meaning there should be a linear combination of the columns of $vb(A)$ producing $vb(0)$. 
+  
+  Assume the linear combination is $x_1 vb(a_1)+x_2 vb(a_2)+ x_3 vb(a_3)+ dots +x_n vb(x_n)$. Let the largest $x$ be $x_k$, then it's certainly impossible for the term $a_(k k)$ to become zero. The sum of the other terms in row $k$ is smaller than $a_(k k)$, and they are multiplied by factors smaller than or equal to $x_k$, so they couldn't eliminate $a_(k k)$. 
+
+  All linear combinations are non-zero.
+]
+
 Moreover, $ (vb(A B))^(-1) = vb(B)^(-1) vb(A)^(-1), $ as $ vb(A B B)^(-1) vb(A)^(-1) = vb(A I A)^(-1) = vb(A A)^(-1) = vb(I). $
-
-
 
 Furthermore, finding the solution to a system of linear equations is equivalent to finding the inverse of a matrix.
 Consider a system of linear equations regarding $n$ variables. If $bold(A)$ is an n-by-n square matrix representing the coefficients of the variables in each equation, $bold(x)$ a vector representing the solutions, and $bold(B)$ representing the vector of the constants on the right side of the equations, then we have $ bold(A x) = bold(B) ==> bold(A)^(-1) bold(A x) = bold(A)^(-1) bold(B) ==> bold(x) = bold(A)^(-1) bold(B) $
