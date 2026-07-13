@@ -22,10 +22,10 @@ It is verifiable that all the basis vectors (function) are orthogonal, over inte
 
 To find $a_1$, for example, from projections in vector spaces, $ f^top cos x = braket(f, cos ) = integral_0^(2pi) f(x) cos x dif x. $ However, $ f^top cos  = (a_1 cos)^top cos = a_1 integral_0^(2pi) cos^2 x dif x = a_1 pi, $ due to orthogonal basis. Thus, $ a_1 = 1/pi integral_0^(2pi) f(x) cos x dif x. $
 
-=== Fast Fourier Transform 
+=== Fast Fourier Transform <sec:fft>
 #definition[
   The Fourier matrix $vb(F)_n$ is $n times n$ such that $ (vb(F)_n)_(i j) = omega^(i j), quad 0<=i, j<= n-1, quad omega = op("cis") (2pi/n). $
-]
+]<def:fourier>
 
 Due to the periodicity of roots of unity, multiplying a vector with a Fourier matrix performs the discrete Fourier Transform on it. However, from the lens of computer science, if this widely applied operation were to be implemented with the general matrix multiplication algorithm, the complexity would be $ O(n^2). $ Hence, the advent of the $ O(n log n) $ Fast Fourier Transform (FFT) was ground-breaking. Here, we view the Fast Fourier Transform from the lens of linear algebra. 
 

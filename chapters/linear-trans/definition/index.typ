@@ -41,3 +41,62 @@ Now, the question becomes how to construct a matrix $vb(A)$ that describes a cer
 
   Moreover, since $ dv(, x) (c_1 + c_2 x + c_3 x^2) = c_2 + 2 c_3 x, $ $ vb(A) mat(c_1; c_2; c_3) = mat(c_2; 2 c_3). $ Hence, $ vb(A) = mat(0, 1, 0; 0, 0, 2). $
 ]
+
+#example[
+  Let $T(A) = A^top$, where $A$ is a $2 times 2$ matrix.
+
+  1. Why is $T$ linear? What is $T^(-1)$?
+
+  2. Write down the matrix of $T$ in the following bases.
+
+  $
+    v_1 = mat(
+      1, 0;
+      0, 0
+    ), quad
+    v_2 = mat(
+      0, 1;
+      0, 0
+    ), quad
+    v_3 = mat(
+      0, 0;
+      1, 0
+    ), quad
+    v_4 = mat(
+      0, 0;
+      0, 1
+    ).
+  $
+
+  $
+    w_1 = mat(
+      1, 0;
+      0, 0
+    ), quad
+    w_2 = mat(
+      0, 0;
+      0, 1
+    ), quad
+    w_3 = mat(
+      0, 1;
+      1, 0
+    ), quad
+    w_4 = mat(
+      0, 1;
+      -1, 0
+    ).
+  $
+
+  3. Find the eigenvalues and eigenvectors of $T$.
+]
+#solution[
+  + $(vb(A + B))^top = vb(A)^top + vb(B)^top, quad (c vb(A))^top = c vb(A)^top$. $T^(-1) = T$. 
+  + Since $T:RR^(2 times 2) -> RR^(2 times 2)$, the transformation matrix of $T$, $vb(A) in RR^(4 times 4) $. 
+
+    $ vb(A v)_1 = vb(w)_1 ==> vb(A)_1 = mat(1, 0, 0, 0)^top. $
+    $ vb(A v)_2 = 1/2 vb(w)_3 - 1/2 vb(w)_4 ==> vb(A)_2 mat(0, 0, 1/2, -1/2)^top. $
+    $ vb(A v)_3 = 1/2 vb(w)_3 + 1/2 vb(w)_4 ==> vb(A)_3 mat(0, 0, 1/2, 1/2)^top. $
+    $ vb(A v)_4 = vb(w)_2 ==> vb(A)_4 mat(0,1, 0, 0)^top. $
+    So, $ vb(A) = mat(1, 0, 0, 0; 0, 0, 0, 1; 0, 1/2, 1/2, 0; 0, -1/2, 1/2, 0) $
+  + Notice that $vb(w)_1$, $vb(w)_2$, $vb(w)_3$ are eigenvectors of $vb(A)$ with eigenvalues $1$ and $vb(w)_4$ is the eigenvector of $vb(A)$ with eigenvalue $-1$. 
+]

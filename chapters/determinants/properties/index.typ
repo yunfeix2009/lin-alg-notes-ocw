@@ -1,5 +1,5 @@
 #import "../../../lib.typ":*
-== Properties of Determinants 
+== Properties of Determinants <sec:pod>
 Similar to the rank and the dimensions of a matrix, the determinant is a number associated to a (square) matrix that captures some information about it. With knowledge about properties about this association, a lot may be inferred about the matrix given its determinant. 
 
 + To scale the determinant, that of an identity matrix is taken to be $1$. 
@@ -9,15 +9,20 @@ Similar to the rank and the dimensions of a matrix, the determinant is a number 
 
 The following properties are implied by the above $3$. 
 + Any matrix with two identical rows must have determinant $0$.
+  
   From base property $2$, for the determinant to be well-defined, this is necessary. 
 + Subtracting $k dot r_i$ from $r_j$ does not change the determinant. 
+  
   This operation could be seen as an exchange of $r_j$ and $r_1$, reversing the determinant, adding $k $ times the exchanged matrix but with the first row $r_i$ instead, which is $0$ from the first implied property, then exchanging $r'_1$ and $r_i$. 
 + A matrix with one row of $0$'s have determinant $0$
+  
   Exchanging the all $0$ row to the first row, then multiplying the first row with arbitrary scalar results in the same matrix, but the "new" matrix's determinant must be that scalar times the previous determinant. Thus, the determinant must be $0$. 
 
 + The determinant of a triangular matrix is (possibly negative) the product of its diagonal elements.
+  
   To an extent, these implied rules are intermediate steps between the defining properties of a determinant and a practical formula. The implied rule $3$ enables elimination, which may proceed all the way to upper triangular matrix, and forward to a diagonal matrix with the same pivots (via back substitution). From here on, with linear combination property, the diagonal matrix could be turned into an identity matrix, with coefficient being the product of the diagonal elements, except when there is one diagonal element being $0$. If one diagonal element is indeed $0$, the matrix is singular, and consider the following rule. 
-+ A singular matrix have a $0$ determinant. 
++ A singular matrix have a $0$ determinant. <tig:result>
+  
   By elimination, a singular matrix will reach to a row of $0$'s, thus have determinant $0$. 
 
 With the above properties, it is possible to practically compute determinants of matrices, implying that determinants are well-defined as we wish. The two following properties are generally useful as they consider the multiplication, inverse, and transposes of matrices. 

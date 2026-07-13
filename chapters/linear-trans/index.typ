@@ -4,3 +4,7 @@
 #chapter-section("definition")[
   #include "definition/index.typ"
 ]
+
+#chapter-section("change")[
+  #include "change/index.typ"
+]

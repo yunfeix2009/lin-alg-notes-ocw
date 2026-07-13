@@ -1,6 +1,6 @@
 #import "../../lib.typ":*
 
-= Linear Equations 
+= Linear Equations <sec:le>
 
 One of the problems that motivated linear algebra is finding the solution to a system of linear equations, which naturally gives rise to matrices, and several important operations of matrices.
 In the language of linear combinations, the problem of linear systems is that "given a set of vectors, which linear combinations of them will produce a fixed vector."

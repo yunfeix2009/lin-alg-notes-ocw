@@ -22,3 +22,7 @@ Here, we explore eigenvalues and eigenvectors, alnog with their applications.
 #chapter-section("svd")[
   #include "svd/index.typ"
 ]
+
+#chapter-section("pinverse")[
+  #include "pinverse/index.typ"
+]

@@ -20,5 +20,7 @@ Linear algebra, though sometimes viewed as primarily a tool for solving linear e
   #include "markov/index.typ"]
 #chapter-section("fourier")[
   #include "fourier/index.typ"]
+#chapter-section("image")[
+  #include "image/index.typ"]
 #chapter-section("quadratic-surf")[
   #include "quadratic-surf/index.typ"]
