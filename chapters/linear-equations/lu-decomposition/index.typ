@@ -86,3 +86,5 @@ Let's look at an example to get more insights about $vb(L U)$ decomposition and 
 
     We can see that $E^(-1)$ is basically just copying all the multipliers into the proper positions. I'm not doing a strict proof because my math is not that good. Please ask Saint Even to do it if you want.
 ]
+
+Why do we need this decomposition? It is used to solve $vb(A) vb(x) = vb(b)$ quickly when $vb(A)$ remains unchanged and there are multiple $vb(b)$'s to solve. We will first use the information stored in $vb(L)$ to perform the same operations to $vb(b)$ as in elimination of $vb(A)$. Then put the new $vb(b)^ prime$ and $vb(U)$ together to do back substitution and find $vb(x)$.
