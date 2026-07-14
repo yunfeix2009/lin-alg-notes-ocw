@@ -17,3 +17,68 @@ From elimination, we have a means to transform an invertible matrix $vb(A)$, to 
 ]
 
 From this result, any invertible matrix could be factorized into the product of a lower triangular matrix and an upper triangular matrix, known as the $vb(L U)$ decomposition. 
+
+Let's look at an example to get more insights about $vb(L U)$ decomposition and elimination.
+
+#example[
+    Do Gaussian elimination and calculate $vb(L U)$:
+
+    $ mat(1,6,1,2; 2,3,3,1; 3,9,1,2; 5,3,2,2) $
+
+    Try to find $vb(L)$ without multiplying the $E$'s and calculating the inverse of the product, while assuming there is no row exchanging operations.
+]
+#solution[
+    The solution may seem strange or incorrect at first sight, since we are directly filling in the multiplier of each row operation into $L$, but we can figure this out later.
+
+    Initially, we will set $vb(L)$ to the identity matrix. 
+    
+    $ vb(L)=mat(1,0,0,0; 0,1,0,0; 0,0,1,0; 0,0,0,1) $
+
+    And we will fill in $vb(L)$ and $vb(U)$ row by row. 
+
+    1. Eliminate row $2$: Subtract two times row $1$ from row $2$.
+   
+    $ vb(A)^prime = mat(1,6,1,2; 0,-9,1,-3; 3,9,1,2; 5,3,2,2) space vb(E)_(21)=mat(1,0,0,0; -2,1,0,0; 0,0,1,0; 0,0,0,1) $
+
+    To reverse this step, we replace $-2$ with $2$, so let's fill $2$ into $L$. Now, 
+
+    $ vb(L)=mat(1,0,0,0; 2,1,0,0; 0,0,1,0; 0,0,0,1) $
+
+    2. Eliminate row $3$: subtract $3$ times row $1$ and $1$ times row $2$ from row $3$.
+
+    $ vb(A)^(prime prime) = mat(1,6,1,2; 0,-9,1,-3; 0,0,-3,-1; 5,3,2,2) $
+
+    Then fill in row $3$ of $L$ with the same method:
+
+    $ vb(L)=mat(1,0,0,0; 2,1,0,0; 3,1,1,0; 0,0,0,1) $
+
+    3. Eliminate row $4$: subtract $5$ times row $1$, $3$ times row $2$, and $2$ times row $3$ from row $4$.
+   
+    $ vb(U) = mat(1,6,1,2; 0,-9,1,-3; 0,0,-3,-1; 0,0,0,3) $
+
+    Fill in the fourth row: 
+
+    $ vb(L)=mat(1,0,0,0; 2,1,0,0; 3,1,1,0; 5,3,2,1) $
+
+    Now it's time to check if this is correct. If you plug $vb(L) vb(U)$ into a calculator(who wants to do this by hand?), you will get the original matrix $vb(A)$, which means we get the correct decomposition.
+
+    We can get a peak at why this is right by doing a simple example. Now we have a three by three matrix, and we perform the operations: 
+
+    $ vb(E)_(3 2) = mat(1,0,0;0,1,0;0,-5,1) space vb(E)_(2 1)=mat(1,0,0;-2,1,0;0,0,1) $
+
+    Merging the operations into one matrix gives us:
+
+    $ vb(E)=vb(E)_(3 2) vb(E)_(2 1)=mat(1,0,0;-2,1,0;10,-5,1) $
+
+    The $10$ here is ugly. It comes from accumulating $-2$ times row $1$ and $-5$ times row $2$(row $2$ includes $-2$ times row $1$).
+
+    But let's see the inverse.
+
+    $ vb(E)_(3 2)^(-1) = mat(1,0,0;0,1,0;0,5,1) space vb(E)_(2 1)^(-1) = mat(1,0,0;2,1,0;0,0,1) $
+    
+    $ vb(E)^(-1) =vb(E)_(2 1)^(-1) vb(E)_(3 2)^(-1) =mat(1,0,0; 2,1,0; 0,5,1) $
+
+    Now, the ugly $10$ goes away. An intuitive comprehension is: At first, we are starting with the original matrix $vb(A)$. If we want to do all the operations at once, the third row need to include $10$ times the original row $1$ of $vb(A)$. However, when we are doing the inverses, we start with the resultant matrix. Row $2$ in the resultant matrix already include some multiple of row $1$, so we only need to add $5$ times row $2$ to row $3$, and are free from consideration for row $1$.
+
+    We can see that $E^(-1)$ is basically just copying all the multipliers into the proper positions. I'm not doing a strict proof because my math is not that good. Please ask Saint Even to do it if you want.
+]
