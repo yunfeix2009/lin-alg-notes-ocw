@@ -18,6 +18,10 @@ From elimination, we have a means to transform an invertible matrix $vb(A)$, to 
 
 From this result, any invertible matrix could be factorized into the product of a lower triangular matrix and an upper triangular matrix, known as the $vb(L U)$ decomposition. 
 
+We can also decompose $vb(A)=vb(L U)$ further by writing $vb(U)$ as $vb(D) vb(U) ^ prime$, converting the pivots of $vb(U)$ to ones. For example,
+
+$ vb(A)=vb(L) vb(U) = mat(1,0;4,1) mat(2,1;0,3) =vb(L) vb(D) vb(U)^ prime = mat(1,0;4,1) mat(2,0;0,3) mat(1,1/2;0,1) $
+
 Let's look at an example to get more insights about $vb(L U)$ decomposition and elimination.
 
 #example[
