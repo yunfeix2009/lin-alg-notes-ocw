@@ -243,4 +243,6 @@ $ A=mat(bold(A), bold(B); bold(C), bold(D)) $
 
 We want to eliminate the block $bold(C)$. By block multiplication:
 
-$ mat(bold(I), vb(0); -vb(A C)^(-1), bold(I)) mat(bold(A), bold(B); bold(C), bold(D))=mat(bold(A), bold(B); vb(0), -vb(C A)^(-1)vb(B)+vb(D)) $
+$
+  mat(bold(I), vb(0); -vb(A C)^(-1), bold(I)) mat(bold(A), bold(B); bold(C), bold(D))=mat(bold(A), bold(B); vb(0), -vb(C A)^(-1)vb(B)+vb(D))
+$
