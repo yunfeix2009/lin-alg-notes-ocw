@@ -51,7 +51,7 @@
     title: title,
     author: join-oxford-commas(authors),
   )
-  #set page(background: rotate(30deg, {
+  #set page(background: rotate(20deg, {
     let f(n) = {
       if n <= 1 {
         $#box($script(top)$)$
