@@ -5,20 +5,22 @@
 #let date = "June 2026"
 #let source-url = "https://github.com/yunfeix2009/lin-alg-notes-ocw"
 #let abstract(render-mode) = [
-  #let _quote = quote[Change!]
+  #let _quote = quote[  Calculus is mostly about one special operation (the derivative) and its inverse (the integral).
+    Of course I admit that calculus could be important... But so many applications of mathematics are discrete rather than continuous, digital rather than analog. The century of data
+    has begun!
 
+    The truth is that vectors and matrices have become the language to know.]
+  #let _credit = [
+    --Gilbert Strang, #cite(<strang2009introduction>, supplement: [p. ix])
+  ]
   #if render-mode == "pdf" {
     align(center)[#_quote]
+    align(right)[#_credit]
   } else {
     html.elem("div", attrs: (style: "text-align: center;"), _quote)
+    html.elem("div", attrs: (style: "text-align: right;padding-bottom: 0.5rem"), _credit)
   }
-  "This is a basic subject on matrix theory and linear algebra. Emphasis is given to topics that will be useful in other disciplines, including systems of equations, vector spaces, determinants, eigenvalues, similarity, and positive definite matrices."
 
-  Calculus is mostly about one special operation (the derivative) and its inverse (the integral).
-  Of course I admit that calculus could be important .... But so many applications of math-
-  ematics are discrete rather than continuous, digital rather than analog. The century of data
-  has begun! You will find a light-hearted essay called "Too Much Calculus" on my website.
-  The truth is that vectors and matrices have become the language to know.
 ]
 
 #let web-view-recommendation = [
@@ -52,7 +54,7 @@
   #set page(background: rotate(30deg, {
     let f(n) = {
       if n <= 1 {
-        $#box($script(integral)$)$
+        $#box($script(top)$)$
       } else {
         let prev = f(n - 1)
         $#prev _(#prev)^(#prev)$
