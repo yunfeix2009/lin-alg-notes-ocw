@@ -292,7 +292,11 @@
     let supplement = thm.supplement
     if thm.ref-supplement != none { supplement = thm.ref-supplement }
     if supplement != none and supplement != [] { supplement = [#supplement~] }
-    link(thm.loc, [#supplement#thm.number])
+    if state("render-mode").get() == "web" {
+      [#supplement#thm.number]
+    } else {
+      link(thm.loc, [#supplement#thm.number])
+    }
   },
 ) = {
   if name == auto {
@@ -502,7 +506,7 @@
   })
   body
   context {
-    if thm-qed-done.get().last() == false {
+    if thm-qed-done.get().last(default: false) == false {
       if state("render-mode").get() != "web" {
         h(1fr)
       }

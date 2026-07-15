@@ -1,6 +1,11 @@
-#import "../../../lib.typ": *
-== Applications of Determinants
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Applications of Determinants],
+  route: "determinant-applications",
+  description: [Applications of Determinants],
+)
 Now many properties and a formula of determinants have been established. As promised, there are numerous consequential applications of determinants, here we present a few.
 
 === Inverse
@@ -8,9 +13,9 @@ Now many properties and a formula of determinants have been established. As prom
 #definition[
   Fix a square matrix $vb(A)$, let its cofactor matrix $vb(C)$ be defined as $vb(C)_(i j) = vb(A)_(i j)$.
 ]
-#theorem[
+#lbl(<thm:inverse>, theorem[
   Fix square matrix $vb(A)$, $ vb(A)^(-1) = 1/(det vb(A)) vb(C)^top, $ where $vb(C)$ is the cofactor matrix of $vb(A)$.
-]<thm:inverse>
+])
 #proof[
   It suffices to show $vb(A) vb(C)^top = det (vb(A)) vb(I)$.
   By the cofactor expansion of the determinant, the diagonal elements of $vb(A C)^top_(i i) = det vb(A)$. To show that $vb(A C)^top_(i j)$ where $i != j$ is $0$, due to its resemblance with the form of a cofactor expansion of the determinant, we construct a new matrix from $vb(A)$ except that its i-th column is $vb(A)$'s j-th column. In this way, $vb(A C)^top_(i j)$ becomes the determinant of the new matrix, which is $0$ as it is singular with rank one less than $vb(A)$.

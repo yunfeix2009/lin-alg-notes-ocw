@@ -1,28 +1,17 @@
-#import "../../lib.typ":*
-= Eigenvalues and Eigenvectors 
+#import "/src/components/index.typ": docs-chapter
+#import "/lib.typ": *
 
+#show: docs-chapter.with(
+  title: [Eigenvalues and Eigenvectors],
+  route: "eigen",
+  description: [Eigenvalues and Eigenvectors],
+  children: [
+    #include "eigenvalue-vector/index.typ"
+    #include "diagonalization/index.typ"
+    #include "eigen-spec/index.typ"
+    #include "misc-problems/index.typ"
+    #include "svd/index.typ"
+    #include "pinverse/index.typ"
+  ],
+)
 Here, we explore eigenvalues and eigenvectors, alnog with their applications. 
-#chapter-section("eigenvalue-vector")[
-  #include "eigenvalue-vector/index.typ"
-]
-
-
-#chapter-section("diagonalization")[
-  #include "diagonalization/index.typ"
-]
-
-#chapter-section("eigen-special")[
-  #include "eigen-spec/index.typ"
-]
-
-
-#chapter-section("misc-problems")[
-  #include "misc-problems/index.typ"
-]
-#chapter-section("svd")[
-  #include "svd/index.typ"
-]
-
-#chapter-section("pinverse")[
-  #include "pinverse/index.typ"
-]

@@ -1,6 +1,11 @@
-#import "../../../lib.typ": *
-== Differential Equations
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Differential Equations],
+  route: "differential-eq",
+  description: [Differential Equations],
+)
 This section discusses the first order linear differential equation, as an application of powers of matrices using eigenvalues and eigenvectors.
 
 #example[

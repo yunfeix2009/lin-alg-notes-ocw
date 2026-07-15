@@ -10,6 +10,7 @@ __pycache__/
 Thumbs.db
 
 /build
+/dist
 
 test.typ
 .python-version

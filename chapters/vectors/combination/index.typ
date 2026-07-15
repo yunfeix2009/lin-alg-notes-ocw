@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Linear Combinations 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Linear Combinations],
+  route: "combination",
+  description: [Linear Combinations],
+)
 Vectors are arguably the basic elements of study in linear algebra, rather than individual numbers, along with the space they form, known as the vector space. Therefore, beginning with an official introduction on vectors seems like a logical decision. 
 
 Similar to sets, a vector is an ordered collection, often of real numbers, that could represent many things, including force, velocity, position, and any kind of data that describes the same object. 
@@ -15,7 +20,7 @@ The combination of the two operations form one of the most important operations 
 
 Observe that if $vb(v)$ is non-zero, then $c vb(v)$ forms a line. But not that obviously, the linear combination of two vectors not pointing in the same direction, or independent, fill the entire plane. 
 
-#definition[
+#lbl(<def:independence>, definition[
   Vectors $vb(u)$, $vb(v)$, and $vb(w)$ are independent iff no linear combinations of them, except $0 vb(u) + 0 vb(v) + 0 vb(w)$, results in a zero vector. Otherwise, they are said to be dependent. 
-]<def:independence>
+])
 Geometrically, when adding a vector to a set of independent vectors, a new dimension is created in the space of all linear combinations, iff the new set of vectors are independent.

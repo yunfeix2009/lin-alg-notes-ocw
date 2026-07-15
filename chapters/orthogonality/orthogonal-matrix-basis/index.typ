@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Orthogonal Matrices, Orthogonal Basis, and Gram-Schmidt
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Orthogonal Matrices, Orthogonal Basis, and Gram-Schmidt],
+  route: "orthogonal-matrix-basis",
+  description: [Orthogonal Matrices, Orthogonal Basis, and Gram-Schmidt],
+)
 Often, it is best to have the basis vectors to be normal vectors that are orthogonal to every single other basis vectors. We define this situation with the following. 
 #definition[
   A set of vectors ${vb(q)_i} $ are _orthonormal_ iff $ vb(q)_i^top vb(q)_j = cases(1 &"if" i != j, 0 &"if" i = j). $

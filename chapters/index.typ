@@ -1,87 +1,46 @@
-#import "/lib.typ": *
+#import "/src/components/index.typ": render-mode, route-folders, thm-counter, thm-state
+
+#set heading(numbering: none)
+#route-folders.update(())
+#thm-counter.thm-counters.update((:))
+#thm-state.thm-stored.update(())
+
+#include "cover.typ"
+#include "preface/index.typ"
+
+#context if render-mode.get() == "pdf" {
+  pagebreak()
+}
+
 #set heading(numbering: "1.1")
-#chapter-section("preface")[
-  #include "preface/index.typ"
-]
-#chapter-section("vectors")[
-  #include "vectors/index.typ"
-]
+#counter(heading).update(0)
+#include "vectors/index.typ"
+#context if render-mode.get() == "pdf" { pagebreak() }
+#include "matrices/index.typ"
+#context if render-mode.get() == "pdf" { pagebreak() }
+#include "linear-equations/index.typ"
+#context if render-mode.get() == "pdf" { pagebreak() }
+#include "vector-space/index.typ"
+#context if render-mode.get() == "pdf" { pagebreak() }
+#include "orthogonality/index.typ"
+#context if render-mode.get() == "pdf" { pagebreak() }
+#include "determinants/index.typ"
+#context if render-mode.get() == "pdf" { pagebreak() }
+#include "eigen/index.typ"
+#context if render-mode.get() == "pdf" { pagebreak() }
+#include "linear-trans/index.typ"
+#context if render-mode.get() == "pdf" { pagebreak() }
+#include "applications/index.typ"
 
-#if not _is-html {
-  std.pagebreak()
-}
-#chapter-section("matrices")[
-  #include "matrices/index.typ"
-]
-#if not _is-html {
-  std.pagebreak()
-}
-
-#chapter-section("linear-equations")[
-  #include "linear-equations/index.typ"
-]
-#if not _is-html {
-  std.pagebreak()
-}
-
-#chapter-section("vector-space")[
-  #include "vector-space/index.typ"
-]
-
-#if not _is-html {
-  std.pagebreak()
-}
-
-#chapter-section("orthogonality")[
-  #include "orthogonality/index.typ"
-]
-
-
-#if not _is-html {
-  std.pagebreak()
-}
-
-#chapter-section("determinants")[
-  #include "determinants/index.typ"
-]
-
-#if not _is-html {
-  std.pagebreak()
-}
-
-#chapter-section("eigen")[
-  #include "eigen/index.typ"
-]
-
-
-#if not _is-html {
-  std.pagebreak()
-}
-
-#chapter-section("linear-trans")[
-  #include "linear-trans/index.typ"
-]
-
-
-
-
-// appendix
-
-#if not _is-html {
-  std.pagebreak()
-}
-#chapter-section("applications")[
-  #include "applications/index.typ"
-]
-
-
-// appendix
-
-#if not _is-html {
-  std.pagebreak()
-}
+#context if render-mode.get() == "pdf" { pagebreak() }
 #set heading(numbering: "A.1")
 #counter(heading).update(0)
-#chapter-section("appendix-1")[
-  #include "/chapters/appendix-1/index.typ"
-]
+#route-folders.update(("appendix-1",))
+#include "appendix-1/index.typ"
+
+#context if render-mode.get() == "pdf" { pagebreak() }
+#route-folders.update(())
+#include "list-of-theorems/index.typ"
+
+#context if render-mode.get() == "pdf" { pagebreak() }
+#include "bibliography/index.typ"

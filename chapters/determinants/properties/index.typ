@@ -1,5 +1,12 @@
-#import "../../../lib.typ":*
-== Properties of Determinants <sec:pod>
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
+
+#show: docs-subchapter.with(
+  title: [Properties of Determinants],
+  route: "properties",
+  description: [Properties of Determinants],
+  label: <sec:pod>,
+)
 Similar to the rank and the dimensions of a matrix, the determinant is a number associated to a (square) matrix that captures some information about it. With knowledge about properties about this association, a lot may be inferred about the matrix given its determinant. 
 
 + To scale the determinant, that of an identity matrix is taken to be $1$. 
@@ -21,7 +28,7 @@ The following properties are implied by the above $3$.
 + The determinant of a triangular matrix is (possibly negative) the product of its diagonal elements.
   
   To an extent, these implied rules are intermediate steps between the defining properties of a determinant and a practical formula. The implied rule $3$ enables elimination, which may proceed all the way to upper triangular matrix, and forward to a diagonal matrix with the same pivots (via back substitution). From here on, with linear combination property, the diagonal matrix could be turned into an identity matrix, with coefficient being the product of the diagonal elements, except when there is one diagonal element being $0$. If one diagonal element is indeed $0$, the matrix is singular, and consider the following rule. 
-+ A singular matrix have a $0$ determinant. <tig:result>
++ #lbl(<tig:result>, [A singular matrix have a $0$ determinant.])
   
   By elimination, a singular matrix will reach to a row of $0$'s, thus have determinant $0$. 
 

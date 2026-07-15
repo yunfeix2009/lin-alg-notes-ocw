@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Diagonalization and Powers 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Diagonalization and Powers],
+  route: "diagonalization",
+  description: [Diagonalization and Powers],
+)
 We start from the eigenvector matrix $vb(S)$ whose each column is an eigenvector of $vb(A)$ and assume they are all independent. 
 
 #definition[

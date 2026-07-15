@@ -1,6 +1,12 @@
-#import "../../../lib.typ":*
-== Pseudo Inverses <sec:pinverse>
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Pseudo Inverses],
+  route: "pinverse",
+  description: [Pseudo Inverses],
+  label: <sec:pinverse>,
+)
 Singular value decomposition, due to its generality beyond square matrices, facilitate finding the pseudo-inverses. 
 
 

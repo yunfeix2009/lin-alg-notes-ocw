@@ -1,5 +1,11 @@
-#import "../../../lib.typ":*
-== Fundamental Subspaces 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
+
+#show: docs-subchapter.with(
+  title: [Fundamental Subspaces],
+  route: "fundamental-subspaces",
+  description: [Fundamental Subspaces],
+)
 In fact, one of the fundamental objects at study of linear algebra, matrices, have four fundamental subspaces, row space, column space, null space, and left null space. We are going to systematically study them in this section. 
 
 Similar to the column space, the row space is the vector space of a matrix's row vectors, or the column space of the matrix's transpose. 

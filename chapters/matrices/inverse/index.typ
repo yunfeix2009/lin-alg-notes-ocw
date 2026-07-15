@@ -1,7 +1,12 @@
-#import "../../../lib.typ": *
-== Inverses of Matrices
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
-#definition[For a matrix $bold(A)$, matrix $bold(M)$ is its inverse iff $bold(A M) = bold(M A) = bold(I)$, where $bold(I)$ is the identity matrix. ]<def:matrixInverse>
+#show: docs-subchapter.with(
+  title: [Inverses of Matrices],
+  route: "inverse",
+  description: [Inverses of Matrices],
+)
+#lbl(<def:matrixInverse>, definition[For a matrix $bold(A)$, matrix $bold(M)$ is its inverse iff $bold(A M) = bold(M A) = bold(I)$, where $bold(I)$ is the identity matrix. ])
 Observe that a rectangular matrix may have a left or right inverse, but due to dimensions, they will never be equal. It could be shown that, a matrix has an inverse only if it is a square matrix, meaning it has the same number of rows and columns.
 In fact, a square matrix's left inverse is also its right inverse, and this is a determining property of square matrices. Still, it should be noted that a square matrix is not guaranteed to have an inverse, the criterion is invertiblility, shown in linear equations  @sec:le and whether the determinant is $0$, @sec:pod.
 

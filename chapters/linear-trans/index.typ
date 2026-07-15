@@ -1,10 +1,12 @@
-#import "../../lib.typ":*
-= Linear Transformations
+#import "/src/components/index.typ": docs-chapter
+#import "/lib.typ": *
 
-#chapter-section("definition")[
-  #include "definition/index.typ"
-]
-
-#chapter-section("change")[
-  #include "change/index.typ"
-]
+#show: docs-chapter.with(
+  title: [Linear Transformations],
+  route: "linear-trans",
+  description: [Linear Transformations],
+  children: [
+    #include "definition/index.typ"
+    #include "change/index.typ"
+  ],
+)

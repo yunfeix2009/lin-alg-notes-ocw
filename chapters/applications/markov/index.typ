@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Markov Matrices 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Markov Matrices],
+  route: "markov",
+  description: [Markov Matrices],
+)
 This is section may roughly be described as the application of the eigenvalues and eigenvectors section on probability. 
 
 #definition[

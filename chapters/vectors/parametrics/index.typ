@@ -1,7 +1,11 @@
-#import "../../../lib.typ": *
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
-== Parametric Equations
-
+#show: docs-subchapter.with(
+  title: [Parametric Equations],
+  route: "parametrics",
+  description: [Parametric Equations],
+)
 Previously, we described lines in $RR^3$ as intersections of planes.
 However, we may also describe a line as the trajectory of a moving point.
 

@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Null Spaces 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Null Spaces],
+  route: "null-space",
+  description: [Null Spaces],
+)
 #definition[
   For a matrix $vb(A)$, its null space is the set of vectors $vb(x)$ such that $vb(A x) = 0$. 
 ]

@@ -1,5 +1,11 @@
-#import "../../../lib.typ":*
-== Independence, Basis, Dimensions
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
+
+#show: docs-subchapter.with(
+  title: [Independence, Basis, Dimensions],
+  route: "independence",
+  description: [Independence, Basis, Dimensions],
+)
 Recall the definition of independence from preliminaries, see @def:independence. 
 
 Notice that if the zero vector is in the set of vectors, then they must not be independent. 

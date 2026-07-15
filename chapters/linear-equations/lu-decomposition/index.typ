@@ -1,6 +1,11 @@
-#import "../../../lib.typ": *
-== $vb(L U)$ Decomposition
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [$vb(L U)$ Decomposition],
+  route: "lu-decomposition",
+  description: [$vb(L U)$ Decomposition],
+)
 From elimination, we have a means to transform an invertible matrix $vb(A)$, to an upper triangle matrix $vb(U)$. By combining all the elimination steps into $vb(E)$, we reached the equation $ vb(E A = U). $ Since every single elimination step is invertible, and by the inverse rule$ (product_(i=1)^n vb(A)_n)^(-1) = product_(i=n)^1 vb(A)_n^(-1), $ $vb(E)$ is invertible. Let $vb(L) := vb(E)^(-1)$, $ vb(A = L U). $
 
 #theorem[

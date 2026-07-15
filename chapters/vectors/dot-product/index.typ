@@ -1,8 +1,12 @@
+#import "/src/components/index.typ": docs-subchapter
 #import "/lib.typ": *
 
-== Length and Dot Product
-
-#definition[
+#show: docs-subchapter.with(
+  title: [Length and Dot Product],
+  route: "dot-product",
+  description: [Length and Dot Product],
+)
+#lbl(<def:dot-product>, definition[
   For vectors $bold(a) = ( a_1, a_2, dots, a_n )$
   and
   $bold(b) = ( b_1, b_2, dots, b_n )$,
@@ -10,7 +14,7 @@
   $bold(a) dot bold(b)
   := sum_(i=1)^n a_i b_i.$
   _The dot product is a scalar._
-]<def:dot-product>
+])
 
 #definition[
   For a fixed vector with components real numbers  $vb(a)=(a_1,dots,a_n)$, its norm, or length, is defined as, $norm(bold(a))
@@ -38,11 +42,11 @@ Also, it is easy to verify that this way of measuring distance is symmetric, pos
 
 Easy to see that the unit vector in the same direction as $vb(v)$ is $vu(u) = vb(v)/norm(v)$.
 
-#theorem[
+#lbl(<thm:dot-product-geo>, theorem[
   For two given vectors of the same dimension, $vb(a)=(a_1,dots,a_n)$ and $vb(b)=(b_1,dots,b_n)$, $bold(a) dot bold(b)
   =
   norm(bold(a)) norm(bold(b)) cos theta.$
-]<thm:dot-product-geo>
+])
 
 #proof[
   By the Law of Cosines, if $bold(c) = bold(a) - bold(b),$ then
@@ -195,10 +199,10 @@ Easy to see that the unit vector in the same direction as $vb(v)$ is $vu(u) = vb
   Thus, $theta = 120^degree$. 
 ]
 
-#example[
+#lbl(<emp:adhemar>, example[
   Find four pairwise perpendicular unit vectors with all components equal to $1/2$ or $-1/2$. 
-]<emp:adhemar>
-#solution[
+])
+#lbl(<sol:adhemermatrix>, solution[
   From either $RR^3$ includes at most $3$ pairwise perpendicular directions or that the components have absolute value $1/2$, we are searching in $RR^4$. Each vector must be $1/2 (plus.minus 1, plus.minus 1, plus.minus 1, plus.minus 1)$. 
   Assume $1/2(1, 1, 1, 1)$ is in the solution, then the rest three could be found, resulting in $ cases(1/2(1, 1, 1,1), 1/2(1, -1, 1, -1), 1/2(1, 1, -1, -1), 1/2(1, -1, -1, 1)). $
-]<sol:adhemermatrix>
+])

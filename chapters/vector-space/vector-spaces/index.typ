@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Spaces of Vectors 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Spaces of Vectors],
+  route: "vector-spaces",
+  description: [Spaces of Vectors],
+)
 #definition[
   A set which linear combination of a kind of vectors is closed. In other words, a set of vectors satisfying certain requirements. 
 ]
@@ -29,7 +34,7 @@ The union of two subspaces wrt the same vector space may not be a subspace, as t
 
 In fact, the vector space does not have to be made up of vectors, but any objects that add and (scalar) multiply (or analogs that retain key properties of them) in a closed set. For example, $vb(Z)$ is the set containing $0$. Also, the set of all real $2 times 2$ real matrices, $vb(M)$ is a vector space, and all real functions $vb(F)$ is a vector space. 
 
-#definition[Generalized, addition must be commutative, associative, has an additive identity, and every element has an inverse; multiplication must be distributive wrt elements and scalar, associative ($c_1 (c_2 vb(x)) = (c_1 c_2) vb(x)$), and has multiplicative identity.] <def:goodAddMulti>
+#lbl(<def:goodAddMulti>, definition[Generalized, addition must be commutative, associative, has an additive identity, and every element has an inverse; multiplication must be distributive wrt elements and scalar, associative ($c_1 (c_2 vb(x)) = (c_1 c_2) vb(x)$), and has multiplicative identity.])
 
 Here, I must show this photo. #image("/assets/image-4.png")
 Metric space is defined in Appendix C of my Multivariable Calculus notes. 
@@ -39,7 +44,7 @@ Metric space is defined in Appendix C of my Multivariable Calculus notes.
 ]
 
 
-#problem[
+#lbl(<pbm:SplusT>, problem[
   Suppose $S$ and $T$ are two subspaces of a vector space $V$.
   Definition: The sum $S + T$ contains all sums $s + t$, where $s in S$ and $t in T$. \
   (a) Show that S + T satisfies the requirements (addition and scalar
@@ -47,7 +52,7 @@ multiplication) for a vector space.\
 (b) If $S$ and $T$ are lines in $RR^m$ , what is the difference between $S + T  $ and $S union T$?\
 (c) Show that the span of $S union T$ is $S + T$. \
 (d) If $S = vb(C) (vb(A)) $ and $T = vb(C) (vb(B))$, find the matrix $vb(M)$ such that $S + T = vb(C) (vb(M))$, assume columns of $vb(A)$ and $vb(B)$ are all in $RR^m$. 
-]<pbm:SplusT>
+])
 #solution[
   (a) Consider the sum of $s_1 + t_1$ and $s_2 + t_2$, since addition is commutative, this is equal to $(s_1 + s_2) + (t_1 + t_2) $. Since $(s_1 + s_2) in S$ and $(t_1 + t_2) in T$, $(s_1 + s_2) + (t_1 + t_2) in S + T$. 
   $c(s + t) = c s + c t$ since multiplication is distributive, and due to $S$ and $T$ being subspaces, $c s in S$ and $c t in T$, so $c(s + t) in S + T$. \

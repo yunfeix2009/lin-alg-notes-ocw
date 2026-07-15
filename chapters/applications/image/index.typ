@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Image Compression
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Image Compression],
+  route: "image",
+  description: [Image Compression],
+)
 This section discusses how ideas in the Change of Basis, @sec:change, could be applied in image compression. Image compression, or just data compression in general, is an incredibly ubiquitous and important technology that facilitates almost everything that has to do with practical programming. 
 
 Here, we examine compression with loss, JPEG, which stands for Joint Photographic Experts Group. Represent an image with a vector of numeric values (associated with each color) with length the total number of pixels. The basis for the vector space of the given number of pixels could be chosen as simply be $1$ for a certain pixel and the rest being $0$. 

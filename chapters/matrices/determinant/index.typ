@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Determinants 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Determinants],
+  route: "determinant",
+  description: [Determinants],
+)
 #definition[
   For a $2 times 2$ matrix
   $

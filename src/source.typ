@@ -1,5 +1,6 @@
 #let title = "Notes on Linear Algebra"
 
+#let course = "MIT OpenCourseWare 18.06 Linear Algebra"
 #let authors = ("Saint Even", "Slipper King", "Icy Cheees")
 #let date = "June 2026"
 #let source-url = "https://github.com/yunfeix2009/lin-alg-notes-ocw"
@@ -10,9 +11,14 @@
     align(center)[#_quote]
   } else {
     html.elem("div", attrs: (style: "text-align: center;"), _quote)
-    html.elem("div", attrs: (style: "text-align: right;padding-bottom: 0.5rem"), _credit)
   }
-  "Calculus of several variables. Vector algebra in 3-space, determinants, matrices. Vector-valued functions of one variable, space motion. Scalar functions of several variables: partial differentiation, gradient, optimization techniques. Double integrals and line integrals in the plane; exact differentials and conservative fields; Green's theorem and applications, triple integrals, line and surface integrals in space, Divergence theorem, Stokes' theorem; applications." @mit_registrar_course18_fall2026
+  "This is a basic subject on matrix theory and linear algebra. Emphasis is given to topics that will be useful in other disciplines, including systems of equations, vector spaces, determinants, eigenvalues, similarity, and positive definite matrices."
+
+  Calculus is mostly about one special operation (the derivative) and its inverse (the integral).
+  Of course I admit that calculus could be important .... But so many applications of math-
+  ematics are discrete rather than continuous, digital rather than analog. The century of data
+  has begun! You will find a light-hearted essay called "Too Much Calculus" on my website.
+  The truth is that vectors and matrices have become the language to know.
 ]
 
 #let web-view-recommendation = [

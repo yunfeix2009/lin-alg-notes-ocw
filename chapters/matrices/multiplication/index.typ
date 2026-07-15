@@ -1,5 +1,11 @@
-#import "../../../lib.typ":* 
-== Multiplication
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
+
+#show: docs-subchapter.with(
+  title: [Multiplication],
+  route: "multiplication",
+  description: [Multiplication],
+)
 Multiplication is arguably the most important and consequential operation on matrices, and stand as the backbone of many aspects of linear algebra. In this section, the definition along with a few useful visualizations in terms of vectors will be presented. 
 #definition[
   For vectors $vb(u)$, $vb(v)$, $vb(w)$, etc., rewrite its linear combination of $ mat(vb(u), vb(v), vb(w), dots.c) dot mat(a; b; c; dots.v) = a vb(u) + b vb(v) + c vb(w) + dots.c, $ where $ mat(vb(u), vb(v), vb(w), dots.c) $ could be written as $ mat(u_1, v_1, w_1, dots.c; u_2, v_2, w_2, dots.c; dots.v, dots.v, dots.v, dots.down). $

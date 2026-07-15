@@ -1,9 +1,14 @@
-#import "../../../lib.typ":* 
-== Permutation Matrices 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
-#definition[
+#show: docs-subchapter.with(
+  title: [Permutation Matrices],
+  route: "permutation",
+  description: [Permutation Matrices],
+)
+#lbl(<def:permutation>, definition[
   A matrix $vb(P)$ is a permutation matrix iff there is exactly one $1$ in each of its column and row, and $0$ elsewhere. 
-]<def:permutation>
+])
 
 Following are some observations of permutation matrices
 

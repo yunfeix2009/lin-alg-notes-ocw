@@ -1,5 +1,12 @@
-#import "../../../lib.typ":*
-== Quadratic Surfaces <sec:qs>
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
+
+#show: docs-subchapter.with(
+  title: [Quadratic Surfaces],
+  route: "quadratic-surf",
+  description: [Quadratic Surfaces],
+  label: <sec:qs>,
+)
 This section focuses how positive definite matrices (@sec:pdm) may be used as a method to study quadratic surfaces. 
 
 === Pure Quadratic

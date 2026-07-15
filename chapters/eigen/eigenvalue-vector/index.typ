@@ -1,6 +1,11 @@
-#import "../../../lib.typ":* 
-== Fundamentals of Eigenvalues and Eigenvectors 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Fundamentals of Eigenvalues and Eigenvectors],
+  route: "eigenvalue-vector",
+  description: [Fundamentals of Eigenvalues and Eigenvectors],
+)
 #definition[
   Non-zero vector $vb(x)$ is an _eigenvector_ wrt a square matrix $vb(A)$ iff $ vb(A x) = lambda vb(x), $ where $lambda$ is a constant that's termed _eigenvalue_. 
 ]
@@ -14,9 +19,9 @@ Notice that if $vb(A)$ is singular, then by definition, $0$ is an eigenvalue. He
   Firstly, vectors in the subspace projected onto are eigenvectors with eigenvalue $0$. However, those that are orthogonal to the subspace are also eigenvectors (they are in $N(vb(P))$) with eigenvalues $0$. 
 ]
 
-#example[
+#lbl(<emp:eigen>, example[
   Find the eigenvectors and eigenvalues of the matrix $ vb(A) = mat(0, 1; 1, 0). $
-]<emp:eigen>
+])
 #solution[
   Notice that vectors in form of $mat(x; x)$ are eigenvectors with eigenvalue $1$ and vectors in form of $mat(x; -x)$ are eigenvectors with eigenvalues $-1$. 
 ]
@@ -33,9 +38,9 @@ The $n$-th degree polynomial $ p(lambda) = det(vb(A) - lambda vb(I)) $ is termed
 
 One more realization from the characteristic equation $ det (vb(A) - lambda vb(I)) = 0 $ is that $vb(A)$ and $vb(A)^top$ have the same eigenvalues and eigenvectors. Since $ (vb(A) - lambda vb(I))^top = (vb(A)^top - lambda vb(I)), $ $ det(vb(A) - lambda vb(I))^top = det(vb(A)^top - lambda vb(I)). $ So, $vb(A)$ and $vb(A)^top $ have the same characteristic equation. 
 
-#theorem[
+#lbl(<thm:eigentop>, theorem[
   The eigenvalues and eigenvectors of $vb(A)$ and $vb(A)^top$ are the same. 
-]<thm:eigentop>
+])
 
 #example[
   Find the eigenvectors and eigenvalues of $ vb(A) = mat(3, 1; 1, 3). $
@@ -57,9 +62,9 @@ Notice that no rotation matrix would have a real eigenvalue, by their nature. Th
 
 The eigenvalues of a triangular matrix are just its diagonal elements. 
 
-#example[
+#lbl(<emp:eigen2>, example[
   Fix the invertible matrix $ vb(A) = mat(1, 2, 3; 0, 1, -2; 0, 1, 4). $ Find the eigenvalues and eigenvectors of $vb(A)^2$ and $vb(A)^(-1) - vb(I)$. 
-]<emp:eigen2>
+])
 #solution[
   From the definition $ vb(A x) = lambda vb(x), $ we have $vb(A)^2 vb(x) = vb(A A x) = vb(A) (lambda vb(x)) = lambda vb(A) vb(x) = lambda^2 vb(x). $ Therefore, the eigenvalues of $vb(A)^2$ are just the square of the eigenvalues of $vb(A)$.
 

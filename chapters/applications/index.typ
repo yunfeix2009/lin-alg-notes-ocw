@@ -1,26 +1,19 @@
+#import "/src/components/index.typ": docs-chapter
 #import "/lib.typ": *
 
-= Applications of Linear Algebra
-
-
+#show: docs-chapter.with(
+  title: [Applications of Linear Algebra],
+  route: "applications",
+  description: [Applications of Linear Algebra],
+  children: [
+    #include "graphs/index.typ"
+    #include "calculus/index.typ"
+    #include "extremum/index.typ"
+    #include "differential-eq/index.typ"
+    #include "markov/index.typ"
+    #include "fourier/index.typ"
+    #include "image/index.typ"
+    #include "quadratic-surf/index.typ"
+  ],
+)
 Linear algebra, though sometimes viewed as primarily a tool for solving linear equations, have many applications in fields such as differential equations, circuits, graphs -- perhaps partially due to its high level of abstraction and generality of vector spaces.
-
-
-#chapter-section("graphs")[
-  #include "graphs/index.typ"
-]
-
-#chapter-section("calculus")[
-  #include "calculus/index.typ"]
-#chapter-section("extremum")[
-  #include "extremum/index.typ"]
-#chapter-section("differential-eq")[
-  #include "differential-eq/index.typ"]
-#chapter-section("markov")[
-  #include "markov/index.typ"]
-#chapter-section("fourier")[
-  #include "fourier/index.typ"]
-#chapter-section("image")[
-  #include "image/index.typ"]
-#chapter-section("quadratic-surf")[
-  #include "quadratic-surf/index.typ"]

@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Singular Value Decomposition 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Singular Value Decomposition],
+  route: "svd",
+  description: [Singular Value Decomposition],
+)
 Here, we discuss one factorization of a matrix that is especially useful. Singular value decomposition is a diagonalization in the form of $ vb(A = U Sigma V^top), $ where $vb(A) in CC^(m times n)$ (_ does not have to be a square_) and $vb(U)$ and $vb(V)^top$ are orthogonal and $vb(Lambda)$ is diagonal. 
 
 Hence, in the case where $vb(A)$ is symmetric, due to its diagonalization with eigenvector matrix, $ vb(A = Q Lambda Q^top) $ where $vb(Q)$ is orthogonal, such factorization is a special case of singular value decomposition in the case that $vb(U = V)$. Even more specially, when $vb(A)$ is positive definite, $vb(Lambda)$ is positive. 

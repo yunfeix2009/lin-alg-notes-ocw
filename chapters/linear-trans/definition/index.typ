@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Definition and Properties of Linear Transformations
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Definition and Properties of Linear Transformations],
+  route: "definition",
+  description: [Definition and Properties of Linear Transformations],
+)
 Linear Transformations is a idea that motivates matrices, and may be used to start the entire discussion on linear algebra, as how $3B 1B$ does it. 
 
 #definition[

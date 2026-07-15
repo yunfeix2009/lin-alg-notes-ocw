@@ -1,6 +1,11 @@
-#import "../../../lib.typ": *
-== Miscellaneous Practice Problems on Eigenvalues and Eigenvectors
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Miscellaneous Practice Problems on Eigenvalues and Eigenvectors],
+  route: "misc-problems",
+  description: [Miscellaneous Practice Problems on Eigenvalues and Eigenvectors],
+)
 In this section, we prove a few results regarding eigenvalues and eigenvectors. The following definitions and problems are from Bing while the solutions, unless otherwise mentioned, attribute to the authors of this set of notes.
 
 === Definitions

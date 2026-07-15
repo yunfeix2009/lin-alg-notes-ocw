@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Graphs, Networks, Incidence Matrices 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Graphs, Networks, Incidence Matrices],
+  route: "graphs",
+  description: [Graphs, Networks, Incidence Matrices],
+)
 Linear algebra, partially due to its high level of abstraction and generality of vector spaces, have many applications. Here, we examine a discrete example of graphs, and their often useful representation with matrices. 
 
 #definition[

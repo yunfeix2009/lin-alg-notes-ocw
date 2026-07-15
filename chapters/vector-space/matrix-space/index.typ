@@ -1,6 +1,11 @@
-#import "../../../lib.typ": *
-== Matrix Spaces
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Matrix Spaces],
+  route: "matrix-space",
+  description: [Matrix Spaces],
+)
 Vector spaces, are not really spaces of vectors. As long as any objects have a "good" addition and multiplication, ie. satisfying these core properties @def:goodAddMulti.
 
 Therefore, the atomic objects at study could very well be matrices. #example[

@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Orthogonal Vectors and Subspaces 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Orthogonal Vectors and Subspaces],
+  route: "orthogonal-vectors",
+  description: [Orthogonal Vectors and Subspaces],
+)
 In geometry, $triangle A B C$ has a right angle at $C$ iff $a^2 + b^2 = c^2$. In terms of vectors, this means vectors $vb(x)$ and $vb(y)$ are orthogonal iff $ norm(vb(x))^2 + norm(vb(y))^2 = norm(vb(x) + vb(y))^2. $
 Since $norm(vb(x))^2 = vb(x) dot vb(x) = vb(x)^top vb(x)$, $ vb(x) dot vb(y) = 0 <==> vb(x)^top vb(x) + vb(y)^top vb(y) = (vb(x + y))^top (vb(x+y)). $
 
@@ -13,9 +18,9 @@ Since subspaces is one of the fundamental objects at study of _linear algebra_, 
 
 Since any non-zero vector is not orthogonal to itself, and that a subspace must contain the zero vector, the intersection of two subspaces must be the zero vector. 
 
-#theorem[
+#lbl(<thm:subspaceOrtho>, theorem[
   Regarding a matrix $vb(A)$, its row space is _orthogonal_ to its null space, $N(vb(A))$. 
-]<thm:subspaceOrtho>
+])
 #proof[
   Every vector in $N(vb(A))$ is orthogonal to every single row of $vb(A)$ as, by definition, $vb(A) vb(x) = 0$ so $vb(A)_i vb(x) = 0$. Moreover, any vector in the row space is a combination of rows of $vb(A)$, let one of such be $c_1 vb(A)_1 + c_2 vb(A)_2 + dots.c$ and $vb(v) in N(vb(A))$, then $ (c_1 vb(A)_1 + c_2 vb(A)_2 + dots.c) vb(v) = c_1 (vb(A)_1 vb(v)) + c_2 (vb(A)_2 vb(v)) + dots.c = 0. #qedhere $
 ]

@@ -226,9 +226,7 @@
     class: class,
     style: "--toc-depth: " + str(depth),
   ),
-  {
-    link(location, body)
-  },
+  if class == "toc-theorem" { body } else { link(location, body) },
 )
 
 #let _heading-toc-entry(h, page) = {

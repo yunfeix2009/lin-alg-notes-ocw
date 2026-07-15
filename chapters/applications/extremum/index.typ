@@ -1,6 +1,12 @@
-#import "../../../lib.typ":*
-== Extremum of Multivariable Functions <sec:extremum>
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Extremum of Multivariable Functions],
+  route: "extremum",
+  description: [Extremum of Multivariable Functions],
+  label: <sec:extremum>,
+)
 In _Notes on Multivariable Calculus_ by _Saint Even, et al._, we discussed the second derivative test for classifying critical points—that is, determining whether a critical point is a local maximum, local minimum, or saddle point.
 
 The Second Derivative Test is as following. 

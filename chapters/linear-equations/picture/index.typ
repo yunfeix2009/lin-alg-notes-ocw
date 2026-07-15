@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
- 
- == Row Picture and Column Picture
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
+
+#show: docs-subchapter.with(
+  title: [Row Picture and Column Picture],
+  route: "picture",
+  description: [Row Picture and Column Picture],
+)
  
  When visualizing linear systems, there are often two main ways, corresponding to two ways of interpreting the product between a matrix and a vector. 
 

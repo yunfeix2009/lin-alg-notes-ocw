@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Determinant Formula and Cofactors
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Determinant Formula and Cofactors],
+  route: "determinant-formula",
+  description: [Determinant Formula and Cofactors],
+)
 From the three defining properties of determinants, we showed, in the last section, Properties of Determinants, that the determinant of a matrix is well-defined, and numerous ways of finding it for some special matrices. Here, we provide a formula of computing it generally. 
 
 We start from $n=2$. $ det mat(a, b; c, d) &= det mat(a, 0; c, d) + det mat(0, b; c, d) 
@@ -110,7 +115,7 @@ This formula could be readily generalized to $n times n$.
   where $A_(i j)$ denotes the matrix obtained from $A$ by deleting its $i$-th row and $j$-th column.
 ]
 
-Then, the cofactor expansion (Laplace expansion) of the "big formula" of the determinant is $ det(vb(A)) = sum_(i=1)^n a_(i j) C_(i j). $<eqn:cofactorexpansion>
+Then, the cofactor expansion (Laplace expansion) of the "big formula" of the determinant is #lbl(<eqn:cofactorexpansion>, $ det(vb(A)) = sum_(i=1)^n a_(i j) C_(i j). $)
 
 #example[
   // #set math.mat(delim: "[")

@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Transpose
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Transpose],
+  route: "transpose",
+  description: [Transpose],
+)
 #definition[
   The transpose of a matrix, $vb(A)$, is $vb(A)^top$, such that $(vb(A)^top)_(i j) = vb(A)_(j i)$.
 ]
@@ -21,10 +26,10 @@ Then, we have the following rules for transpose
 
 Since vectors could be viewed as special cases of matrices, transpose is also a pertinent operation regarding vectors. 
 
-#definition[
+#lbl(<def:vectorProduct>, definition[
   Fix vectors $vb(x)$ and $vb(y)$, with dimensions $m$ and $n$, respectively. In the case where $m= n$, define the inner product between $vb(x)$ and $vb(y)$ to be $ iprod(vb(x), vb(y))  = vb(x)^top vb(y), $ which is exactly the dot product between $vb(x)$ and $vb(y)$. 
   By transposing $vb(y)$ instead, define $ ketbra(vb(x), vb(y)) = vb(x) vb(y)^top, $ producing a $m times n$ matrix. 
-]<def:vectorProduct>
+])
 
 Interestingly, we have $ (vb(A x))^top vb(y) = vb(x)^top vb(A)^top vb(y) = vb(x)^top (vb(A)^top vb(y)). $ 
 #definition[
@@ -38,5 +43,4 @@ We have the following properties of symmetric matrices.
   $ (vb(A) vb(A)^top)^top = vb(A) vb(A)^top. $
 + In elimination, $vb(A) = vb(L) vb(U)$, introduce the diagonal matrix $vb(D)$ such that $vb(L)$ and $vb(U)$ both have all $1$'s on their diagonals, $vb(A) = vb(L D U) = vb(L D L)^top$. 
   In this way, storage and amount of computation for solving a symmetric linear system are both cut in half. 
-
 

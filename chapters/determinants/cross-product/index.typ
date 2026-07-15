@@ -1,6 +1,11 @@
+#import "/src/components/index.typ": docs-subchapter
 #import "/lib.typ": *
 
-== Cross Product
+#show: docs-subchapter.with(
+  title: [Cross Product],
+  route: "cross-product",
+  description: [Cross Product],
+)
 With @def:dot-product, we have the means to often conveniently express angles and lengths in terms of vectors. However, there is another important concept that we are unable to grapple with using dot product. And that is area. For which we seek help from the use of @def:cross-product.
 
 #theorem[
@@ -24,9 +29,9 @@ With @def:dot-product, we have the means to often conveniently express angles an
 By the determinant definitions from the matrices section, the three-dimensional determinant gives the signed volume of the parallelepiped formed by $vb(a), vb(b),$ and $vb(c)$.
 
 Now, we are ready to define cross product.
-#definition[
-  For two given three dimensional vectors $vb(a)$ and $vb(b)$ with components $(a_1, a_2, a_3)$ and $(b_1, b_2, b_3)$, respectively. We define the cross product between $vb(a)$ and $vb(b)$, $vb(a) times vb(b)$, as the vector $ det mat(hat(bold(i)), hat(bold(j)), hat(bold(k)); a_1, a_2, a_3; b_1, b_2, b_3). $ <def:cross-product>
-]
+#lbl(<def:cross-product>, definition[
+  For two given three dimensional vectors $vb(a)$ and $vb(b)$ with components $(a_1, a_2, a_3)$ and $(b_1, b_2, b_3)$, respectively. We define the cross product between $vb(a)$ and $vb(b)$, $vb(a) times vb(b)$, as the vector $ det mat(hat(bold(i)), hat(bold(j)), hat(bold(k)); a_1, a_2, a_3; b_1, b_2, b_3). $
+])
 
 #theorem[
   For two given three dimensional vectors $vb(a)$ and $vb(b)$, $norm(vb(a) times vb(b))$ is equal to the (signed) area of the parallelogram formed by $vb(a)$ and $vb(b)$. And the direction of $vb(a) times vb(b)$ is orthogonal to the plane formed by $vb(a)$ and $vb(b)$, while satisfying the right hand rule.
@@ -41,9 +46,9 @@ Now, we are ready to define cross product.
 #proof[
   This result comes directly from the expansion of both sides. However, an argument based on the geometric meaning in terms of the area of the parallelepiped could also be established.
 ]
-#theorem[Lagrange Identity (three dimensions)][
+#lbl(<thm:lagrange-identity>, theorem[Lagrange Identity (three dimensions)][
   $ norm(vb(a) times vb(b))^2 = norm(vb(a))^2 norm(vb(b))^2 - (vb(a) dot vb(b))^2 $
-]<thm:lagrange-identity>
+])
 #proof[
   Although direct expansion with the component form does verify this identity, we hereby proceed with a more geometric argument. 
 

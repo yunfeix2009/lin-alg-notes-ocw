@@ -1,12 +1,16 @@
-#import "../../../lib.typ": *
-== Eigenvalues and Eigenvectors of Special Matrices
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
-
-=== Symmetric Matrices<sec:sym>
-#theorem[
+#show: docs-subchapter.with(
+  title: [Eigenvalues and Eigenvectors of Special Matrices],
+  route: "eigen-spec",
+  description: [Eigenvalues and Eigenvectors of Special Matrices],
+)
+#lbl(<sec:sym>, heading(level: 3)[Symmetric Matrices])
+#lbl(<thm:eigensym>, theorem[
   The eigenvalues of a symmetric matrix are real.
-]<thm:eigensym>
-#proof[
+])
+#lbl(<prf:eigensym>, proof[
 
   #lemma[
     For complex matrices $vb(A)$ and $vb(B)$, $ overline(vb(A B)) = vb(overline(A) thin overline(B)). $
@@ -17,7 +21,7 @@
   We prove the general case of a Hermitian matrix, as symmetric matrices are Hermitian, where $vb(A) = vb(A)^*$, where $*$ operation is conjugate transpose.
 
   By definition, $ vb(A x) = lambda vb(x)&==> vb(x)^* vb(A ) = overline(lambda) vb(x)^*  ==> overline(lambda) vb(x^* x) = vb(x)^* vb(A x). $ However, $ vb(x^* A x) = lambda vb(x^* x). $ Thus, $ lambda = overline(lambda). #qedhere $
-]<prf:eigensym>
+])
 anti-symmetric matrices ($vb(A)^top = - vb(A)$) have imaginary eigenvalues.
 
 #theorem[
@@ -30,13 +34,13 @@ anti-symmetric matrices ($vb(A)^top = - vb(A)$) have imaginary eigenvalues.
 As a consequence of this theorem, in the case where a symmetric matrix $vb(A)$ have $n$ independent eigenvectors, its eigenvector matrix $vb(S)$ is orthogonal, which may be scaled to orthonormal. Let the scaled, orthonormal eigenvector matrix be $vb(Q)$, we have $ vb(A) = vb(Q) vb(Lambda) vb(Q)^(-1) = vb(Q Lambda Q)^top. $ This makes sense as $vb(Q Lambda Q)^top$ is, by itself, symmetric. Moreover, $ vb(Q Lambda Q)^(-1) = sum_(i=1)^n lambda_i vb(q)_i vb(q)^top_i. $ Each individual $vb(q)_i vb(q)^top_i$ is a projection matrix, since the denominator, $vb(q)^top_i vb(q)_i = 1$ as it is normalized, and they are all pairwise orthogonal!. This theorem is known as the _Spectral Theorem_ since the matrix is decomposed to its elementary parts, eigenvectors.
 
 
-Furthermore, knowing that the eigenvectors of a Hermitian matrix are real, we'd like to know their signs without directly computing them, which would be useful in determining the stability of the solution to the differential equations, for example. We have the following remarkable theorem #theorem[
+Furthermore, knowing that the eigenvectors of a Hermitian matrix are real, we'd like to know their signs without directly computing them, which would be useful in determining the stability of the solution to the differential equations, for example. We have the following remarkable theorem #lbl(<thm:eigenpivot>, theorem[
   The number of positive (or negative) pivots of a symmetric matrix is equal to the number of positive (or negative) eigenvalues of the matrix.
-]<thm:eigenpivot>
+])
 This theorem may also be applied with $vb(A) - c vb(I)$ to determine the number of eigenvalues above a certain number $c$.
 
 
-=== Positive Definite Matrices <sec:pdm>
+#lbl(<sec:pdm>, heading(level: 3)[Positive Definite Matrices])
 #definition[
   A symmetric matrix is _positive definite_ iff all of its eigenvalues are positive. More generally, a symmetric matrix is _positive semidefinite_ iff all of its eigenvalues are non-negative.
 ]
@@ -52,9 +56,9 @@ Thus, since the determinant is the product of the pivots (eigenvalues), the dete
 ]
 
 Now we have coupled pivots, eigenvalues, and determinants all positive to be all equivalent to the matrix being positive definite. In fact, they are connected with one more condition.
-#theorem[
+#lbl(<thm:pdm>, theorem[
   A symmetric matrix is positive definite iff $ vb(x)^top vb(A x) > 0 $ for all $vb(x) in RR^n without (0, 0, dots, 0)^top$.
-]<thm:pdm>
+])
 #proof[
   Since $vb(A)$ is symmetric, assume its eigenvector matrix $vb(S)$ is invertible, then $vb(A)$ could be diagonalized as $ vb(A) = vb(S Lambda S)^(-1) = vb(S Lambda S)^top. $ So, $ vb(x^top A x) = vb(x^top S Lambda S)^top vb(x). $ Let $vb(y) = vb(S^top x)$, then $ vb(x^top A x) = vb(y^top Lambda y) = sum_(lambda_i "is eigenvalue") lambda_i vb(y)_i^2 >=0. $
   Notice equality is achieved when $vb(y) = 0$. Also, $vb(S)^top$ is invertible as $vb(S)$ is invertible, $vb(x) = 0 <==> vb(y) = 0$. So, all $lambda_i>0$ is equivalent to $vb(x^top A x)>0$ for all $vb(x)$.
@@ -136,15 +140,15 @@ However, sometimes the eigenvalues repeat. Then, we may further conclude that ma
 #example[
   Find the families with $lambda_1 = lambda_2 = 4$. 
 ]
-#solution[
+#lbl(<sol:jordan>, solution[
   First, $ vb(T):= mat(4, 0; 0, 4)$ is a family of its own as it satisfies the condition and, if $vb(A)$ is similar to it, then $ vb(A) = vb(M)^(-1) vb(T) vb(M) = 4 vb(M)^(-1) vb(I M) = 4 vb(I) = vb(T). $
 
   However, there are still matrices with both of its eigenvalues $4$ but not similar to $vb(T)$.  Those are the ones with only one eigenvector. Hence, they are not diagonalizable to the form which makes them similar to $vb(T)$.  In fact, if $vb(A)_1 = mat(a; b), quad b!=0$, then $ vb(A) = mat(a, 16/b; b, 8-a ) $ is in the family as $trace vb(A) = 8$ and $det vb(A) = 16$. Thus, there are two families that could be represented by $ mat(4, 0; 0, 4) "and" mat(4, 1; 0, 4).#qedhere $
-]<sol:jordan>
+])
 
-#theorem[
+#lbl(<thm:posdefproduct>, theorem[
   Given positive definite matrices $vb(A)$ and $vb(B)$, $vb(A B)$ is positive definite iff $vb(A)$ and $vb(B)$ commute, meaning $vb(A B = B A)$. 
-]<thm:posdefproduct>
+])
 #proof[
   Since $vb(A)$ is symmetric, diagonalize $vb(A)$ as $vb(A):= vb(Q) diag(lambda_i) vb(Q)^top.$
   Let the square root of $vb(A)$ be its principal square root, $   vb(A)^(1/2):= vb(Q) diag(sqrt(lambda_i)) vb(Q^top). $

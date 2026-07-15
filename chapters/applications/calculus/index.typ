@@ -1,6 +1,11 @@
-#import "../../../lib.typ":*
-== Difference and Sum Matrices 
+#import "/src/components/index.typ": docs-subchapter
+#import "/lib.typ": *
 
+#show: docs-subchapter.with(
+  title: [Difference and Sum Matrices],
+  route: "calculus",
+  description: [Difference and Sum Matrices],
+)
 #definition[
   A difference matrix $vb(D)$ is a $n times n$ square matrix where $ vb(D)_(i j) = cases(1 &"if" i=j, -1 &"if" i=j+1, 0 &"otherwise"). $
 ]
@@ -35,9 +40,9 @@ Furthermore, by using rules on matrices, we are able to see properties of differ
 
 
 In this section we aim to introduce a brief generalization of concepts such as the dot product and transpose in a way extensible to physics and calculus. The dot product between two (column) vectors $vb(x)$ and $vb(y)$ is given by $ vb(x dot y)=vb(x)^top vb(y). $
-In this particular case, we define the inner product $chevron(vb(x)\, vb(y))$ to simply be the dot product as above. Now consider a matrix $vb(A)$. Then we have:
+In this particular case, we define the inner product $iprod(vb(x), vb(y))$ to simply be the dot product as above. Now consider a matrix $vb(A)$. Then we have:
 $ iprod(vb(A x), vb(y)) = vb((A x)^top y)=vb(x^top (A^top y))=iprod(vb(x), vb(A^top y)). $
-The matrix $vb(A)$ maps column vectors to column vectors, and as such, can be considered as a unary (single operand) operator. As a matter of fact, the transpose is _governed_ by the identity that $ iprod( vb(A x), vb(y)) = iprod(vb(x), vb(A^top y)), $ <eq:transpose-identity-for-matrix>
+The matrix $vb(A)$ maps column vectors to column vectors, and as such, can be considered as a unary (single operand) operator. As a matter of fact, the transpose is _governed_ by the identity that #lbl(<eq:transpose-identity-for-matrix>, $ iprod( vb(A x), vb(y)) = iprod(vb(x), vb(A^top y)), $)
 which is the basis upon which we make further generalizations. 
 
 We briefly define the _inner product space_, which is a vector space $V$ (a vector space's elements do not need to necessarily be vectors, but more generally, elements thats satisfy the rules that were set in IDK), together with a function $ iprod(dot.c, dot.c) : V times V -> FF, $
