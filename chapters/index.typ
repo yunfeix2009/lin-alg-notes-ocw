@@ -36,11 +36,8 @@
 #set heading(numbering: "A.1")
 #counter(heading).update(0)
 #route-folders.update(("appendix-1",))
-#include "appendix-1/index.typ"
+#include "appendices/index.typ"
 
-#context if render-mode.get() == "pdf" { pagebreak() }
-#route-folders.update(())
-#include "list-of-theorems/index.typ"
 
 #context if render-mode.get() == "pdf" { pagebreak() }
 #include "bibliography/index.typ"

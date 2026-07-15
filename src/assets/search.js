@@ -53,7 +53,7 @@
   }
 
   function blockScore(block, query, tokens) {
-    var text = block.textNormalized || "";
+    var text = block.textNormalized || normalizeText(block.text || "");
     var score = 0;
     var matched = false;
 
@@ -101,7 +101,7 @@
   }
 
   function pageScore(page, query, tokens) {
-    var title = page.titleNormalized || "";
+    var title = page.titleNormalized || normalizeText(page.title || "");
     var text = page.textNormalized || "";
     var score = 0;
     var matched = false;
@@ -394,7 +394,7 @@
         page: page,
         score: scored.score,
         block: scored.bestSnippetBlock,
-        titleMatch: (page.titleNormalized || "").indexOf(normalizedQuery) !== -1
+        titleMatch: (page.titleNormalized || normalizeText(page.title || "")).indexOf(normalizedQuery) !== -1
       };
     }).filter(function (entry) {
       return entry.score > 0 && (entry.block || entry.titleMatch);

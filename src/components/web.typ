@@ -3,7 +3,6 @@
 #import "/src/source.typ" as source
 
 #let notes-title = source.title
-#let course = source.course
 #let authors = source.authors
 #let date = source.date
 #let source-url = source.source-url
@@ -226,7 +225,9 @@
     class: class,
     style: "--toc-depth: " + str(depth),
   ),
-  if class == "toc-theorem" { body } else { link(location, body) },
+  {
+    link(location, body)
+  },
 )
 
 #let _heading-toc-entry(h, page) = {
@@ -413,7 +414,7 @@
     ]
     #html.elem("div", attrs: (class: "sidebar-backdrop", id: "sidebar-backdrop"))
     #html.elem("script", attrs: (src: _asset-href(page.path, "assets/site.js")), [])
-    #html.elem("script", attrs: (src: _asset-href(page.path, "assets/search.js")), [])
+    #html.elem("script", attrs: (src: _asset-href(page.path, "assets/search.js?v=2")), [])
   ] #label("doc-" + page.id)
 ]
 
@@ -441,7 +442,7 @@
       html.elem("script", attrs: (src: _asset-href(page.path, script-path)), [])
     }
     #html.elem("script", attrs: (src: _asset-href(page.path, "assets/site.js")), [])
-    #html.elem("script", attrs: (src: _asset-href(page.path, "assets/search.js")), [])
+    #html.elem("script", attrs: (src: _asset-href(page.path, "assets/search.js?v=2")), [])
   ]
 }
 
@@ -458,7 +459,7 @@
     description: none,
   )
 
-  _standalone-page(page, main-class: "search-page", extra-scripts: ("assets/search-index.js",))[
+  _standalone-page(page, main-class: "search-page", extra-scripts: ("assets/search-index.js?v=2",))[
     #html.elem("h1", attrs: (class: "page-title"), [Search])
     #html.elem("p", attrs: (class: "search-warning"), [
       Search functionality is still experimental, and math expressions do not work well yet.

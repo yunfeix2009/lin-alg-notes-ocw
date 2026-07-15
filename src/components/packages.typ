@@ -7,6 +7,8 @@
 #import "@preview/fancy-tiling:1.0.0": *
 #import "@preview/mannot:0.3.3"
 #import "@preview/fletcher:0.5.8"
+#import "@preview/fletcher:0.5.8"
+#import "@preview/meander:0.4.4"
 
 #let cvector = cetz.vector
 #let cmatrix = cetz.matrix
