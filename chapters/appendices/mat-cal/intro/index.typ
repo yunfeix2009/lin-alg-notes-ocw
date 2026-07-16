@@ -36,7 +36,8 @@ diff from numerical or symbolic
 scalar: locally linearly. multivar, also locally planar, hyperplanar, etc.
 
 holistic rather than by indices
-#image("/assets/image-5.png")
+#figure-wrapper(figure(image("/assets/image-5.png")))
+
 
 $dif(A B) = A dif B + (dif A) B$
 to find $grad (vb(x^top x)) = 2 vb(x^top x)$, done with the above vs. indices
