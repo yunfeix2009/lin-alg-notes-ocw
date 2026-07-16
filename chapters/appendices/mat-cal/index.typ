@@ -2,12 +2,13 @@
 #import "/lib.typ": *
 
 #show: docs-appendix.with(
-  title: [Supplements on Vector Algebra],
-  route: "wcnmb-nmlgb",
+  title: [Matrix Calculus],
+  route: "matrix-calculus",
   children: [
     #include "intro/index.typ"
     #include "diff-high-order/index.typ"
     #include "mat-func/index.typ"
     #include "kronecker/index.typ"
+    #include "approx/index.typ"
   ],
 )

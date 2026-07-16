@@ -44,6 +44,8 @@ $
 $
 Thus, $ dif vb(X)^2 = (vb(I) times.o vb(X) + vb(X)^top times.o vb(I)) [dif vb(X)]. $ Previously, we were unable to write $dif vb(X)^2$ in the form of a linear operator times $[dif X]$. With Kronecker product, which is indeed a linear operator in $vb(A)$ and $vb(B)$ (bilinearity), we could.
 
+Similarly, this generalizes to the $vb(L U)$ decomposition, with specific lower triangular perturbations $dif vb(L)$ and upper triangular perturbations $dif vb(U)$.
+
 #theorem[
   $ (vb(A) times.o vb(B))^top = vb(A)^top times.o vb(B)^top $
 ]
