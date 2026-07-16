@@ -33,9 +33,10 @@ jobs:
         run: |
           pip install numpy shapely beautifulsoup4
 
-      - name: Run preprocessing script
-        run: python scripts/build.py
+      # - name: Run preprocessing script
+      #   run: python scripts/build.py
 
+      # A custom typst executable is necessary for compilation due to additional modifications required
       - name: Build Document
         run: |
           Remove-Item -Recurse -Force web/dist -ErrorAction SilentlyContinue
