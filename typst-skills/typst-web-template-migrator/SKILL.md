@@ -24,6 +24,7 @@ When the target style is the newer Underactuated Robotics site, inspect these fi
 - `https://github.com/slipperking/underactuated-robotics/blob/main/src/assets/site.css`
 - `https://github.com/slipperking/underactuated-robotics/blob/main/src/assets/site.js`
 - `https://github.com/slipperking/underactuated-robotics/blob/main/src/components/web.typ`
+- Or all of `https://github.com/slipperking/complex-analysis`
 
 Do not rely on memory for the template structure when the repo is accessible.
 
@@ -131,6 +132,7 @@ Useful checks:
 - Do not judge success from the source files alone; check the emitted HTML.
 - Do not treat CSS differences as the only problem when JS and DOM structure also changed upstream.
 - Do not forget that the cover page may still be using old Typst markup even when inner pages are closer to the new style.
+- FUNCTIONS SUCH AS ALIGN, ETC. DO NOT WORK IN HTML, FOR IMAGES PLEASE USE THE `figure-wrapper` constructs, for cetz canvas, use the `canvas` function (not `cetz.canvas`) to ensure HTML support, and DO NOT MODIFY INFRASTRUCUTRE TO ENSURE COMPILING. THE WORKFLOWS AND BUILDING NEED TO USE THE CUSTOM TYPST FILES since they contain important modifications from the official typst executable.
 
 ## Decision heuristics
 

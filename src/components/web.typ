@@ -507,7 +507,7 @@
 }
 
 #let _redirect-404-page() = {
-  let target = "https://slipperking.github.io/complex-analysis/page-not-found"
+  let target = "https://yunfeix2009.github.io/lin-alg-notes-ocw/page-not-found/"
 
   document("/404.html", title: "Redirecting…")[
     #show: document-styles.with(mode: "web")
