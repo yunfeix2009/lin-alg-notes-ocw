@@ -36,7 +36,7 @@ diff from numerical or symbolic
 scalar: locally linearly. multivar, also locally planar, hyperplanar, etc.
 
 holistic rather than by indices
-#figure-wrapper(figure(image("/assets/image-5.png")))
+#figure-wrapper(figure(potential-frame(image("/assets/image-5.png"))))
 
 
 $dif(A B) = A dif B + (dif A) B$

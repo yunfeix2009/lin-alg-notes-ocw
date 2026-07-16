@@ -10,7 +10,7 @@
   The Kronecker product of $vb(A) in RR^(m times n)$ and $vb(B) in RR^(p times q)$, $vb(A) times.o vb(B)$ is a $(m times n)$ block matrix with each block $p times q$. Block $i j$ is $vb(A)_(i j) vb(B)$.
 ]
 Here, I must show this image from Lecture 2 part 2 as it is pure gold.
-#figure-wrapper(figure(image("/assets/image-6.png")))
+#figure-wrapper(figure(potential-frame(image("/assets/image-6.png"))))
 
 (Edit: this image is beaten by beginning of Lecture 3 Part 1, where a dog non-chalantly walk in to the class as a student.)
 

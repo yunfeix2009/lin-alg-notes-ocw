@@ -39,7 +39,7 @@ In fact, the vector space does not have to be made up of vectors, but any object
   definition[Generalized, addition must be commutative, associative, has an additive identity, and every element has an inverse; multiplication must be distributive wrt elements and scalar, associative ($c_1 (c_2 vb(x)) = (c_1 c_2) vb(x)$), and has multiplicative identity.],
 )
 
-Here, I must show this photo. #figure-wrapper(figure(image("/assets/image-4.png")))
+Here, I must show this photo. #figure-wrapper(figure(potential-frame(image("/assets/image-4.png"))))
 
 Metric space is defined in Appendix C of my Multivariable Calculus notes.
 
