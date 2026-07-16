@@ -3,7 +3,7 @@
 
 #show: docs-appendix.with(
   title: [Supplements on Vector Algebra],
-  route: "vector-alg",
+  route: "wcnmb-nmlgb",
   children: [
     #include "intro/index.typ"
     #include "diff-high-order/index.typ"

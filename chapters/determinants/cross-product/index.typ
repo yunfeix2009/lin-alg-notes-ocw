@@ -41,7 +41,9 @@ Now, we are ready to define cross product.
 ]
 
 #theorem[
-  For three 3D vectors $vb(a), vb(b),$ and $vb(c)$, $ det (vb(a), vb(b), vb(c)) &= vb(a) dot (vb(b) times vb(c)) \ &=vb(b) dot (vb(c) vb(a)) \ & = vb(c) dot (vb(a) times vb(b)). $
+  For three 3D vectors $vb(a), vb(b),$ and $vb(c)$, $ det (vb(a), vb(b), vb(c)) & = vb(a) dot (vb(b) times vb(c)) \
+                            & =vb(b) dot (vb(c) vb(a)) \
+                            & = vb(c) dot (vb(a) times vb(b)). $
 ]
 #proof[
   This result comes directly from the expansion of both sides. However, an argument based on the geometric meaning in terms of the area of the parallelepiped could also be established.
@@ -50,32 +52,35 @@ Now, we are ready to define cross product.
   $ norm(vb(a) times vb(b))^2 = norm(vb(a))^2 norm(vb(b))^2 - (vb(a) dot vb(b))^2 $
 ])
 #proof[
-  Although direct expansion with the component form does verify this identity, we hereby proceed with a more geometric argument. 
+  Although direct expansion with the component form does verify this identity, we hereby proceed with a more geometric argument.
 
-  Let $theta$ be the angle between $vb(a)$ and $vb(b)$, we have 
-  $ norm(vb(a) times vb(b))^2 &= norm(abs(vb(a)) norm(vb(b)) sin theta) \ &= (norm(vb(a))^2 norm(vb(b))^2 dot sin^2 theta \ &=  (norm(vb(a))^2 norm(vb(b))^2 dot (1- cos^2 theta)\ &=norm(vb(a))^2 norm(vb(b))^2 - (vb(a) dot vb(b))^2. $
+  Let $theta$ be the angle between $vb(a)$ and $vb(b)$, we have
+  $
+    norm(vb(a) times vb(b))^2 & = norm(abs(vb(a)) norm(vb(b)) sin theta) \
+                              & = (norm(vb(a))^2 norm(vb(b))^2 dot sin^2 theta \
+                              & = (norm(vb(a))^2 norm(vb(b))^2 dot (1- cos^2 theta) \
+                              & =norm(vb(a))^2 norm(vb(b))^2 - (vb(a) dot vb(b))^2.
+  $
 ]
 #remark[
-  In fact, this theorem is generalizable to finitely many vectors. #align(center)[
+  In fact, this theorem is generalizable to finitely many vectors.
   $
-  (
-    sum_(i = 1)^n a_i^2
-  )(
-    sum_(i = 1)^n b_i^2
-  )
-  -
-  (
-    sum_(i = 1)^n a_i b_i
-  )^2
-  =
-  sum_(1 <= i < j <= n)
-  (
-    a_i b_j - a_j b_i
-  )^2
+    (
+      sum_(i = 1)^n a_i^2
+    )(
+      sum_(i = 1)^n b_i^2
+    )
+    -
+    (
+      sum_(i = 1)^n a_i b_i
+    )^2
+    =
+    sum_(1 <= i < j <= n)
+    (
+      a_i b_j - a_j b_i
+    )^2
   $
 ]
-]
-
 
 #example[(18.02 Pset2 PartII P1][
   Suppose we know that when the three planes $P_1$, $P_2$, and $P_3$ in $RR^3$ intersect in pairs, we get three lines $L_1$, $L_2$, and $L_3$ which are _distinct_ and _parallel_.
@@ -87,8 +92,8 @@ Now, we are ready to define cross product.
   c) Show that the three normals to $P_1$, $P_2$, and $P_3$ all lie in one plane, using an algebraic argument. (Note that the three planes clearly do _not_ all intersect at one point.)
 ]
 #solution[
-  (a) Graph omitted, the intersection of the three planes form a triangular prism. 
-  (c) Let the normals of the three planes be $vb(n_1), vb(n_2)$, and $vb(n_3)$, respectively. The pairwise intersections of the three planes have direction given by $ vb(n_1) times vb(n_2), vb(n_2) times vb(n_3)$, and $vb(n_3) times vb(n_1). $ The three lines are parallel gives all of these quantities are equal. $ vb(n_1) times vb(n_2) = vb(n_2) times vb(n_3) ==> - vb(n_2) times vb(n_1) = vb(n_2) times vb(n_3) ==> -vb(n_1) tilde vb(n_3) ==> vb(n_1) tilde vb(n_3). $ Similarly, $vb(n_2) tilde vb(n_1)$, so all three normals are coplanar. 
+  (a) Graph omitted, the intersection of the three planes form a triangular prism.
+  (c) Let the normals of the three planes be $vb(n_1), vb(n_2)$, and $vb(n_3)$, respectively. The pairwise intersections of the three planes have direction given by $vb(n_1) times vb(n_2), vb(n_2) times vb(n_3)$, and $vb(n_3) times vb(n_1).$ The three lines are parallel gives all of these quantities are equal. $ vb(n_1) times vb(n_2) = vb(n_2) times vb(n_3) ==> - vb(n_2) times vb(n_1) = vb(n_2) times vb(n_3) ==> -vb(n_1) tilde vb(n_3) ==> vb(n_1) tilde vb(n_3). $ Similarly, $vb(n_2) tilde vb(n_1)$, so all three normals are coplanar.
 ]
 
 #example[Pset2 PartII P3][
@@ -110,7 +115,7 @@ Now, we are ready to define cross product.
 
 
 #example[
-  Fix three 3D dimensional vectors $vb(a), vb(b), vb(c)$. Determine whether another vector $vb(v)$ is on the plane formed by $vb(a), vb(b),$ and $vb(c)$. 
+  Fix three 3D dimensional vectors $vb(a), vb(b), vb(c)$. Determine whether another vector $vb(v)$ is on the plane formed by $vb(a), vb(b),$ and $vb(c)$.
 ]
 
 #solution[

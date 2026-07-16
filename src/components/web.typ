@@ -414,7 +414,7 @@
     ]
     #html.elem("div", attrs: (class: "sidebar-backdrop", id: "sidebar-backdrop"))
     #html.elem("script", attrs: (src: _asset-href(page.path, "assets/site.js")), [])
-    #html.elem("script", attrs: (src: _asset-href(page.path, "assets/search.js?v=2")), [])
+    #html.elem("script", attrs: (src: _asset-href(page.path, "assets/search.js")), [])
   ] #label("doc-" + page.id)
 ]
 
@@ -442,7 +442,7 @@
       html.elem("script", attrs: (src: _asset-href(page.path, script-path)), [])
     }
     #html.elem("script", attrs: (src: _asset-href(page.path, "assets/site.js")), [])
-    #html.elem("script", attrs: (src: _asset-href(page.path, "assets/search.js?v=2")), [])
+    #html.elem("script", attrs: (src: _asset-href(page.path, "assets/search.js")), [])
   ]
 }
 
@@ -459,7 +459,7 @@
     description: none,
   )
 
-  _standalone-page(page, main-class: "search-page", extra-scripts: ("assets/search-index.js?v=2",))[
+  _standalone-page(page, main-class: "search-page", extra-scripts: ("assets/search-index.js",))[
     #html.elem("h1", attrs: (class: "page-title"), [Search])
     #html.elem("p", attrs: (class: "search-warning"), [
       Search functionality is still experimental, and math expressions do not work well yet.
@@ -593,7 +593,10 @@
   ..args,
 )
 #let docs-frontmatter(..args) = _docs-page(kind: "frontmatter", level: 1, heading-format: _plain-heading-format, ..args)
-#let docs-chapter(..args) = _docs-page(kind: "chapter", level: 1, heading-format: _chapter-heading-format, ..args)
+#let docs-chapter(..args) = {
+  _docs-page(kind: "chapter", level: 1, heading-format: _chapter-heading-format, ..args)
+  context if render-mode.get() == "pdf" { pagebreak() }
+}
 #let docs-subchapter(..args) = _docs-page(kind: "subchapter", level: 2, heading-format: _section-heading-format, ..args)
 #let docs-subsubchapter(..args) = _docs-page(
   kind: "subsubchapter",
