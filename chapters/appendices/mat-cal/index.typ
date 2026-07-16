@@ -6,10 +6,8 @@
   route: "vector-alg",
   children: [
     #include "intro/index.typ"
-    // #include "eqn/index.typ"
-    // #include "equiv/index.typ"
-    // #include "app/index.typ"
+    #include "diff-high-order/index.typ"
+    #include "mat-func/index.typ"
+    #include "kronecker/index.typ"
   ],
 )
-
-taken grad of complicated objects, machine learning, grad descent
