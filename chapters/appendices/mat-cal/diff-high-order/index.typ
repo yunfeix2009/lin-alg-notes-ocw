@@ -112,3 +112,16 @@ To fine the gradient of the determinant function, we first make the following de
 #definition[
   The cofactor matrix of invertible matrix $vb(A)$ is $op("adj")(A)^top$.
 ]
+#theorem[
+  If $vb(C)$ is the cofactor matrix of $vb(A)$, then $ grad (det vb(A)) = vb(C). $
+]
+#proof[
+  With Laplace expansion, $ det(vb(A)) = sum_(i=1)^n a_(i j) C(i j). $ Notice that wrt each $a_(i j)$, the determinant is a linear function with the coefficient $C_(i j)$. The gradient of $vb(A)$ is the vector (matrix) with perturbation at each element the "slope" which in this case is $C_(i j)$. Thus, the gradient of $det vb(A)$ is the cofactor matrix.
+]
+Alternatively, this theorem could be proved more symbolically.
+#proof[
+  First, notice that $det(vb(I + dif vb(A))) = trace(dif A)$ as it combines the highest order terms. Then, $ det(vb(A +) dif vb(A)) & = det(vb(A)(vb(I) + vb(A)^(-1) dif vb(A))) \
+                         & = det(vb(A)) trace(vb(A)^(-1) dif vb(A)) \
+                         & = trace(det(vb(A)) vb(A)^(-1) dif vb(A)) $
+]
+#image("/assets/image-1.png")
