@@ -40,7 +40,8 @@ holistic rather than by indices
 
 
 $dif(A B) = A dif B + (dif A) B$
-to find $grad (vb(x^top x)) = 2 vb(x^top x)$, done with the above vs. indices
+#lbl(<emp:grad-norm>, example[to find $grad (vb(x^top x)) = 2 vb(x^top)$, done with the above vs. indices])
+
 
 derivative really is the linearization locally, lienar operators
 

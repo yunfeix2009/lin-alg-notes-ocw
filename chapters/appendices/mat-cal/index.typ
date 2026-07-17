@@ -10,5 +10,6 @@
     #include "mat-func/index.typ"
     #include "kronecker/index.typ"
     #include "approx/index.typ"
+    #include "app/index.typ"
   ],
 )
