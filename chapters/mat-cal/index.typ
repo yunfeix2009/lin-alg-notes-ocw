@@ -6,10 +6,9 @@
   route: "matrix-calculus",
   children: [
     #include "intro/index.typ"
-    #include "diff-high-order/index.typ"
-    #include "mat-func/index.typ"
-    #include "kronecker/index.typ"
-    #include "approx/index.typ"
+    #include "analytical/index.typ"
+    #include "numerical/index.typ"
     #include "app/index.typ"
+    #include "rand/index.typ"
   ],
 )

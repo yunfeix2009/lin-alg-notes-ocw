@@ -24,6 +24,8 @@
 #include "linear-trans/index.typ"
 #include "applications/index.typ"
 
+#include "mat-cal/index.typ"
+
 #set heading(numbering: "A.1")
 #counter(heading).update(0)
 #route-folders.update(("appendix-1",))

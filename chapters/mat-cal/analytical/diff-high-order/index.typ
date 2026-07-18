@@ -58,9 +58,9 @@ For example, when the result of multiplication is $ (1 times n) = (1 times n) do
 
 
 define gradient, generalized to be the linear operator that turns $dif x$ to $dif f$ through dot product. Hence, we also need a way to generalize dot product.
-#definition[
+#lbl(<def:inner-product>, definition[
   Fix two vectors $vb(v)$ and $vb(u)$ from a vector space $V$, the inner product maps $V^2$ to $RR^+ union {0}$ that is symmetric, equal to $0$ iff one of $vb(u) = 0 or vb(v) = 0$ and linear wrt each vector.
-]
+])
 In pure math, often $<x, y>$ is used and $braket(x, y)$ is used in physics. However, in here, we will remain in $dot$
 
 #definition[
@@ -120,7 +120,7 @@ To fine the gradient of the determinant function, we first make the following de
 ]
 Alternatively, this theorem could be proved more symbolically.
 #proof[
-  First, notice that $det(vb(I + dif vb(A))) = trace(dif A)$ as it combines the highest order terms. Then, $ det(vb(A +) dif vb(A)) & = det(vb(A)(vb(I) + vb(A)^(-1) dif vb(A))) \
+  First, notice that $det(vb(I + dif vb(A))) = trace(dif vb(A))$ as it combines the highest order terms. Then, $ det(vb(A +) dif vb(A)) & = det(vb(A)(vb(I) + vb(A)^(-1) dif vb(A))) \
                          & = det(vb(A)) trace(vb(A)^(-1) dif vb(A)) \
                          & = trace(det(vb(A)) vb(A)^(-1) dif vb(A)) $
 ]
