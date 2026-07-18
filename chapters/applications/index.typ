@@ -14,6 +14,7 @@
     #include "fourier/index.typ"
     #include "image/index.typ"
     #include "quadratic-surf/index.typ"
+    #include "camera-geo/index.typ"
   ],
 )
 Linear algebra, though sometimes viewed as primarily a tool for solving linear equations, have many applications in fields such as differential equations, circuits, graphs -- perhaps partially due to its high level of abstraction and generality of vector spaces.
