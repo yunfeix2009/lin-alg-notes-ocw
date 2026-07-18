@@ -133,14 +133,14 @@ In this section, we prove a few results regarding eigenvalues and eigenvectors. 
 
   However, the problem with this proof was already hinted in $18.06$ lectures but I did not note down thinking I will not make this mistake. the eigenvectors of $vb(J)$ and $vb(J)^top$ are not necessarily the same. This argument falls apart.
 
-  At this point, I resigned to solving the characteristic equation. First, Notice that by the cofactor expansion of the determinant, @eqn:cofactorexpansion, $ det vb(A)_n = - det vb(A)_(n-2). $ Also, $det vb(A)_0 = 0$ and $det vb(A)_1 = -1$, justifying the previous conjecture that $vb(A)$ is singular iff $n$ is odd. 
+  At this point, I resigned to solving the characteristic equation. First, Notice that by the cofactor expansion of the determinant, @eqn:cofactorexpansion, $ det vb(A)_n = - det vb(A)_(n-2). $ Also, $det vb(A)_0 = 0$ and $det vb(A)_1 = -1$, justifying the previous conjecture that $vb(A)$ is singular iff $n$ is odd.
 
-  Let the characteristic polynomial for $vb(A) in RR^(n times n)$ be $p_n (lambda)$. With the cofactor expansion again, $ p_n = -lambda p_(n-1) - p_(n-2), quad p_1 = -lambda, quad p_2 = lambda^2 - 1. $ To solve this recursion the linear algebra way, let $ vb(u)_n:= mat(p_(n+1); p_(n)). $ The recursion becomes $ vb(u)_n = mat(-lambda, -1; 1, 0) vb(u)_(n-1). $ The eigenvalues of $mat(-lambda, -1; 1, 0)$ are $ mu_1 := (-lambda + sqrt(lambda^2 - 4))/2, quad mu_2:= (-lambda -sqrt(lambda^2 - 4))/2, $ corresponding to eigenvectors $ vb(v)_mu = mat(mu; 1). $ The initial condition gives $ vb(u)_1 = mat(lambda^2 - 1;-lambda) = c_1 mat(mu_1, 1) + c_2 mat(mu_2, 1). $ Solving gives $ (c_1, c_2) = (mu_1^2/(mu_1 - mu_2), - mu_2^2/(mu_1 - mu_2)). $ Thus, $ vb(u)_n = c_1 mu_1^(n-1) mat(mu_1; 1) + c_2 mu_2^(n-1) mat(mu_2; 1). $ Giving the Binet style $ p_n = (mu_1^(n+1) - mu_2^(n+1))/(mu_1 - mu_2). $
+  Let the characteristic polynomial for $vb(A) in RR^(n times n)$ be $p_n (lambda)$. With the cofactor expansion again, $ p_n = -lambda p_(n-1) - p_(n-2), quad p_1 = -lambda, quad p_2 = lambda^2 - 1. $ To solve this recursion the linear algebra way, let $ vb(u)_n:= mat(p_(n+1); p_(n)). $ The recursion becomes $ vb(u)_n = mat(-lambda, -1; 1, 0) vb(u)_(n-1). $ The eigenvalues of $mat(-lambda, -1; 1, 0)$ are $ mu_1 := (-lambda + sqrt(lambda^2 - 4))/2, quad mu_2:= (-lambda -sqrt(lambda^2 - 4))/2, $ corresponding to eigenvectors $ vb(v)_mu = mat(mu; 1). $ The initial condition gives $ vb(u)_1 = mat(lambda^2 - 1; -lambda) = c_1 mat(mu_1, 1) + c_2 mat(mu_2, 1). $ Solving gives $ (c_1, c_2) = (mu_1^2/(mu_1 - mu_2), - mu_2^2/(mu_1 - mu_2)). $ Thus, $ vb(u)_n = c_1 mu_1^(n-1) mat(mu_1; 1) + c_2 mu_2^(n-1) mat(mu_2; 1). $ Giving the Binet style $ p_n = (mu_1^(n+1) - mu_2^(n+1))/(mu_1 - mu_2). $
 ]
 
-We also present a solution from Bing, 7/11/26. 
+We also present a solution from Bing, 7/11/26.
 #solution[
-  
+
 ]
 
 #problem[
@@ -163,3 +163,11 @@ We also present a solution from Bing, 7/11/26.
 #solution[
   Similar to the last problem, we first analyze the determinants. Notice that by the permutation way of computing the determinant, $ det D $
 ]
+
+#example[
+  Fix $theta$, let $ vb(A):= mat(cos theta, sin theta; -sin theta, cos theta); vb(B) := vb(A + A)^4. $ Find $ det(vb(A)). $
+]
+#example[
+  Let $ vb(A) := mat(-1, 2; 3, 4). $ Solve the following equation for scalars $p$ and $q$, $ vb(A)^n = p vb(A) + q vb(I). $
+]
+

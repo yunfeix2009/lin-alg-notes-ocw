@@ -48,4 +48,4 @@ $ mat(1, 2, 3, 1, 1, 0, 0; 0, 1, 1, 0, 1, -1, 0; 0, 0, 0, 0, -1, 0, 1) $
 
 Row $3$ is the zero row, so we take $mat(-1, 0, 1)$. Let's check this, it's clear that row $3$ minus row $1$ gives zero. We reached the conclusion:
 
-$N(A^top)=c mat(-1; 0; 1)$
+$ N(A^top)=c mat(-1; 0; 1) $
