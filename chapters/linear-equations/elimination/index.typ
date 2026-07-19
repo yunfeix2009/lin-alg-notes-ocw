@@ -5,6 +5,7 @@
   title: [Elimination],
   route: "elimination",
   description: [Elimination],
+  label: <sec:elimination>,
 )
 Elimination is an efficient and natural way of solving systems of linear equations. At least as of 2005, when the lecture was recorded, it was the main method in solving linear systems in software packages. It is a natural idea, though it will be expressed in terms of matrices here.
 

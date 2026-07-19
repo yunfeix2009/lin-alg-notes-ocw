@@ -164,10 +164,28 @@ We also present a solution from Bing, 7/11/26.
   Similar to the last problem, we first analyze the determinants. Notice that by the permutation way of computing the determinant, $ det D $
 ]
 
+The following problems are from Bing, 7/18/26.
+
 #example[
-  Fix $theta$, let $ vb(A):= mat(cos theta, sin theta; -sin theta, cos theta); vb(B) := vb(A + A)^4. $ Find $ det(vb(A)). $
+  Fix $theta$, let $ vb(A):= mat(cos theta, sin theta; -sin theta, cos theta); vb(B) := vb(A + A)^4. $ Find $ det(vb(B)) $ for $theta = pi/5$ and $theta = pi/9$.
 ]
+#solution[
+  The key to this problem is to notice the geometry nature of $vb(A)$. When $vb(A)$ is applied to a vector on $RR^2$, it rotates it by $theta$ counterclockwise. Hence, assume $theta = pi/5$, the net result of the transformation is a $90^degree$ counterclockwise rotation with a scaling factor of $2 sin(pi/5)$. Thus, $ vb(B)_(theta = pi/5) = mat(0, 2 sin(pi/5); -2sin(pi/5), 0), $ $ det(vb(B)) = 4 sin^2 (pi/5). $ On the other hand, assume $theta = pi/9$, geometry (Law of Sines for example) gives the transformation to be a $50^degree$ counterclockwise rotation with a scaling of $sqrt(3)$.$ det bold(B)
+  = 4 cos^2 frac(pi, 6)
+  = 4 dot frac(3, 4)
+  = 3. #qedhere $
+]
+
 #example[
   Let $ vb(A) := mat(-1, 2; 3, 4). $ Solve the following equation for scalars $p$ and $q$, $ vb(A)^n = p vb(A) + q vb(I). $
 ]
+Obviously, it is technically possible to manually compute $vb(A)^n$ for small $n$, it is advisable to use eigen-decomposition. However, even then the computation is non-trivial: first find the eigen-parameters, then solve the equation with $p$ and $q$. However, it is possible to solve this problem with a more elegant approach by treating the matrix holistically rather than as a combination of scalars.
+#solution[
+  First, recall that given $vb(A)$ with eigenvalue $lambda$ and eigenvector $vb(x)$, $ vb(A)^2 vb(x) = vb(A) lambda vb(x) = lambda^2 vb(x), $ which may be readily generalized to $ vb(A)^n vb(x) = lambda^n vb(x), quad n in NN. $
 
+  The given equation $ vb(A)^n = p vb(A) + q vb(I) & ==> vb(A)^n - q vb(I) = p vb(A) \
+                              & ==> (vb(A)^n - q vb(I)) vb(x) = p vb(A) vb(x) = lambda p vb(x). $ However, $ (vb(A)^n - q vb(I)) vb(x) = (lambda^n -q) vb(x). $ Thus, $ lambda^n - q = p lambda ==> lambda^n = p lambda + q. $ With $trace(vb(A)) = sum lambda, quad det(vb(A)) = product lambda$, $ lambda^2 -3lambda -10 = 0 ==> lambda = -2, 5. $ Thus, solving $ cases((-2)^n = (-2)p+ q, 5^n = 5p + q) $ gives $(p, q)$.
+]
+
+
+Moreover, with the recursive nature of this problem, this problem may also be solved with the following recursive relation $ cases(p = 3p + q, q = 10p). $

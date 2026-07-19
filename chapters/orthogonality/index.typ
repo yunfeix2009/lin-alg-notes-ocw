@@ -11,5 +11,6 @@
     #include "least-square-approximations/index.typ"
     #include "orthogonal-matrix-basis/index.typ"
   ],
+  label: <sec:ortho>,
 )
-Here, we examine how the geometric concept of _perpendicularity_, governed by the Pythagorean Theorem, could be expressed in the language of linear algebra, as _orthogonality_. 
+Here, we examine how the geometric concept of _perpendicularity_, governed by the Pythagorean Theorem, could be expressed in the language of linear algebra, as _orthogonality_.

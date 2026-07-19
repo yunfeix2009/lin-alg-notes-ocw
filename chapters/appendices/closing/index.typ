@@ -29,7 +29,7 @@
     }
   }
 
-  Now, presumably you have waded through the flowers and the mud, I feel the necessity of wrap up this set of notes with a review centered on a birds-eye view of linear algebra, partially inspired by Strang's "Too Much Calculus" and "Language of Linear Algebra". As a set of notes to an introductory class on linear algebra, I believe walking away knowing what linear algebra is about, namely its levels of study, its techniques, and its special importance today, is already significant.
+  Now, presumably you have waded through the flowers and the mud, I feel the necessity of wrap up this set of notes with a review centered on a birds-eye view of linear algebra, partially inspired by Strang's "Too Much Calculus" @Strang2001TooMuchCalculus and "Language of Linear Algebra" @strang2014language. As a set of notes to an introductory class on linear algebra, I believe walking away knowing what linear algebra is about, specifically objects it studies, its techniques, and its special importance today, is good already.
   Hence, we recapitulate topics in this set of notes from the following dimensions of linear algebra: language, key equations, key equivalences, and applications.
 
 

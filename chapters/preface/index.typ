@@ -22,3 +22,5 @@ Since only basic understanding of topics outside of linear algebra is needed, th
 Although perfectly compete in isolation, _Notes on Linear Algebra_ is intended to serve as the starting point of the study of the trilogy of multivariable calculus, linear algebra, and differential equations -- three subjects I believe together make a strong foundation as the math prerequisite of many important fields such as control theory, most of physics, theoretical computer science, machine learning, etc.
 
 To this end, we also have _Notes on Multivariable Calculus_ @saint_multivariable_calculus_notes, based on to 18.02 @Auroux2007MultivariableCalculus from OpenCourseWare   and _Notes on Differential Equations_ @saint2026diffeq, based on 18.03 @ocwlinkde and 18.009 @mit_ocw_differential_equations_linear_algebra from OpenCourseWare.
+
+As a supplemental curious connection to calculus, the last chapter, Matrix Calculus, is included @sec:mat-calc.

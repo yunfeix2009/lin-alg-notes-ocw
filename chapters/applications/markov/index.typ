@@ -41,7 +41,7 @@ Its name suggests that Markov matrices likely connect with Markov chains, or in 
 ]
 
 The following example is from a recitation that resembles problem solving with Markov matrices more than the former example.
-#example[
+#lbl(<emp:markov>, example[
 
   A particle jumps between positions $A$ and $B$ with the following probabilities:
   #figure-wrapper(
@@ -110,7 +110,7 @@ The following example is from a recitation that resembles problem solving with M
   + 1 step
   + $n$ steps
   + $infinity$ steps?
-]
+])
 #solution[
   Let the probability distribution be described by $ vb(u):= mat(a; b). $ Then, the iteration is described by $ vb(u) (k+1) = vb(A u) (k), $ where $ vb(A) := mat(.6, .2; .4, .8). $
   Since $vb(A)$ is a Markov matrix, its eigenvalues are $ (lambda_1, lambda_2) = (1, .4), $ corresponding to the eigenvectors $ mat(vb(x)_1, vb(x)_2) = mat(1, -1; 2, 1). $
