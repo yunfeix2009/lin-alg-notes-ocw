@@ -3,6 +3,7 @@
 #show: docs-subchapter.with(
   title: [Applications of Matrix Calculus],
   route: "app",
+  label: <sec:app-mat-calc>,
 )
 
 Starting simple. To find the root of a function $f: RR -> RR$, recursively performing the following steps would obtain a numeric approximation of a root.
