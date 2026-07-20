@@ -1,6 +1,6 @@
 #import "/lib.typ": *
 
-#show: docs-subchapter.with(
+#show: docs-subsubchapter.with(
   title: [Calculus of Variations],
   route: "calc-var",
 )

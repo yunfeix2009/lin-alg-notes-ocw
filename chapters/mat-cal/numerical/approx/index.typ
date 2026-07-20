@@ -1,8 +1,8 @@
 #import "/lib.typ": *
 
-#show: docs-subchapter.with(
-  title: [Numerical Approximation Methods],
-  route: "approx",
+#show: docs-subsubchapter.with(
+  title: [Finite Difference],
+  route: "finite-diff",
 )
 
 Here, we discuss methods of numerical approximation in matrix calculus that serves different means.
@@ -17,4 +17,6 @@ In fact, this definition could be shown to be equivalent to #lbl(<eqn:frobenius>
 
 Interestingly, when plotted on a log-log graph, relative error is linear with $norm(delta vb(A))$ by virtue of taylor series.
 
-Moreover, when approximating, by using the centered difference, $ delta x f'(x) = 1/2 (f(x + delta x) - f(x - delta x)) + o((delta x)^3), $ the order of error dramatically decreases by an entire order. This is a result of all the even terms in the Taylor's series cancel, leaving the the third order remaining.
+Moreover, when approximating, by using the centered difference, $ delta x f'(x) = 1/2 (f(x + delta x) - f(x - delta x)) + o((delta x)^3), $ the order of error dramatically decreases by an entire order. This is a result of all the even terms in the Taylor's series cancel, leaving the third order remaining.
+
+It is worth noting that as the input error $norm(dif vb(A))/norm(vb(A))$ decreases, relative error of $f$ first decreases linearly (on log-log scale) then increases linearly, as a result of round-off error. Hence, it is suboptimal to use the $dif vb(A)$ with the smallest norm possible, but to find the sweet spot that minimizes the relative error.

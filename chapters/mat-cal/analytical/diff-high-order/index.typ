@@ -1,6 +1,6 @@
 #import "/lib.typ": *
 
-#show: docs-subchapter.with(
+#show: docs-subsubchapter.with(
   title: [Derivatives in Higher Dimensions: Jacobians and Matrix Functions],
   route: "diff-high-order",
 )
@@ -125,3 +125,15 @@ Alternatively, this theorem could be proved more symbolically.
                          & = trace(det(vb(A)) vb(A)^(-1) dif vb(A)) $
 ]
 #image("/assets/image-1.png")
+
+#example[
+  Let $f:RR^n -> RR$ be mapping a vector in $RR^n$ to its Euclidean norm. Find $grad_vb(x) f$.
+]
+With the 18.02, indices way, we have the following solution.
+#solution[
+  Take $vb(x)_i$, $pdv(f, vb(x)_i) = vb(x)_i/f(vb(x))$. Hence, $ grad_vb(x) f = vb(x)/(f(x)). $
+]
+However, taking the vector holistically, we have the following solution (termed as the "grown-ups way" by Prof. Alan Edelman).
+#solution[
+  Notice that $ f^2 (vb(x)) = vb(x^top x). $ Thus differentiating both sides gives, $ 2 f(vb(x)) (dif f) = 2 vb(x^top) (dif vb(x)). $ Hence, $ dif f = vb(x)^top/f(vb(x)) dif vb(x). $ Finally, $ grad_vb(x) f = (vb(x)^top/f(vb(x)))^top = vb(x)/(f(vb(x))). $
+]
