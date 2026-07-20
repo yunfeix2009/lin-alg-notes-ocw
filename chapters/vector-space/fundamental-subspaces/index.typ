@@ -49,3 +49,15 @@ $ mat(1, 2, 3, 1, 1, 0, 0; 0, 1, 1, 0, 1, -1, 0; 0, 0, 0, 0, -1, 0, 1) $
 Row $3$ is the zero row, so we take $mat(-1, 0, 1)$. Let's check this, it's clear that row $3$ minus row $1$ gives zero. We reached the conclusion:
 
 $ N(A^top)=c mat(-1; 0; 1) $
+
+I also want to talk a bit more about column space. We know that after elimination, the pivot columns will correspond to the basis of the column space in the original matrix.
+
+Although it feels intuitive, you should have a question: how do row operations find the independent columns? That's kinda weird. Let's try to prove this.
+
+So first, we know that reducing a matrix $vb(A)$ into it's reduced row echelon form $vb(R)$ will not change the solution to $vb(A)vb(x)=vb(0)$.
+
+In $vb(R)$, the columns with pivots are clearly independent. According to the definition of RREF form, all columns with pivots can only have zeros in the positions other than the pivots. More specifically, the pivot columns looks like an identity matrix when you put them together. I want to give the matrix a name $vb(R^prime)$. It contains all the pivot columns in $vb(R)$.
+
+Let's go back to the corresponding columns in $vb(A)$. We "extract" the corresponding pivot columns out and put them into a matrix $vb(A^prime)$. We If the columns are dependent, there exists some non-zero solution to $vb(A^prime) vb(x)=vb(0)$.
+
+Since row operations doesn't change the solution to an linear equation, and doing some row operations to $vb(A^prime)$ gives $vb(R^prime)$, so there should be a non-zero solution to $vb(R^prime) vb(x)=vb(0)$. But we've already proven that the columns of $vb(R^prime)$ are independent, so this equation doesn't stand. So the columns in $vb(A^prime)$ are also independent. Statement proved.
