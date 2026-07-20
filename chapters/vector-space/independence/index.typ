@@ -38,3 +38,22 @@ Since for a space, the number of vectors its basis has is fixed, its dimension i
 Thus, the rank of a matrix is the number of its pivot columns, which is the dimension of its column space.
 
 While the dimension of the null space is the number of free variables.
+
+#example[
+  Prove that a matrix with rank $k$ can be written as the sum of $k$ matrices with rank $1$.
+]
+#solution[
+  We know that any rank $1$ matrix can be written as an outer product $u v^top$.
+
+  The rank, or the number of pivot columns is equal to the number of pivot rows, or non-zero rows. So if you do elimination to a matrix with rank $k$, the result will contain $k$ non-zero rows, and the other rows will be all zero. Let's express $vb(A)$ in LU decomposition form.
+
+  $
+    vb(A)= vb(L) vb(U) = mat(vb(u_1), vb(u_2), dots, vb(u_k), vb(u_(k+1)), dots, vb(u_m)) mat(vb(v_1)^top; vb(v_2)^top; dots.v; vb(v_k)^top; vb(0); vb(0); dots.v; vb(0))
+  $
+
+  We use column times row to do this multiplication.
+
+  $ vb(A)=vb(u_1) vb(v_1)^top + vb(u_2) vb(v_2)^top + dots + vb(u_k) vb(v_k)^top + vb(0) + vb(0) + dots + vb(0) $
+
+  The first $k$ terms are all rank-one matrices. So we can conclude that a matrix with rank $k$ is indeed the sum of $k$ matrices with rank $1$.
+]
