@@ -80,5 +80,16 @@ Given the importance of the four subspaces is to a matrix, we explore the implic
 
 + Column space
 
+  We know that $vb(A) vb(x)$ gives us a combination of potential differences. The column space is just all possible combinations of potential differences across the edges.
+
 + Row space
 
+  Combination of the rows gives possible combinations of potentials at the nodes.
+
+  There's a quick way to check if some vector is in the row space without trying hard to find the correct combination. A vector is in the row space iff it is perpendicular to every vector in the null space, according to @thm:row-space-is-the-orthogonal-compliment-of-null-space.
+
+  In this case, we know the null space is
+
+  $ mat(1; 1; dots.v; 1), $
+
+  so we only need to check if the sum of the components is $0$, since the dot product of a vector and the null space is the sum of the components.

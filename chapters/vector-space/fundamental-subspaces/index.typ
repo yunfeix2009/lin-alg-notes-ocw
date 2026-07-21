@@ -72,9 +72,12 @@ It is easy to show that $S^perp$ is a subspace. Any linear combination of the ve
 
 A nice property about this $S^perp$ is that $dim(S^perp)+dim(S)=n$, if $S in RR^n$. Intuitively, if $S$ have $k$ directions, than $S^perp$ can't have these directions, so $S^perp$ has $n-k$ directions. If this still seems confusing(probably), then look at the 3D space. For a plane, there are some lines perpendicular to it. For a line, there are some planes perpendicular to it.
 
-#theorem[
-  A vector is in the row space iff it is perpendicular to every vector in the null space.
-]
+#lbl(
+  <thm:row-space-is-the-orthogonal-compliment-of-null-space>,
+  theorem[
+    A vector is in the row space iff it is perpendicular to every vector in the null space.
+  ],
+)
 #proof[
   Let's first prove that the vectors in the row space are perpendicular to every vector in the null space.
 
