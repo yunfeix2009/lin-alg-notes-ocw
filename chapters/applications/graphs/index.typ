@@ -1,5 +1,6 @@
 #import "/src/components/index.typ": docs-subchapter
 #import "/lib.typ": *
+#import fletcher: diagram, edge, node
 
 #show: docs-subchapter.with(
   title: [Graphs, Networks, Incidence Matrices],
@@ -28,6 +29,56 @@ Given the importance of the four subspaces is to a matrix, we explore the implic
 
 + Null space
 
+  Call the incidence matrix $vb(A)$. The null space is defined by $vb(A) vb(x)=vb(0)$.
 
+  $vb(A) vb(x)$ gives the potential difference across each edge. To make all potential differences zero, the nodes should have the same potential. So
 
+  $ N(vb(A))=c mat(1; 1; dots.v; 1) $
+
++ Left null space
+
+  We know that loops result in dependent rows. To make some combination of rows zero, we need to focus on each loop. Let's do an example.
+
+  #figure-wrapper(
+    figure(
+      diagram(
+        node-stroke: .6pt,
+        node((1, 0), $1$, name: <n1>),
+        node((0, 1), $2$, name: <n2>),
+        node((2, 1), $3$, name: <n3>),
+        node((0, 2), $4$, name: <n4>),
+        node((2, 2), $5$, name: <n5>),
+        edge(<n1>, <n2>, "->", label: $1$),
+        edge(<n2>, <n3>, "->", label: $2$),
+        edge(<n1>, <n3>, "->", label: $3$),
+        edge(<n2>, <n4>, "->", label: $4$),
+        edge(<n4>, <n5>, "->", label: $5$),
+        edge(<n5>, <n3>, "->", label: $6$),
+      ),
+    ),
+  )
+
+  The incidence matrix is provided below.
+
+  $ mat(-1, 1, 0, 0, 0; 0, -1, 1, 0, 0; -1, 0, 1, 0, 0; 0, -1, 0, 1, 0; 0, 0, 0, -1, 1; 0, 0, 1, 0, -1) $
+
+  But we will only use this for checking. We'll find the left null space with the graph. First, determine a direction. For example, clockwise. Second, go to every small loop. Give $1$ for edges that point clockwise, and $-1$ otherwise.
+
+  For the loop on top, edge $1$ points counter-clockwise, so we give it $-1$. Edge $2$ gets $-1$, and edge $3$ gets $1$. Form a vector with them:
+
+  $ mat(-1; -1; 1; 0; 0; 0) $
+
+  Now move to the loop at the bottom. Edge $2$ points clockwise, so we give it $1$. Edge $6$ gets $-1$, edge $5$ gets $-1$, and edge $4$ gets $-1$.
+
+  $ mat(0; 1; 0; -1; -1; -1) $
+
+  So we get the left null space:
+
+  $ N(vb(A)^top)=c_1 mat(-1; -1; 1; 0; 0; 0) + c_2 mat(0; 1; 0; -1; -1; -1) $
+
+  We only need to consider the small loops on our graph drawn, since all the bigger loops are made up of small loops. And if you set the $c_1$ and $c_2$ above to $1$, you get the vector for the largest loop on the graph. You can also check the answer with the incidence matrix.
+
++ Column space
+
++ Row space
 
