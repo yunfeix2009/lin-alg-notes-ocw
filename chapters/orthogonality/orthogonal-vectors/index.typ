@@ -42,6 +42,28 @@ Since any non-zero vector is not orthogonal to itself, and that a subspace must 
 #proof[
   It's been proven that $C(vb(A)^top) subset.eq N(vb(A))$. Also, $ dim C(vb(A)^top)^perp = n - dim C(vb(A)^top) = dim N(vb(A)) $ as $C(vb(A)^top)^perp$ contains all directions in $RR^n$ not in $C(vb(A)^top)$. Since if two subspaces have the same dimensions, one must not be a proper subset of the other, $ C(vb(A)^top) = N(vb(A))^perp. $
 ]
+#corollary[
+  For any vector in the row space, $vb(A)vb(x_r)$ produces a vector in the column space. Every vector in the column space is produced by a unique vector in the row space. (One-to-one relationship)
+]
+#proof[
+  Since the row space and the null space are orthogonal complements, they can make any vector in $RR^n$, meaning any vector $vb(x)$ can be expressed as $vb(x_r)+vb(x_n)$. ($dim(R+N)=dim(R)+dim(N)-dim(R inter N)=dim(R)+dim(N)=n$)
+
+  The column space is the set of all vectors produced by $vb(A)vb(x)=vb(A)(vb(x_r)+vb(x_n))=vb(A)vb(x_r)+vb(A)vb(x_n)$. Since $x_n$ is in the null space of $vb(A)$, so $vb(A)vb(x_n)=vb(0)$, $vb(A)vb(x)=vb(A)vb(x_r)$. We've proven that every vector in the row space can produce a vector in the column space.
+
+  Now we need to prove that every vector in the column space can only be made by one vector in the row space. Assume two different vectors $x_r$ and $x_r'$ made the same vector.
+
+  $ vb(A)vb(x_r)=vb(A)vb(x_r') $
+
+  $ vb(A)(vb(x_r)-vb(x_r'))=0 $
+
+  So $vb(x_r)-vb(x_r')$ is in the null space of $vb(A)$. But $vb(x_r)-vb(x_r')$ is also in the row space of $vb(A)$. The only vector that is in both spaces is the zero vectors. We conclude that
+
+  $ vb(x_r)-vb(x_r')=vb(0), $
+
+  $ vb(x_r)=vb(x_r'). $
+
+  This contradicts with the assumption we made at the start, so every vector in the column space can only be made by one vector in the row space.
+]
 
 #theorem[
   Any two orthogonal subspaces $V$ and $W$ in $RR^n$ need to satisfy $ dim(V)+dim(W) <= n $
