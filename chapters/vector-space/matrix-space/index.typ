@@ -16,25 +16,28 @@ Therefore, the atomic objects at study could very well be matrices. #example[
 #example[
   The union of the subspace of symmetric matrices $S$ and upper triangular matrices $U$, both having dimension of $6$, is also a subspace, of dimension $3$. And, the space of symmetric plus upper triangular, $S + U$, is also a vector space (see @pbm:SplusT), with dimension $9$.
 ]
-#remark[
-  Interestingly, $ dim U + dim S = dim (U +S) + dim (U inter S). $
-]
+#lbl(
+  <thm:dimensional-relationship-of-the-sum-of-two-subspaces-and-the-intersection-of-two-subspaces>,
+  theorem[
+    For any two subspaces $U$ and $S$, $ dim U + dim S = dim (U +S) + dim (U inter S). $
+  ],
+)
 
-We want to give a proof for the above remark. Assume each vector space has a basis.
+Here's a proof for the above theorem. Assume each vector space has a basis.
 
 $ vb(S) inter vb(U): vb(v_1),vb(v_2),dots,vb(v_k) $
 
-We extend the basis of $vb(S) inter vb(U)$ to get the basis of $vb(S)$ and $vb(U)$.
+Extend the basis of $vb(S) inter vb(U)$ to get the basis of $vb(S)$ and $vb(U)$.
 
 $ vb(S): vb(s_1), vb(s_2), dots, vb(s_a), vb(v_1),vb(v_2),dots,vb(v_k) $
 
 $ vb(U): vb(u_1),vb(u_2),dots,vb(u_b),vb(v_1),vb(v_2),dots,vb(v_k) $
 
-We claim that the basis of $vb(S)+vb(U)$ is:
+I claim that the basis of $vb(S)+vb(U)$ is:
 
 $ vb(s_1), vb(s_2), dots, vb(s_a), vb(u_1),vb(u_2),dots,vb(u_b), vb(v_1),vb(v_2),dots,vb(v_k) $
 
-Now we need to prove this. First, the vectors above span the whole space $vb(S)+vb(U)$. Take one of its element $s+u$, we can write it as:
+First, the vectors above span the whole space $vb(S)+vb(U)$. Take one of its element $s+u$, we can write it as:
 
 $ sum((a_i vb(s_i)+b_j vb(v_j))+(c_x vb(u_x)+d_y vb(v_y))), $
 
