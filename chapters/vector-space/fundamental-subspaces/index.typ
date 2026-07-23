@@ -65,7 +65,9 @@ Since row operations doesn't change the solution to an linear equation, and doin
 In order to further specify and develop the concept of subspaces being orthogonal, we make the following definition of orthogonal subspaces.
 
 #definition[
-  Given subspace $S$, a subspace $T$ is the _orthogonal compliment_ of $S$ iff $ forall vb(v) in T, quad forall vb(s) in S, quad vb(v) perp vb(s). $ Denote this relation as $T = S^perp$, or equivalently $S = T^perp$.
+  Given subspace $S$, a subspace $T$ is the _orthogonal complement_ of $S$ iff $ S,T in RR^n,quad forall vb(v) in T, quad forall vb(s) in S, quad vb(v) perp vb(s), quad dim(S)+dim(T)=n, $ Denote this relation as $T = S^perp$, or equivalently $S = T^perp$.
+
+  Using human language, $T$ contains all the vectors that are perpendicular to every vector in $S$.
 ]
 
 It is easy to show that $S^perp$ is a subspace. Any linear combination of the vectors in it still produces a zero dot product with any vector in $S$.
