@@ -46,7 +46,7 @@ Similar to how elimination could be seen as a matrix factorization of $vb(A = L 
 
 To make the explanation below easier, I sometimes ignore the normalizing part, or the scalar multiplication. When I say some projection capture the whole of a vector, I mean that the direction of the vector is covered, ignoring that $q$ is a normal vector and need to be multiplied by some scalar to get to the exact vector.
 
-The word "capture" is an intuitive way of describing how each vector is decomposed into projections onto different orthonormal vectors. If a vector $vb(v)=vb(p)_1+vb(p)_2+vb(p)_3$, this means that $vb(p)_1$ "captures" tha part of $vb(v)$ that is along the direction of $vb(p)_1$, $vb(p)_2$ "captures" the part of $vb(v)$ that is along the direction of $vb(p)_2$, and $vb(p)_3$ "captures" the direction along $vb(p)_3$. An easy example is the 2D coordinate system, every vector in it can be expressed as:
+The word "capture" is an intuitive way of describing how a vector is decomposed into projections onto different orthonormal vectors. If a vector $vb(v)=vb(p)_1+vb(p)_2+vb(p)_3$, this means that $vb(p)_1$ "captures" tha part of $vb(v)$ that is along the direction of $vb(p)_1$, $vb(p)_2$ "captures" the part of $vb(v)$ that is along the direction of $vb(p)_2$, and $vb(p)_3$ "captures" the direction along $vb(p)_3$. An easy example is the 2D coordinate system, every vector in it can be expressed as:
 
 $ vb(v)=mat(x; y)=x mat(1; 0) + y mat(0; 1) $
 
@@ -68,7 +68,9 @@ Generalizing to $n$ vectors, the above still works. Column $j$ of $vb(R)$ contai
 
 $ vb(a)_i=(vb(q)_1^top vb(a)_i) vb(q)_1 + (vb(q)_2^top vb(a_i)) vb(q)_2+ dots + (vb(q)_i^top vb(a_i)) vb(q)_i $
 
-Since $vb(q)_i$ is produced by subtracting the previous directions from the current vector $vb(a)_i$, it is orthogonal to all the previous directions, and captures everything left in $vb(a)_i$ that is not captured by the previous $vb(q)$'s. For $vb(q)_i$ where $i>j$, they capture nothing from $vb(a)_j$ since there's nothing left, making $vb(R)$ upper triangular.
+Since $vb(q)_i$ is produced by subtracting the previous directions from the current vector $vb(a)_i$, it is orthogonal to all the previous directions, and captures everything left in $vb(a)_i$ that is not captured by the previous $vb(q)$'s. For $vb(q)_i$ where $i>j$, they capture nothing from $vb(a)_j$ since there's nothing left, making $vb(R)$ upper triangular. Using math, I meant that when $i>j$,
+
+$ (vb(q)_i^top vb(a)_j)vb(q)_i = vb(0). $
 
 In addition to how Gram-Schmidt works, there's another key reason why $vb(R)$ is upper triangular. That is to solve $vb(A)vb(x)=vb(b)$ when $vb(b)$ is not in $C(vb(A))$.
 
