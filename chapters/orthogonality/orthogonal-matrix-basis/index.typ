@@ -42,4 +42,19 @@ Now, when adding one more vector $vb(c)$, we aim to obtain the component of it e
 
 For more vectors, repeating this recursive process of subtracting off the existing directions' components gives a new orthogonal vector.
 
-Similar to how elimination could be seen as a matrix factorization of $vb(A = L U)$, Gram-Schmidt could also be seen from the matrix factorization perspective. Specifically, $vb(A = Q R)$. Since $C(vb(A)) = C(vb(Q))$, as they are the basis of the same subspace, a combination of $vb(Q)$ sends it to $vb(A)$, namely $vb(R)$. The specialty about $vb(R)$ is that it is upper triangular, surprisingly similar to the $vb(L U)$ decomposition, as a result of later vectors being orthogonal to the previous ones, making their dot product $0$. For example, when $n = 2$, $ vb(A) := mat(vb(a), vb(b)) = vb(Q R) = mat(vb(q)_1, vb(q)_2) mat(vb(q)_1^top vb(a), vb(q)_2^top vb(b); vb(q)_1^top vb(a), vb(q)_2^top vb(b)) $
+Similar to how elimination could be seen as a matrix factorization of $vb(A = L U)$, Gram-Schmidt could also be seen from the matrix factorization perspective. Specifically, $vb(A = Q R)$. Since $C(vb(A)) = C(vb(Q))$, as they are the basis of the same subspace, a combination of $vb(Q)$ sends it to $vb(A)$, namely $vb(R)$. The specialty about $vb(R)$ is that it is upper triangular, surprisingly similar to the $vb(L U)$ decomposition, as a result of later vectors being orthogonal to the previous ones, making their dot product $0$. For example, when $n = 2$, $ vb(A) := mat(vb(a), vb(b)) = vb(Q R) = mat(vb(q)_1, vb(q)_2) mat(vb(q)_1^top vb(a), vb(q)_1^top vb(b); vb(q)_2^top vb(a), vb(q)_2^top vb(b)) $
+
+To make the explanation below easier,I sometimes ignore the normalizing part, or the scalar multiplication. When I say some projection capture the whole of a vector, I mean that the direction of the vector is covered, ignoring that $q$ is a normal vector and need to be multiplied by some scalar to get to the exact vector.
+
+What is in $vb(R)$? Let's multiply it out. $vb(b)=vb(q)_1(vb(q)_1^top vb(b))$, where $vb(q)_1^top vb(b)$ is a scalar, multiplied to $vb(q)_1$. I claim that this is the projection of $vb(b)$ onto $vb(q)_1$. The formula for projection is $vb(p)=(vb(q)_1^top vb(a)_2)/ (vb(q)_1^top vb(q)_1) vb(q)_1$. Since $vb(q)_1$ is a normal vector, $vb(q)_1^top vb(q)_1=1$, so the projection is just $(vb(q)_1^top vb(a)_2) vb(q)_1$. So $vb(R)$ stores the scalars of each vector's projection onto the $vb(q)$'s.
+
+The matrix $vb(R)$ doesn't seem to be upper triangular, but according to the way Gram-Schmidt transformation works, $vb(q)_1$ captures the whole of $a_1$, and $vb(q)_2$ is orthogonal to $vb(q)_1$, so the projection of $a_1$ onto $vb(q)_2$ should be zero. The element on the bottom left is zero.
+
+$
+  mat(vb(a)_1, vb(a)_2, dots, vb(a)_n) = mat(vb(q)_1, vb(q)_2, dots, vb(q)_n) mat(
+    vb(q)_1^top vb(a)_1, vb(q)_1^top vb(a)_2, vb(q)_1^top vb(a)_3, dots, vb(q)_1^top vb(a)_n; , vb(q)_2^top vb(a)_2, vb(q)_2^top vb(a)_3, dots, vb(q)_2^top vb(a)_n; , , vb(q)_3^top vb(a)_3, dots, vb(q)_3^top vb(a)_n; ; , , , dots.v; ; , , , vb(q)_(n-1)^top vb(a)_(n-1), vb(q)_(n-1)^top vb(a)_n;
+    , , , , vb(q)_n^top vb(a)_n
+  )
+$
+
+Generalizing to $n$ vectors, the above still works. Column $j$ of $vb(R)$ contains $vb(a)_j$, and row $i$ of $vb(R)$ contains $vb(q)_i$. I wrote the matrix $vb(R)$ in upper triangular form this time, but you should still know why the terms $vb(R)_(i j)$ where $i>j$ are always zero. Vector $vb(a)_i$ is captured by $vb(q)_1$ to $vb(q)_i$. Since $vb(q)_i$ is produced by subtracting the previous directions from the current vector $vb(a)_i$, it is orthogonal to all the previous directions, and captures everything left in $vb(a)_i$ that is not captured by the previous $vb(q)$'s. For $vb(q)_i$ where $i>j$, they capture nothing from $vb(a)_j$ since there's nothing left, making $vb(R)$ upper triangular.

@@ -20,7 +20,7 @@ To find the coefficients of each term of the series, we use projection. First, i
 For two functions as basis vectors to be orthogonal, we define their inner product that extends dot product and show they are pairwise $0$.
 
 #definition[
-  The _inner project_ $braket(f, g)$ over interval $[a, b]$ is defined as $ braket(f, g) = integral_a^b f(x) g(x) dif x. $
+  The _inner product_ $braket(f, g)$ over interval $[a, b]$ is defined as $ braket(f, g) = integral_a^b f(x) g(x) dif x. $
 ]
 This definition makes sense as the dot project sums the product of each individual components. Here, to the continuous case, the summation is generalized.
 
