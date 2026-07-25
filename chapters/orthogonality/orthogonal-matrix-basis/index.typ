@@ -46,7 +46,7 @@ Similar to how elimination could be seen as a matrix factorization of $vb(A = L 
 
 To make the explanation below easier,I sometimes ignore the normalizing part, or the scalar multiplication. When I say some projection capture the whole of a vector, I mean that the direction of the vector is covered, ignoring that $q$ is a normal vector and need to be multiplied by some scalar to get to the exact vector.
 
-What is in $vb(R)$? Let's multiply it out. $vb(b)=vb(q)_1(vb(q)_1^top vb(b))$, where $vb(q)_1^top vb(b)$ is a scalar, multiplied to $vb(q)_1$. I claim that this is the projection of $vb(b)$ onto $vb(q)_1$. The formula for projection is $vb(p)=(vb(q)_1^top vb(a)_2)/ (vb(q)_1^top vb(q)_1) vb(q)_1$. Since $vb(q)_1$ is a normal vector, $vb(q)_1^top vb(q)_1=1$, so the projection is just $(vb(q)_1^top vb(a)_2) vb(q)_1$. So $vb(R)$ stores the scalars of each vector's projection onto the $vb(q)$'s.
+What is in $vb(R)$? Let's multiply it out. $vb(b)=vb(q)_1(vb(q)_1^top vb(b))$, where $vb(q)_1^top vb(b)$ is a scalar, multiplied to $vb(q)_1$. I claim that this is the projection of $vb(b)$ onto $vb(q)_1$. The formula for projection is $vb(p)=(vb(q)_1^top vb(b))/ (vb(q)_1^top vb(q)_1) vb(q)_1$. Since $vb(q)_1$ is a normal vector, $vb(q)_1^top vb(q)_1=1$, so the projection is just $(vb(q)_1^top vb(b)) vb(q)_1$. So $vb(R)$ stores the scalars of each vector's projection onto the $vb(q)$'s.
 
 The matrix $vb(R)$ doesn't seem to be upper triangular, but according to the way Gram-Schmidt transformation works, $vb(q)_1$ captures the whole of $a_1$, and $vb(q)_2$ is orthogonal to $vb(q)_1$, so the projection of $a_1$ onto $vb(q)_2$ should be zero. The element on the bottom left is zero.
 
