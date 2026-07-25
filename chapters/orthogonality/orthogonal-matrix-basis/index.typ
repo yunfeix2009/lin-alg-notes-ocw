@@ -44,12 +44,15 @@ For more vectors, repeating this recursive process of subtracting off the existi
 
 Similar to how elimination could be seen as a matrix factorization of $vb(A = L U)$, Gram-Schmidt could also be seen from the matrix factorization perspective. Specifically, $vb(A = Q R)$. Since $C(vb(A)) = C(vb(Q))$, as they are the basis of the same subspace, a combination of $vb(Q)$ sends it to $vb(A)$, namely $vb(R)$. The specialty about $vb(R)$ is that it is upper triangular, surprisingly similar to the $vb(L U)$ decomposition, as a result of later vectors being orthogonal to the previous ones, making their dot product $0$. For example, when $n = 2$, $ vb(A) := mat(vb(a), vb(b)) = vb(Q R) = mat(vb(q)_1, vb(q)_2) mat(vb(q)_1^top vb(a), vb(q)_1^top vb(b); vb(q)_2^top vb(a), vb(q)_2^top vb(b)) $
 
-To make the explanation below easier,I sometimes ignore the normalizing part, or the scalar multiplication. When I say some projection capture the whole of a vector, I mean that the direction of the vector is covered, ignoring that $q$ is a normal vector and need to be multiplied by some scalar to get to the exact vector.
+To make the explanation below easier, I sometimes ignore the normalizing part, or the scalar multiplication. When I say some projection capture the whole of a vector, I mean that the direction of the vector is covered, ignoring that $q$ is a normal vector and need to be multiplied by some scalar to get to the exact vector.
 
-What is in $vb(R)$? Let's multiply it out. $vb(b)=vb(q)_1(vb(q)_1^top vb(b))+vb(q)_2(vb(q)_2^top vb(b))$, where $vb(q)_1^top vb(b)$ is a scalar, multiplied to $vb(q)_1$. I claim that this is the projection of $vb(b)$ onto $vb(q)_1$. The formula for projection is $vb(p)=(vb(q)_1^top vb(b))/ (vb(q)_1^top vb(q)_1) vb(q)_1$. Since $vb(q)_1$ is a normal vector, $vb(q)_1^top vb(q)_1=1$, so the projection is just $(vb(q)_1^top vb(b)) vb(q)_1$. So $vb(R)$ stores the scalars of each vector's projection onto the $vb(q)$'s.
+The word "capture" is an intuitive way of describing how each vector is decomposed into projections onto different orthonormal vectors. If a vector $vb(v)=vb(p)_1+vb(p)_2+vb(p)_3$, this means that $vb(p)_1$ "captures" tha part of $vb(v)$ that is along the direction of $vb(p)_1$, $vb(p)_2$ "captures" the part of $vb(v)$ that is along the direction of $vb(p)_2$, and $vb(p)_3$ "captures" the direction along $vb(p)_3$. An easy example is the 2D coordinate system, every vector in it can be expressed as:
 
-The matrix $vb(R)$ doesn't seem to be upper triangular, but according to the way Gram-Schmidt transformation works, $vb(q)_1$ captures the whole of $a_1$, and $vb(q)_2$ is orthogonal to $vb(q)_1$, so the projection of $a_1$ onto $vb(q)_2$ should be zero. The element on the bottom left is zero.
+$ vb(v)=mat(x; y)=x mat(1; 0) + y mat(0; 1) $
 
+$mat(1; 0)$ and $mat(0; 1)$ are the two directions that "capture" $vb(v)$.
+
+I'll put the generalization here, but explanation will start with the two by two matrix.
 $
   mat(vb(a)_1, vb(a)_2, dots, vb(a)_n) = mat(vb(q)_1, vb(q)_2, dots, vb(q)_n) mat(
     vb(q)_1^top vb(a)_1, vb(q)_1^top vb(a)_2, vb(q)_1^top vb(a)_3, dots, vb(q)_1^top vb(a)_n; , vb(q)_2^top vb(a)_2, vb(q)_2^top vb(a)_3, dots, vb(q)_2^top vb(a)_n; , , vb(q)_3^top vb(a)_3, dots, vb(q)_3^top vb(a)_n; ; , , , dots.v; ; , , , vb(q)_(n-1)^top vb(a)_(n-1), vb(q)_(n-1)^top vb(a)_n;
@@ -57,4 +60,28 @@ $
   )
 $
 
-Generalizing to $n$ vectors, the above still works. Column $j$ of $vb(R)$ contains $vb(a)_j$, and row $i$ of $vb(R)$ contains $vb(q)_i$. I wrote the matrix $vb(R)$ in upper triangular form this time, but you should still know why the terms $vb(R)_(i j)$ where $i>j$ are always zero. Vector $vb(a)_i$ is captured by $vb(q)_1$ to $vb(q)_i$. Since $vb(q)_i$ is produced by subtracting the previous directions from the current vector $vb(a)_i$, it is orthogonal to all the previous directions, and captures everything left in $vb(a)_i$ that is not captured by the previous $vb(q)$'s. For $vb(q)_i$ where $i>j$, they capture nothing from $vb(a)_j$ since there's nothing left, making $vb(R)$ upper triangular.
+What is in $vb(R)$? Let's multiply it out. $vb(b)=vb(q)_1(vb(q)_1^top vb(b))+vb(q)_2(vb(q)_2^top vb(b))$, where $vb(q)_1^top vb(b)$ is a scalar, multiplied to $vb(q)_1$. I claim that this is the projection of $vb(b)$ onto $vb(q)_1$. The formula for projection is $vb(p)=(vb(q)_1^top vb(b))/ (vb(q)_1^top vb(q)_1) vb(q)_1$. Since $vb(q)_1$ is a normal vector, $vb(q)_1^top vb(q)_1=1$, so the projection is just $(vb(q)_1^top vb(b)) vb(q)_1$. So $vb(R)$ stores the scalars of each vector's projection onto the $vb(q)$'s.
+
+The matrix $vb(R)$ doesn't seem to be upper triangular in the two by two example, but according to the way Gram-Schmidt transformation works, $vb(q)_1$ captures the whole of $a_1$, and $vb(q)_2$ is orthogonal to $vb(q)_1$, so the projection of $a_1$ onto $vb(q)_2$ should be zero. The element on the bottom left is zero.
+
+Generalizing to $n$ vectors, the above still works. Column $j$ of $vb(R)$ contains $vb(a)_j$, and row $i$ of $vb(R)$ contains $vb(q)_i$. I wrote the matrix $vb(R)$ in upper triangular form this time, but you should still know why the terms $vb(R)_(i j)$ where $i>j$ are always zero. Vector $vb(a)_i$ is captured by $vb(q)_1$ to $vb(q)_i$. Formally,
+
+$ vb(a)_i=(vb(q)_1^top vb(a)_i) vb(q)_1 + (vb(q)_2^top vb(a_i)) vb(q)_2+ dots + (vb(q)_i^top vb(a_i)) vb(q)_i $
+
+Since $vb(q)_i$ is produced by subtracting the previous directions from the current vector $vb(a)_i$, it is orthogonal to all the previous directions, and captures everything left in $vb(a)_i$ that is not captured by the previous $vb(q)$'s. For $vb(q)_i$ where $i>j$, they capture nothing from $vb(a)_j$ since there's nothing left, making $vb(R)$ upper triangular.
+
+In addition to how Gram-Schmidt works, there's another key reason why $vb(R)$ is upper triangular. That is to solve $vb(A)vb(x)=vb(b)$ when $vb(b)$ is not in $C(vb(A))$.
+
+To solve $vb(A)^top vb(A) hat(vb(x))=vb(A)^top vb(b)$, substitute $vb(A)$ with $vb(Q) vb(R)$,
+
+$ vb(R)^top vb(Q)^top vb(Q) vb(R) hat(vb(x))=vb(R)^top vb(Q)^top vb(b). $
+
+Since $vb(Q)^top vb(Q)=vb(I)$,
+
+$ vb(R)^top vb(R) hat(vb(x)) = vb(R)^top vb(Q)^top vb(b). $
+
+Assume $vb(R)$ doesn't have zeroes on the diagonal, then $vb(R)^top$ is always invertible. Multiply both sides by $(vb(R)^top)^(-1)$,
+
+$ vb(R) hat(vb(x))= vb(Q)^top vb(b) $
+
+Because $vb(R)$ is upper triangular, we can calculate $vb(Q)^top vb(b)$ and directly do back substitution to get $hat(vb(x))$. When $vb(A)$ is fixed, and there are a lot of $vb(b)$'s to solve, we only need to calculate $vb(R)$ and $vb(Q)$ once, then everything becomes easy.
