@@ -47,7 +47,7 @@ Similar to how elimination could be seen as a matrix factorization of $vb(A = L 
 $------------------------------------------$
 The general form of the $vb(Q R)$ representation is as the following theorem.
 #lbl(<thm:qr>, theorem[
-  Given square matrix $vb(A)$, it could be factorized into $v(Q R)$ where $ vb(Q):= mat(vb(q)_1, vb(q)_2, vb(q)_3, dots, vb(q)_n) $ is an orthogonal matrix and
+  Given square matrix $vb(A)$, it could be factorized into $vb(Q R)$ where $ vb(Q):= mat(vb(q)_1, vb(q)_2, vb(q)_3, dots, vb(q)_n) $ is an orthogonal matrix and
   $
     vb(R) := mat(
       bold(q)_1^T bold(a)_1, bold(q)_1^T bold(a)_2, bold(q)_1^T bold(a)_3, dots.c, bold(q)_1^T bold(a)_n;
