@@ -18,13 +18,13 @@ Since many ideas of linear algebra are expressed in terms of matrices, we consid
 ]
 Hence, for an orthogonal matrix $vb(Q)$, $vb(Q)^top = vb(Q)^(-1)$.
 
-To verify this fact, notice that permutation matrices are orthogonal, and satisfies $vb(Q)^top = vb(Q)^(-1)$.
+To verify this fact, notice that permutation matrices are orthogonal, and satisfy $vb(Q)^top = vb(Q)^(-1)$.
 
 Looking back into @emp:adhemar, we see that putting those values into a matrix, we obtain an orthogonal matrix with values, after scaling, $1$'s and $-1$'s.
 #definition[
   A Hadamard matrix $vb(H)$ is a $n times n$ matrix such that $vb(H H)^top = n vb(I)$
 ]
-It is known that it exists for $n=1, 2$ and conjectured to exist for every $4 divides n$.
+It is known that to exists for $n=1, 2$ and conjectured to exist for every $4 divides n$.
 
 Now, we explore what's useful regarding orthonormal or orthogonal matrices.
 
