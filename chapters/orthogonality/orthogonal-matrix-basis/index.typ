@@ -47,7 +47,7 @@ Similar to how elimination could be seen as a matrix factorization of $vb(A = L 
 $------------------------------------------$
 The general form of the $vb(Q R)$ representation is as the following theorem.
 #lbl(<thm:qr>, theorem[
-  Given square matrix $vb(A)$, it could be factorized into $vb(Q R)$ where $ vb(Q):= mat(vb(q)_1, vb(q)_2, vb(q)_3, dots, vb(q)_n) $ is an orthogonal matrix and
+  Given matrix $vb(A)$, it could be factorized into $vb(Q R)$ where $ vb(Q):= mat(vb(q)_1, vb(q)_2, vb(q)_3, dots, vb(q)_n) $ is an orthonormal matrix and
   $
     vb(R) := mat(
       bold(q)_1^T bold(a)_1, bold(q)_1^T bold(a)_2, bold(q)_1^T bold(a)_3, dots.c, bold(q)_1^T bold(a)_n;
@@ -113,18 +113,21 @@ $------------------------------------------$
 
 // $ (vb(q)_i^top vb(a)_j)vb(q)_i = vb(0). $
 
-In addition to how Gram-Schmidt works, there's another key reason why $vb(R)$ is upper triangular. That is to solve $vb(A)vb(x)=vb(b)$ when $vb(b)$ is not in $C(vb(A))$.
+A practical application of the $vb(Q R)$ decomposition and Gram-Schmidt is in solving least squares equation @eqn:lsa.
 
-To solve $vb(A)^top vb(A) hat(vb(x))=vb(A)^top vb(b)$, substitute $vb(A)$ with $vb(Q) vb(R)$,
+Substitute $vb(A)$ with $vb(Q R)$, @eqn:lsa becomes
 
 $ vb(R)^top vb(Q)^top vb(Q) vb(R) hat(vb(x))=vb(R)^top vb(Q)^top vb(b). $
 
 Since $vb(Q)^top vb(Q)=vb(I)$,
 
+
 $ vb(R)^top vb(R) hat(vb(x)) = vb(R)^top vb(Q)^top vb(b). $
 
-Assume $vb(R)$ doesn't have zeroes on the diagonal, then $vb(R)^top$ is always invertible. Multiply both sides by $(vb(R)^top)^(-1)$,
+In the case where $vb(R)$ has full column rank, meaning $vb(R^top)$ is invertible. Multiply both sides by $(vb(R)^top)^(-1)$ gives
 
-$ vb(R) hat(vb(x))= vb(Q)^top vb(b) $
+$ vb(R) hat(vb(x))= vb(Q)^top vb(b). $
 
-Because $vb(R)$ is upper triangular, we can calculate $vb(Q)^top vb(b)$ and directly do back substitution to get $hat(vb(x))$. When $vb(A)$ is fixed, and there are a lot of $vb(b)$'s to solve, we only need to calculate $vb(R)$ and $vb(Q)$ once, then everything becomes easy.
+Because $vb(R)$ is upper triangular, $hat(vb(x))$ may be solved with relatively low complexity using back substitution. However, it should still be noted that such algorithmic optimization relies on pre-computed $vb(Q R)$ with Gram-Schmidt, whose complexity must be factored into the analysis.
+
+Hence, the complexity of such computation is $O(m n^2)$, which is the same as Gaussian elimination.
