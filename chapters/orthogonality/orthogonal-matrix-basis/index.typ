@@ -44,7 +44,8 @@ For more vectors, repeating this recursive process of subtracting off the existi
 
 Similar to how elimination could be seen as a matrix factorization of $vb(A = L U)$, Gram-Schmidt could also be seen from the matrix factorization perspective. Specifically, $vb(A = Q R)$. Since $C(vb(A)) = C(vb(Q))$, as they are the basis of the same subspace, a combination of $vb(Q)$ sends it to $vb(A)$, namely $vb(R)$. The specialty about $vb(R)$ is that it is upper triangular, surprisingly similar to the $vb(L U)$ decomposition, as a result of later vectors being orthogonal to the previous ones, making their dot product $0$. For example, when $n = 2$, $ vb(A) := mat(vb(a), vb(b)) = vb(Q R) = mat(vb(q)_1, vb(q)_2) mat(vb(q)_1^top vb(a), vb(q)_1^top vb(b); vb(q)_2^top vb(a), vb(q)_2^top vb(b)) $
 
-$------------------------------------------$
+// $------------------------------------------$
+// #line(length:100%, stroke: 0.3pt)
 The general form of the $vb(Q R)$ representation is as the following theorem.
 #lbl(<thm:qr>, theorem[
   Given matrix $vb(A)$, it could be factorized into $vb(Q R)$ where $ vb(Q):= mat(vb(q)_1, vb(q)_2, vb(q)_3, dots, vb(q)_n) $ is an orthonormal matrix and
@@ -65,7 +66,7 @@ The general form of the $vb(Q R)$ representation is as the following theorem.
 ]
 
 #lbl(<thm:r>, theorem[
-  The matrix $vb(R)$ from @thm:qr is upper triangular, in other words,   $ R = mat(
+  The matrix $vb(R)$ from @thm:qr is upper triangular, in other words,   $ vb(R) = mat(
     bold(q)_1^T bold(a)_1, bold(q)_1^T bold(a)_2, bold(q)_1^T bold(a)_3, dots.c, bold(q)_1^T bold(a)_n;
     bold(q)_2^T bold(a)_1, bold(q)_2^T bold(a)_2, bold(q)_2^T bold(a)_3, dots.c, bold(q)_2^T bold(a)_n;
     bold(q)_3^T bold(a)_1, bold(q)_3^T bold(a)_2, bold(q)_3^T bold(a)_3, dots.c, bold(q)_3^T bold(a)_n;
