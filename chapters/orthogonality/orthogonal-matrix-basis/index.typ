@@ -119,11 +119,11 @@ The general form of the $vb(Q R)$ representation is as the following theorem.
   Denote the unnormalized version of $vb(q)_i$ as $vb(q)'_i$. Since the formula for calculating $vb(q)'_i$ is
 
   $
-    vb(q)'_i=vb(a)_i-"projection of "vb(a)_i" onto "vb(q)_1-"projection of "vb(a)_i" onto "vb(q)_2-dots- "projection of "vb(a)_i" onto "vb(q)_(i-1),
+    vb(q)'_i=vb(a)_i-"projection of "vb(a)_i" onto " op("span")(vb(q)_1, vb(q)_2, dots, vb(q)_(i-1))
   $
 
   $
-    vb(a)_i="projection of "vb(a)_i" onto "vb(q)_1+"projection of "vb(a)_i" onto "vb(q)_2+dots+"projection of "vb(a)_i" onto "vb(q)_(i-1)+vb(q)'_i
+    vb(a)_i="projection of "vb(a)_i" onto " op("span")(vb(q)_1, vb(q)_2, dots, vb(q)_(i-1))+vb(q)'_i
   $
 
   and $vb(q)_i$ is some multiple of $vb(q)'_i$, the vector $vb(a)_i$ is decomposed into its projections onto $vb(q)_1,vb(q)_2,vb(q)_3,dots,vb(q)_i$. It also implies that $vb(a)_i$ is in the space spanned by the vectors $vb(q)_1,vb(q)_2,vb(q)_3,dots,vb(q)_i$.
