@@ -10,6 +10,7 @@
     #include "determinant-formula/index.typ"
     #include "determinant-applications/index.typ"
     #include "cross-product/index.typ"
+    #include "app/index.typ"
   ],
   label: <sec:determinants>,
 )

@@ -48,7 +48,8 @@ Similar to how elimination could be seen as a matrix factorization of $vb(A = L 
 // #line(length:100%, stroke: 0.3pt)
 The general form of the $vb(Q R)$ representation is as the following theorem.
 #lbl(<thm:qr>, theorem[
-  Given matrix $vb(A)$, it could be factorized into $vb(Q R)$ where $ vb(Q):= mat(vb(q)_1, vb(q)_2, vb(q)_3, dots, vb(q)_n) $ is an orthonormal matrix and
+  Given matrix $vb(A) in RR^(m times n)$,
+  it could be factorized into $vb(Q R)$ where $ vb(Q):= mat(vb(q)_1, vb(q)_2, vb(q)_3, dots, vb(q)_n) $ is an orthonormal matrix and
   $
     vb(R) := mat(
       bold(q)_1^T bold(a)_1, bold(q)_1^T bold(a)_2, bold(q)_1^T bold(a)_3, dots.c, bold(q)_1^T bold(a)_n;
@@ -60,29 +61,84 @@ The general form of the $vb(Q R)$ representation is as the following theorem.
   $
 ])
 
+#proof[
+  Denote the $n$ columns of $vb(A)$ to be $vb(a)_1,vb(a)_2,dots,vb(a)_n$
+
+  We define $vb(q)_1,vb(q)_2,dots,vb(q)_n$ as the orthonormal vectors produced by performing Gram-Schmidt on $vb(a)_1,vb(a)_2,dots,vb(a)_n$.
+
+  According to the definition of $vb(q)_i$, every $vb(a)_i$ can be represented as
+
+  #lbl(
+    <eq:decomp-of-a>,
+    $
+      vb(a)_i & =c_1 vb(q)_1+c_2 vb(q)_2+ dots + c_n vb(q)_n \
+              & = vb(q)_1 c_1 + vb(q)_2 c_2+ dots + vb(q)_n c_n.
+    $,
+  )
+
+  Multiplying both sides by $vb(q)_j^top$ gives
+
+  $ vb(q)_j^top vb(a)_i= c_1 vb(q)_j^top vb(q)_1 + c_2 vb(q)_j^top vb(q)_2+ dots + c_n vb(q)_j^top vb(q)_n. $
+
+  Since $vb(q)_j^top vb(q)_k=0$ for $j != k$ and $vb(q)_j^top vb(q)_k=1$ for $j=k$, the equation above transforms into
+
+  $ vb(q)_j^top vb(a)_i=c_j vb(q)_j^top vb(q)_j =c_j. $
+
+  Substitution of $c_j$ with $vb(q)_j^top vb(a)_i$ in the equation @eq:decomp-of-a gives
+
+  $ vb(a)_i = vb(q)_1 vb(q)_1^top vb(a)_i +vb(q)_2 vb(q)_2^top vb(a)_i+ dots + vb(q)_n vb(q)_n^top vb(a)_i. $
+
+  The column $i$ of the product $vb(Q R)$ is $ vb(q)_1 vb(q)_1^top vb(a)_i +vb(q)_2 vb(q)_2^top vb(a)_i+ dots + vb(q)_n vb(q)_n^top vb(a)_i, $ which is exactly the same as the equation above, so $vb(A)=vb(Q R)$ is a valid construction.
+]
 
 #proof[
-
+  Using the same definition for $vb(a)_i$ $vb(q)_i$. By the process of obtaining $vb(q)_i$, specifically Gram-Schmidt, every $vb(q)_i$ is a linear combination of $vb(a)_i$, so $ C(vb(A)) = C(vb(Q)). $ Also, $vb(Q Q^top)$ is the projection matrix onto $C(vb(Q))$, as $vb(Q)$ may have more rows than columns. Hence, $vb(a)_i in C(vb(Q))$, $ vb(Q Q^top A = A). $ Finally, notice that the definition of $vb(R)$ is equivalent to $vb(R) := vb(Q^top A)$; therefore, multiplying both sides by $vb(Q)$, $ vb(Q R = Q Q^top A = A).#qedhere $
 ]
 
 #lbl(<thm:r>, theorem[
+<<<<<<< HEAD
   The matrix $vb(R)$ from @thm:qr is upper triangular, in other words,   $ vb(R) = mat(
+=======
+  The matrix $vb(R)$ from @thm:qr is upper triangular, in other words,   $ R
+  = mat(
+>>>>>>> 70847acc3b123ac96b5a637c2e27a25c3a9d0c4d
     bold(q)_1^T bold(a)_1, bold(q)_1^T bold(a)_2, bold(q)_1^T bold(a)_3, dots.c, bold(q)_1^T bold(a)_n;
     bold(q)_2^T bold(a)_1, bold(q)_2^T bold(a)_2, bold(q)_2^T bold(a)_3, dots.c, bold(q)_2^T bold(a)_n;
     bold(q)_3^T bold(a)_1, bold(q)_3^T bold(a)_2, bold(q)_3^T bold(a)_3, dots.c, bold(q)_3^T bold(a)_n;
     dots.v, dots.v, dots.v, dots.down, dots.v;
     bold(q)_n^T bold(a)_1, bold(q)_n^T bold(a)_2, bold(q)_n^T bold(a)_3, dots.c, bold(q)_n^T bold(a)_n
+  )=mat(
+    bold(q)_1^T bold(a)_1, bold(q)_1^T bold(a)_2, bold(q)_1^T bold(a)_3, dots.c, bold(q)_1^T bold(a)_n;
+    0, bold(q)_2^T bold(a)_2, bold(q)_2^T bold(a)_3, dots.c, bold(q)_2^T bold(a)_n;
+    0, 0, bold(q)_3^T bold(a)_3, dots.c, bold(q)_3^T bold(a)_n;
+    dots.v, dots.v, dots.v, dots.down, dots.v;
+    0, 0, 0, dots.c, bold(q)_n^T bold(a)_n
   ). $
 ])
 #proof[
+  Denote the unnormalized version of $vb(q)_i$ as $vb(q)'_i$. Since the formula for calculating $vb(q)'_i$ is
 
+  $
+    vb(q)'_i=vb(a)_i-"projection of "vb(a)_i" onto "vb(q)_1-"projection of "vb(a)_i" onto "vb(q)_2-dots- "projection of "vb(a)_i" onto "vb(q)_(i-1),
+  $
+
+  $
+    vb(a)_i="projection of "vb(a)_i" onto "vb(q)_1+"projection of "vb(a)_i" onto "vb(q)_2+dots+"projection of "vb(a)_i" onto "vb(q)_(i-1)+vb(q)'_i
+  $
+
+  and $vb(q)_i$ is some multiple of $vb(q)'_i$, the vector $vb(a)_i$ is decomposed into its projections onto $vb(q)_1,vb(q)_2,vb(q)_3,dots,vb(q)_i$. It also implies that $vb(a)_i$ is in the space spanned by the vectors $vb(q)_1,vb(q)_2,vb(q)_3,dots,vb(q)_i$.
+
+  The $vb(q)$'s are orthogonal to each other, meaning the vectors $vb(q)_j$ where $j>i$ are orthogonal to $vb(q)_1,vb(q)_2,vb(q)_3,dots,vb(q)_i$, hence orthogonal to $vb(a)_i$, which is in the space spanned by them. This indicates that $vb(a)_i dot vb(q)_j=0$, also written as
+  $ forall j>i,quad vb(q)_j^top vb(a)_i=0 $
 ]
 
 #lbl(<thm:q>, theorem[
   $vb(A)$ is invertible iff all vectors in $vb(Q)$ of its $vb(Q R)$ decomposition are non-zero.
 ])
 #proof[
-  Let the dimensions        of $vb(A)$ be  $n times n$ , $ vb(A) "is invertible" & <==> dim C(vb(A)) = n. $
+  Let the dimensions of $vb(A)$ be  $n times n$ , #align(left)[
+    $&vb(A) "is invertible" \ <==> &dim C(vb(A)) = n.\ <==> &dim C(vb(Q))=n #tag[($C(vb(A)) = C(vb(Q))$)] \ <==> &"The columns of "vb(Q)" are non-zero" #tag[($vb(Q)$ has full column rank)]$
+  ]
 ]
 $------------------------------------------$
 
