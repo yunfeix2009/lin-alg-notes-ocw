@@ -10,7 +10,7 @@
     #include "dot-product/index.typ"
   ],
 )
-Since the essence of linear algebra studies the operation linear transformation and the spaces they form, we first introduce the vectors, which linear combination is exerted upon. Then, we introduce to other useful operations on vectors. 
+Since the essence of linear algebra studies the operation linear transformation and the spaces they form, we first introduce the vectors, which linear combination is exerted upon. Then, we introduce to other useful operations on vectors.
 
 
 

@@ -504,7 +504,12 @@
   context {
     if thm-qed-done.get().last() == false {
       if state("render-mode").get() != "web" {
+        box(width: 0pt)
         h(1fr)
+        sym.wj
+        sym.space.nobreak
+      } else {
+        sym.wj
       }
       thm-qed-show-float
     }
@@ -643,7 +648,7 @@
               // if the marker/position metadata of numbering, minus width (so tag start) is before equation end (here), we add spaces after to add effective spaces
               // otherwise do nothing
               let extra-diff = calc.max(0pt, raw-overlap) // amount of space to add
-              extra-diff = calc.round(extra-diff * 10000 / 1pt) * 1pt / 10000 // help out convergence a bit
+              extra-diff = calc.round(extra-diff * 100 / 1pt) * 1pt / 100 // help out convergence a bit
               place(horizon, dx: diff + extra-diff, dy: dy, data.value.eq-tag)
               // place(horizon, dx: diff + extra-diff + 2em, repr(extra-diff))
               // place(horizon, dx: diff + extra-diff + 6em, repr(pre-extra-diff))

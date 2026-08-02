@@ -365,6 +365,35 @@
       });
     });
 
+    var currentPathName = window.location.pathname.replace(/\/index\.html$/, "/");
+    var currentItemIndex = items.findIndex(function (item) {
+      var link = item.querySelector("a[href]");
+      return link && navStorageKeyForLink(link) === currentPathName;
+    });
+
+    if (currentItemIndex >= 0) {
+      var currentDepth = navItemDepth(items[currentItemIndex]);
+      var ancestorDepth = currentDepth;
+      var modified = false;
+      for (var i = currentItemIndex - 1; i >= 0; i--) {
+        var depth = navItemDepth(items[i]);
+        if (depth < ancestorDepth) {
+          var link = items[i].querySelector("a[href]");
+          if (link) {
+            var key = navStorageKeyForLink(link);
+            if (collapsed.has(key)) {
+              collapsed.delete(key);
+              modified = true;
+            }
+          }
+          ancestorDepth = depth;
+        }
+      }
+      if (modified) {
+        safeWriteJson(storageKey, Array.from(collapsed));
+      }
+    }
+
     function applyGlobalNavCollapse() {
       var collapsedDepths = [];
       items.forEach(function (item) {
@@ -499,7 +528,7 @@
     return depth;
   }
 
-    function setupReferenceTooltips() {
+  function setupReferenceTooltips() {
     var tooltip = document.createElement("div");
     tooltip.className = "ref-tooltip";
     tooltip.setAttribute("role", "tooltip");
@@ -508,24 +537,26 @@
 
     var activeTrigger = null;
     var hideTimer = null;
-    
+
     var activePreviews = new Map(); // url -> previewObject
 
-    var previewResizeObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver(function(entries) {
+    var previewResizeObserver = typeof ResizeObserver !== "undefined" ? new ResizeObserver(function (entries) {
       for (var i = 0; i < entries.length; i++) {
         var el = entries[i].target;
         var contentEl = el.querySelector(".ref-preview-content");
         if (!contentEl) continue;
-        
+
         var style = getComputedStyle(el);
         var padTop = parseFloat(style.paddingTop) || 0;
         var padBottom = parseFloat(style.paddingBottom) || 0;
         var borderTop = parseFloat(style.borderTopWidth) || 0;
         var borderBottom = parseFloat(style.borderBottomWidth) || 0;
-        
+
         var intrinsicHeight = contentEl.offsetHeight + padTop + padBottom + borderTop + borderBottom;
-        
-        el.style.maxHeight = "min(" + intrinsicHeight + "px, calc(100vh - var(--topbar-height) - 1.7rem))";
+
+        // Add a small buffer to prevent an infinitesimal scrollbar in some browsers
+        var adjustedHeight = intrinsicHeight + 2;
+        el.style.maxHeight = "min(" + adjustedHeight + "px, calc(100vh - var(--topbar-height) - 1.7rem))";
       }
     }) : null;
     function clearHideTimer() {
@@ -851,10 +882,10 @@
         content: previewContent,
         dragged: false,
         dragState: null,
-        hasDragged: function() {
+        hasDragged: function () {
           return !!(this.dragged && this.dragState && typeof this.dragState.left === "number" && typeof this.dragState.top === "number");
         },
-        destroy: function() {
+        destroy: function () {
           if (previewResizeObserver) {
             previewResizeObserver.unobserve(element);
           }
@@ -874,7 +905,7 @@
         if (event.target !== element) return; // Only drag on the padding/edges
 
         var rect = element.getBoundingClientRect();
-        
+
         // Prevent drag on the bottom-right resize handle
         var isResizeHandle = (event.clientX - rect.left >= rect.width - 24) && 
                              (event.clientY - rect.top >= rect.height - 24);
@@ -929,7 +960,7 @@
       } catch (_error) {
         return;
       }
-      
+
       var normalizedUrl = url.href;
 
       if (activePreviews.has(normalizedUrl)) {
@@ -940,13 +971,13 @@
 
       previewMarkupForUrl(normalizedUrl).then(function (markup) {
         if (!markup) return;
-        
+
         // Before creating, check if it was opened during the fetch
         if (activePreviews.has(normalizedUrl)) return;
-        
+
         var previewObj = createPreviewObj(normalizedUrl);
         activePreviews.set(normalizedUrl, previewObj);
-        
+
         previewObj.content.innerHTML = markup;
         previewObj.element.style.visibility = "hidden";
         enhanceContent(previewObj.content);
@@ -1005,13 +1036,13 @@
     tooltip.addEventListener("mouseleave", scheduleHide);
     tooltip.addEventListener("focusin", clearHideTimer);
     tooltip.addEventListener("focusout", scheduleHide);
-    
+
     addEventListener("scroll", function () {
       if (!tooltip.hidden && activeTrigger) {
         placeTooltip(activeTrigger);
       }
     }, { passive: true });
-    
+
     addEventListener("resize", function () {
       if (!tooltip.hidden && activeTrigger) {
         placeTooltip(activeTrigger);
@@ -1022,7 +1053,7 @@
         }
       });
     });
-    
+
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") {
         hideTooltip();
@@ -1086,6 +1117,20 @@
     });
   }
 
+  function setupSidebarScroll() {
+    var left = document.querySelector(".sidebar-left");
+    if (!left) return;
+
+    var savedScroll = sessionStorage.getItem("sidebarScroll");
+    if (savedScroll !== null) {
+      left.scrollTop = parseInt(savedScroll, 10);
+    }
+
+    window.addEventListener("beforeunload", function () {
+      sessionStorage.setItem("sidebarScroll", left.scrollTop);
+    });
+  }
+
   normalizeDisplayMath(document);
   setupGlobalNavCollapse();
   setupLocalTocRowNavigation(document);
@@ -1094,6 +1139,7 @@
   setupReferenceTooltips();
   setupMathLinkNavigation();
   setupPrintButton();
+  setupSidebarScroll();
   addEventListener("beforeprint", expandSolutionsForPrint);
   addEventListener("afterprint", restoreSolutionsAfterPrint);
   addEventListener("beforeprint", applyPrintThemeOverride);

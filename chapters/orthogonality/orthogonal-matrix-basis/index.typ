@@ -96,12 +96,8 @@ The general form of the $vb(Q R)$ representation is as the following theorem.
 ]
 
 #lbl(<thm:r>, theorem[
-<<<<<<< HEAD
-  The matrix $vb(R)$ from @thm:qr is upper triangular, in other words,   $ vb(R) = mat(
-=======
   The matrix $vb(R)$ from @thm:qr is upper triangular, in other words,   $ R
   = mat(
->>>>>>> 70847acc3b123ac96b5a637c2e27a25c3a9d0c4d
     bold(q)_1^T bold(a)_1, bold(q)_1^T bold(a)_2, bold(q)_1^T bold(a)_3, dots.c, bold(q)_1^T bold(a)_n;
     bold(q)_2^T bold(a)_1, bold(q)_2^T bold(a)_2, bold(q)_2^T bold(a)_3, dots.c, bold(q)_2^T bold(a)_n;
     bold(q)_3^T bold(a)_1, bold(q)_3^T bold(a)_2, bold(q)_3^T bold(a)_3, dots.c, bold(q)_3^T bold(a)_n;
@@ -136,11 +132,10 @@ The general form of the $vb(Q R)$ representation is as the following theorem.
   $vb(A)$ is invertible iff all vectors in $vb(Q)$ of its $vb(Q R)$ decomposition are non-zero.
 ])
 #proof[
-  Let the dimensions of $vb(A)$ be  $n times n$ , #align(left)[
-    $&vb(A) "is invertible" \ <==> &dim C(vb(A)) = n.\ <==> &dim C(vb(Q))=n #tag[($C(vb(A)) = C(vb(Q))$)] \ <==> &"The columns of "vb(Q)" are non-zero" #tag[($vb(Q)$ has full column rank)]$
-  ]
+  Let the dimensions of $vb(A)$ be  $n times n$
+  $&vb(A) "is invertible" \ <==> &dim C(vb(A)) = n.\ <==> &dim C(vb(Q))=n #tag[($C(vb(A)) = C(vb(Q))$)] \ <==> &"The columns of "vb(Q)" are non-zero" #tag[($vb(Q)$ has full column rank)]$
+
 ]
-$------------------------------------------$
 
 // To make the explanation below easier, I sometimes ignore the normalizing part, or the scalar multiplication. When I say some projection capture the whole of a vector, I mean that the direction of the vector is covered, ignoring that $q$ is a normal vector and need to be multiplied by some scalar to get to the exact vector.
 

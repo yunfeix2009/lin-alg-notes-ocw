@@ -72,33 +72,6 @@
   }
 }
 
-#let _plain-text(value) = {
-  if value == none {
-    ""
-  } else if type(value) == str {
-    value
-  } else if type(value) == content {
-    let fields = value.fields()
-    if fields.keys().contains("text") {
-      fields.text
-    } else if fields.keys().contains("children") {
-      fields.children.map(_plain-text).join("")
-    } else if fields.keys().contains("body") {
-      _plain-text(fields.body)
-    } else if fields.keys().contains("child") {
-      _plain-text(fields.child)
-    } else if value.func() == [ ].func() {
-      " "
-    } else {
-      ""
-    }
-  } else {
-    str(value)
-  }
-}
-
-#let _metadata-page(page) = page + (title: _plain-text(page.title))
-
 #let _dirs-for(path) = path.split("/").slice(0, path.split("/").len() - 1).filter(part => part != "")
 #let _root-prefix(path) = range(_dirs-for(path).len()).map(_ => "../").join("")
 #let _pretty-path(path) = if path == "index.html" {
@@ -185,6 +158,24 @@
 
 #let _pages() = query(<page-meta>).map(it => it.value)
 #let _icon(name, path) = html.elem("img", attrs: (class: "icon", src: path, alt: name))
+
+#let _todo-description(body) = if body == none { [No description provided.] } else { body }
+
+#let todo(..args) = context {
+  assert(args.pos().len() <= 1, message: "todo accepts at most one content argument")
+  let body = args.pos().first(default: none)
+  let description = _todo-description(body)
+  if render-mode.get() == "web" {
+    [
+      #metadata((description: description)) <todo-marker>
+      #html.elem("aside", attrs: (class: "todo-callout", role: "note", "aria-label": "Todo"), {
+        link(<sec:todo>, html.elem("em", attrs: (class: "proof-head"), [Todo.]))
+        sym.space.nobreak
+        html.elem("span", attrs: (class: "todo-callout-description"), description)
+      })
+    ]
+  }
+}
 
 #let _nav-link(current, page) = context {
   let depth = _page-depth(page)
@@ -389,8 +380,8 @@
 }
 
 #let _html-page(page, body) = [
-  #metadata(_metadata-page(page)) <page-meta>
-  #document(page.doc-path, title: _plain-text(page.title))[
+  #metadata(page) <page-meta>
+  #document(page.doc-path, title: [#_page-label(page) | #notes-title])[
     #show: document-styles.with(mode: "web")
     #counter(math.equation).update(0)
     #thm-counter.thm-counters.update((:))
@@ -421,7 +412,7 @@
 #let _standalone-page(page, main-class: none, extra-scripts: (), body) = {
   let main-classes = ("content", main-class).filter(value => value != none).join(" ")
 
-  document(page.doc-path, title: _plain-text(page.title))[
+  document(page.doc-path, title: [#page.title | #notes-title])[
     #show: document-styles.with(mode: "web")
     #html.elem("link", attrs: (rel: "stylesheet", href: _asset-href(page.path, "assets/site.css")))
     #html.elem("link", attrs: (rel: "stylesheet", href: _asset-href(page.path, "assets/search.css")))
@@ -473,6 +464,43 @@
   ]
 }
 
+#let _todo-page() = context {
+  let page = (
+    id: "todo",
+    title: "Todos",
+    route: "/todo/",
+    path: "todo/index.html",
+    doc-path: "/todo/index.html",
+    kind: "todo",
+    level: 1,
+    heading-level: 1,
+    description: none,
+  )
+  let todos = query(selector(<todo-marker>).within(web-doc-label))
+
+  _standalone-page(page, main-class: "todo-page")[
+    #html.elem("h1", attrs: (class: "page-title"), [Todos]) <sec:todo>
+    #if todos.len() == 0 {
+      html.elem("p", attrs: (class: "todo-empty"), [No todos are currently marked.])
+    } else {
+      html.elem(
+        "p",
+        attrs: (class: "todo-summary"),
+        [#todos.len() open #if todos.len() == 1 { [todo] } else { [todos] }.],
+      )
+      html.elem("ol", attrs: (class: "todo-list"), {
+        for item in todos {
+          html.elem("li", attrs: (class: "todo-list-item"), {
+            link(item.location(), html.elem("em", attrs: (class: "proof-head"), [Todo.]))
+            sym.space.nobreak
+            html.elem("span", attrs: (class: "todo-list-description"), item.value.description)
+          })
+        }
+      })
+    }
+  ]
+}
+
 #let _not-found-page() = {
   let page = (
     id: "not-found",
@@ -507,7 +535,7 @@
 }
 
 #let _redirect-404-page() = {
-  let target = "https://yunfeix2009.github.io/lin-alg-notes-ocw/page-not-found/"
+  let target = "https://slipperking.github.io/complex-analysis/page-not-found"
 
   document("/404.html", title: "Redirecting…")[
     #show: document-styles.with(mode: "web")
@@ -593,10 +621,7 @@
   ..args,
 )
 #let docs-frontmatter(..args) = _docs-page(kind: "frontmatter", level: 1, heading-format: _plain-heading-format, ..args)
-#let docs-chapter(..args) = {
-  _docs-page(kind: "chapter", level: 1, heading-format: _chapter-heading-format, ..args)
-  context if render-mode.get() == "pdf" { pagebreak() }
-}
+#let docs-chapter(..args) = _docs-page(kind: "chapter", level: 1, heading-format: _chapter-heading-format, ..args)
 #let docs-subchapter(..args) = _docs-page(kind: "subchapter", level: 2, heading-format: _section-heading-format, ..args)
 #let docs-subsubchapter(..args) = _docs-page(
   kind: "subsubchapter",
@@ -623,6 +648,7 @@
       #{
         include "/chapters/index.typ"
         _search-page()
+        _todo-page()
         _not-found-page()
         _redirect-404-page()
       } #web-doc-label
