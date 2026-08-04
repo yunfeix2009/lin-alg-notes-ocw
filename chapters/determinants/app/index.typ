@@ -2,9 +2,9 @@
 #import "/lib.typ": *
 
 #show: docs-subchapter.with(
-  title: [Miscelleneous Problems Regarding Determinans],
-  route: "cross-product",
-  description: [Cross Product],
+  title: [Miscellaneous Problems Regarding Determinants],
+  route: "misc-problems",
+  label: "sec:misc-problems-deter",
 )
 
 #example[

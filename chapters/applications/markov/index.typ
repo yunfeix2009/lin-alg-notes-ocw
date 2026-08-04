@@ -44,65 +44,65 @@ The following example is from a recitation that resembles problem solving with M
 #lbl(<emp:markov>, example[
 
   A particle jumps between positions $A$ and $B$ with the following probabilities:
-  #figure-wrapper(
-    figure(
-      canvas(length: 1cm, {
-        import cetz.draw: *
+  // #figure-wrapper(
+  //   figure(
+  //     canvas(length: 1cm, {
+  //       import cetz.draw: *
 
-        let A = (0, 0)
-        let B = (4.6, 0)
+  //       let A = (0, 0)
+  //       let B = (4.6, 0)
 
-        let r = .42
+  //       let r = .42
 
-        circle(A, radius: r)
-        content(A, text(size: 15pt)[$A$])
+  //       circle(A, radius: r)
+  //       content(A, text(size: 15pt)[$A$])
 
-        circle(B, radius: r)
-        content(B, text(size: 15pt)[$B$])
+  //       circle(B, radius: r)
+  //       content(B, text(size: 15pt)[$B$])
 
-        // Cetz's bezier order is start, end, then its two control points.
-        bezier(
-          (-.28, .30),
-          (-.28, -.30),
-          (-1.62, 1.48),
-          (-1.62, -1.18),
-          stroke: (thickness: .9pt, cap: "round", join: "round"),
-          mark: (end: ">"),
-        )
-        content((-1.56, 1.08), text(size: 12pt)[$0.6$])
+  //       // Cetz's bezier order is start, end, then its two control points.
+  //       bezier(
+  //         (-.28, .30),
+  //         (-.28, -.30),
+  //         (-1.62, 1.48),
+  //         (-1.62, -1.18),
+  //         stroke: (thickness: .9pt, cap: "round", join: "round"),
+  //         mark: (end: ">"),
+  //       )
+  //       content((-1.56, 1.08), text(size: 12pt)[$0.6$])
 
-        bezier(
-          (.38, .22),
-          (4.22, .22),
-          (1.32, 1.18),
-          (3.28, 1.18),
-          stroke: (thickness: .9pt, cap: "round", join: "round"),
-          mark: (end: ">"),
-        )
-        content((2.30, 1.30), text(size: 12pt)[$0.4$])
+  //       bezier(
+  //         (.38, .22),
+  //         (4.22, .22),
+  //         (1.32, 1.18),
+  //         (3.28, 1.18),
+  //         stroke: (thickness: .9pt, cap: "round", join: "round"),
+  //         mark: (end: ">"),
+  //       )
+  //       content((2.30, 1.30), text(size: 12pt)[$0.4$])
 
-        bezier(
-          (4.22, -.22),
-          (.38, -.22),
-          (3.28, -1.18),
-          (1.32, -1.18),
-          stroke: (thickness: .9pt, cap: "round", join: "round"),
-          mark: (end: ">"),
-        )
-        content((2.30, -.55), text(size: 12pt)[$0.2$])
+  //       bezier(
+  //         (4.22, -.22),
+  //         (.38, -.22),
+  //         (3.28, -1.18),
+  //         (1.32, -1.18),
+  //         stroke: (thickness: .9pt, cap: "round", join: "round"),
+  //         mark: (end: ">"),
+  //       )
+  //       content((2.30, -.55), text(size: 12pt)[$0.2$])
 
-        bezier(
-          (4.88, .30),
-          (4.88, -.30),
-          (6.22, 1.48),
-          (6.22, -1.18),
-          stroke: (thickness: .9pt, cap: "round", join: "round"),
-          mark: (end: ">"),
-        )
-        content((6.16, 1.08), text(size: 12pt)[$0.8$])
-      }),
-    ),
-  )
+  //       bezier(
+  //         (4.88, .30),
+  //         (4.88, -.30),
+  //         (6.22, 1.48),
+  //         (6.22, -1.18),
+  //         stroke: (thickness: .9pt, cap: "round", join: "round"),
+  //         mark: (end: ">"),
+  //       )
+  //       content((6.16, 1.08), text(size: 12pt)[$0.8$])
+  //     }),
+  //   ),
+  // )
 
   If it starts at $vb(A)$, what is the probability it is at
   $vb(A)$ and $vb(B)$ after
